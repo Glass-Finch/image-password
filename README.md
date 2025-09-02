@@ -92,7 +92,7 @@ npm test             # Run test suite
 ### Desktop
 ```
 ✨ Yu-Gi-Oh! Trials of the Fairies ✨
-🧚‍♀️ Prove your fairy deck mastery! 🧚‍♀️
+🧚‍♀️ Prove your fairy deck building mastery and win a prize! 🧚‍♀️
 
 ┌─────────────────────┬─────────────────────┐
 │   🎴 Reference Deck │    ⏱️ 1:00         │

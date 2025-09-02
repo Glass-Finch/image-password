@@ -108,7 +108,7 @@ export default function GameBoard() {
             ✨ Yu-Gi-Oh! Trials of the Fairies ✨
           </h1>
           <p className="text-monokai-text-dim text-lg">
-            🧚‍♀️ Prove your fairy deck mastery! 🧚‍♀️
+            🧚‍♀️ Prove your fairy deck building mastery and win a prize! 🧚‍♀️
           </p>
         </div>
       )}
