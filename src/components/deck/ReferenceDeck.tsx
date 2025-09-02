@@ -38,7 +38,7 @@ export default function ReferenceDeck({ cards, className = '' }: ReferenceDeckPr
       </div>
       
       <motion.div
-        className="grid grid-cols-3 gap-3 justify-center max-w-md mx-auto"
+        className="grid grid-cols-3 gap-4 justify-center max-w-2xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -47,7 +47,7 @@ export default function ReferenceDeck({ cards, className = '' }: ReferenceDeckPr
           <motion.div key={card.id} variants={itemVariants}>
             <CardImage 
               card={card} 
-              size="medium"
+              size="large"
               className="shadow-lg"
             />
           </motion.div>

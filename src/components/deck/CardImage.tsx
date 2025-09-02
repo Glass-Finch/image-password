@@ -52,7 +52,7 @@ export default function CardImage({
         ${className}
       `}
       onClick={handleClick}
-      whileHover={isClickable ? { scale: 1.05 } : undefined}
+      whileHover={isClickable ? { scale: 1.2 } : { scale: 1.15 }}
       whileTap={isClickable ? { scale: 0.95 } : undefined}
       transition={{ duration: ANIMATION_DURATIONS.CARD_HOVER / 1000 }}
     >

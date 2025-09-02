@@ -222,5 +222,26 @@
     "image": "/images/cards/placeholder.svg",
     "score": -1,
     "tags": ["beast-warrior", "distractor"]
+  },
+  {
+    "id": "wrong-13",
+    "name": "Flame Swordsman",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-14",
+    "name": "Gaia the Fierce Knight",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-15",
+    "name": "Time Wizard",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
   }
 ]

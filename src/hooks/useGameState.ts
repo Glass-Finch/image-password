@@ -23,7 +23,7 @@ export function useGameState(cards: Card[], deckId: string) {
 
   const [gameRounds, setGameRounds] = useState<GameRound[]>([])
 
-  // Initialize game rounds
+  // Initialize game rounds - trigger when cards change or session restarts
   useEffect(() => {
     if (cards.length === 0) return
     
@@ -47,15 +47,25 @@ export function useGameState(cards: Card[], deckId: string) {
         
         const correctCard = availableCorrect[Math.floor(Math.random() * availableCorrect.length)]
         const selectedWrongCards: Card[] = []
-        for (let j = 0; j < 3; j++) {
-          const remainingWrong = availableWrong.filter(c => !usedWrong.includes(c.id))
+        const tempUsedWrong = [...usedWrong]
+        
+        for (let j = 0; j < 5; j++) {
+          const remainingWrong = availableWrong.filter(c => !tempUsedWrong.includes(c.id))
+          if (remainingWrong.length === 0) {
+            console.error(`Not enough unique wrong cards for round ${i + 1}, selection ${j + 1}`)
+            break
+          }
           const wrongCard = remainingWrong[Math.floor(Math.random() * remainingWrong.length)]
           selectedWrongCards.push(wrongCard)
-          usedWrong.push(wrongCard.id)
+          tempUsedWrong.push(wrongCard.id)
         }
+        
+        usedWrong.push(...selectedWrongCards.map(c => c.id))
         
         // Shuffle choices
         const choices = [correctCard, ...selectedWrongCards].sort(() => Math.random() - 0.5)
+        
+        console.log(`Round ${i + 1}: Generated ${choices.length} cards, correct: ${correctCard.name}`)
         
         rounds.push({
           choices,
@@ -79,7 +89,26 @@ export function useGameState(cards: Card[], deckId: string) {
       console.error('Failed to initialize game:', error)
       setGameState(prev => ({ ...prev, gameStatus: 'failed', networkError: true }))
     }
-  }, [cards, deckId])
+  }, [cards, deckId, gameState.sessionId])
+
+  const restartGame = useCallback(() => {
+    const newSessionId = generateSessionId()
+    setGameState({
+      sessionId: newSessionId,
+      deckId,
+      currentRound: 1,
+      timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
+      gameStatus: 'playing',
+      selectedCards: [],
+      currentRoundChoices: [],
+      correctCardId: '',
+      usedCorrectCards: [],
+      usedWrongCards: [],
+      roundStartTime: Date.now(),
+      isSubmitting: false,
+      networkError: false,
+    })
+  }, [deckId])
 
   const selectCard = useCallback((cardId: string) => {
     if (gameState.isSubmitting || gameState.gameStatus !== 'playing') return
@@ -99,7 +128,7 @@ export function useGameState(cards: Card[], deckId: string) {
       const newSelectedCards = [...prev.selectedCards, selectedCard]
       
       if (!isCorrect) {
-        // Wrong answer - game failed
+        // Wrong answer - show punishment screen
         return {
           ...prev,
           selectedCards: newSelectedCards,
@@ -140,26 +169,6 @@ export function useGameState(cards: Card[], deckId: string) {
     }))
   }, [])
 
-  const restartGame = useCallback(() => {
-    const newSessionId = generateSessionId()
-    setGameState({
-      sessionId: newSessionId,
-      deckId,
-      currentRound: 1,
-      timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
-      gameStatus: 'playing',
-      selectedCards: [],
-      currentRoundChoices: gameRounds.length > 0 ? gameRounds[0].choices : [],
-      correctCardId: gameRounds.length > 0 ? gameRounds[0].correctId : '',
-      usedCorrectCards: [],
-      usedWrongCards: [],
-      roundStartTime: Date.now(),
-      isSubmitting: false,
-      networkError: false,
-    })
-
-    // Regenerate rounds for new session - will be handled by useEffect
-  }, [deckId, gameRounds])
 
   const updateTimeRemaining = useCallback((time: number) => {
     setGameState(prev => ({ ...prev, timeRemaining: time }))

@@ -73,7 +73,7 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
       </div>
       
       <motion.div
-        className="grid grid-cols-2 gap-6 justify-center items-center max-w-md mx-auto"
+        className="grid grid-cols-3 gap-4 justify-center items-center max-w-3xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

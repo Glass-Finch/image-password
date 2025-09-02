@@ -29,10 +29,10 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
     return () => clearInterval(interval)
   }, [gameState.gameStatus, handleTimeout])
 
-  // Reset timer when round changes
+  // Reset timer when round changes or game restarts
   useEffect(() => {
     setTimeRemaining(60)
-  }, [gameState.currentRound])
+  }, [gameState.currentRound, gameState.sessionId])
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60)
@@ -66,7 +66,7 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
           animate={timeRemaining <= 10 ? { scale: [1, 1.1, 1] } : {}}
           transition={{ duration: 1, repeat: Infinity }}
         >
-          {timeRemaining}
+          ⏱️ {formatTime(timeRemaining)}
         </motion.div>
         <div className="text-lg text-monokai-text-dim font-semibold">
           Round {gameState.currentRound} of 3

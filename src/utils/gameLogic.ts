@@ -17,12 +17,12 @@ export function generateGameRounds(cards: Card[], config: DeckConfig): GameRound
       throw new Error(`Not enough unique correct cards for round ${i + 1}`)
     }
     
-    if (availableWrong.length < 3) {
+    if (availableWrong.length < 5) {
       throw new Error(`Not enough unique wrong cards for round ${i + 1}`)
     }
     
     const correctCard = randomSelect(availableCorrect, 1)[0]
-    const wrongCardChoices = randomSelect(availableWrong, 3)
+    const wrongCardChoices = randomSelect(availableWrong, 5)
     
     rounds.push({
       choices: shuffle([correctCard, ...wrongCardChoices]),
