@@ -341,6 +341,94 @@
     "card_type": "monster"
   },
   {
+    "id": "correct-17",
+    "name": "Ancient Fairy Life Dragon",
+    "image": "/images/cards/correct/2025-09-02_Ancient-Fairy-Life-Dragon-43321985.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "correct-18",
+    "name": "Bountiful Artemis",
+    "image": "/images/cards/correct/2025-09-02_Bountiful-Artemis-32296881.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "correct-19",
+    "name": "Celestial Transformation",
+    "image": "/images/cards/correct/2025-09-02_Celestial-Transformation-28890974.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "correct-20",
+    "name": "Fairy Tail - Luna",
+    "image": "/images/cards/correct/2025-09-02_Fairy-Tail-Luna-86937530.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "correct-21",
+    "name": "Fairy Tail - Tales",
+    "image": "/images/cards/correct/2025-09-02_Fairy-Tail-Tales-91957038.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "correct-22",
+    "name": "Herald of the Arc Light",
+    "image": "/images/cards/correct/2025-09-02_Herald-of-the-Arc-Light-79606837.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "correct-23",
+    "name": "Photon Sanctuary",
+    "image": "/images/cards/correct/2025-09-02_Photon-Sanctuary-17418744.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "correct-24",
+    "name": "The Sanctuary in the Sky",
+    "image": "/images/cards/correct/2025-09-02_The-Sanctuary-in-the-Sky-56433456.jpg",
+    "score": 1,
+    "tags": [
+      "fairy",
+      "correct"
+    ],
+    "card_type": "spell"
+  },
+  {
     "id": "wrong-1",
     "name": "ABC-Dragon Buster",
     "image": "/images/cards/distractors/2025-09-02_ABC-Dragon-Buster-1561110.jpg",
@@ -1208,5 +1296,137 @@
       "distractor"
     ],
     "card_type": "trap"
+  },
+  {
+    "id": "wrong-80",
+    "name": "Aitsu",
+    "image": "/images/cards/distractors/2025-09-02_Aitsu-48202661.jpg",
+    "score": -1,
+    "tags": [
+      "warrior",
+      "distractor"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "wrong-81",
+    "name": "Armageddon Knight",
+    "image": "/images/cards/distractors/2025-09-02_Armageddon-Knight-28985331.jpg",
+    "score": -1,
+    "tags": [
+      "warrior",
+      "distractor"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "wrong-82",
+    "name": "Boycotton",
+    "image": "/images/cards/distractors/2025-09-02_Boycotton-45025640.jpg",
+    "score": -1,
+    "tags": [
+      "plant",
+      "distractor"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "wrong-83",
+    "name": "Cards from the Sky",
+    "image": "/images/cards/distractors/2025-09-02_Cards-from-the-Sky-54977057.jpg",
+    "score": -1,
+    "tags": [
+      "spell",
+      "distractor"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "wrong-84",
+    "name": "Cold Feet",
+    "image": "/images/cards/distractors/2025-09-02_Cold-Feet-40383551.jpg",
+    "score": -1,
+    "tags": [
+      "trap",
+      "distractor"
+    ],
+    "card_type": "trap"
+  },
+  {
+    "id": "wrong-85",
+    "name": "F.A. Motorhome Transport",
+    "image": "/images/cards/distractors/2025-09-02_FA-Motorhome-Transport-75676192.jpg",
+    "score": -1,
+    "tags": [
+      "machine",
+      "distractor"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "wrong-86",
+    "name": "Get Your Game On!",
+    "image": "/images/cards/distractors/2025-09-02_Get-Your-Game-On-111000561.jpg",
+    "score": -1,
+    "tags": [
+      "spell",
+      "distractor"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "wrong-87",
+    "name": "Humble Sentry",
+    "image": "/images/cards/distractors/2025-09-02_Humble-Sentry-95642274.jpg",
+    "score": -1,
+    "tags": [
+      "warrior",
+      "distractor"
+    ],
+    "card_type": "monster"
+  },
+  {
+    "id": "wrong-88",
+    "name": "Mokey Mokey Smackdown",
+    "image": "/images/cards/distractors/2025-09-02_Mokey-Mokey-Smackdown-1965724.jpg",
+    "score": -1,
+    "tags": [
+      "spell",
+      "distractor"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "wrong-89",
+    "name": "Self-Mummification",
+    "image": "/images/cards/distractors/2025-09-02_Self-Mummification-15103313.jpg",
+    "score": -1,
+    "tags": [
+      "trap",
+      "distractor"
+    ],
+    "card_type": "trap"
+  },
+  {
+    "id": "wrong-90",
+    "name": "Time Magic Hammer",
+    "image": "/images/cards/distractors/2025-09-02_Time-Magic-Hammer-10960419.jpg",
+    "score": -1,
+    "tags": [
+      "spell",
+      "distractor"
+    ],
+    "card_type": "spell"
+  },
+  {
+    "id": "wrong-91",
+    "name": "Vingolf's Blessing",
+    "image": "/images/cards/distractors/2025-09-02_Vingolfs-Blessing-75493362.jpg",
+    "score": -1,
+    "tags": [
+      "spell",
+      "distractor"
+    ],
+    "card_type": "spell"
   }
 ]
