@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+  
+  body {
+    @apply bg-monokai-bg text-monokai-text min-h-screen;
+    background: radial-gradient(ellipse at center, #3e3d32 0%, #272822 50%, #1e1e1e 100%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-200 ease-in-out relative;
+    @apply hover:scale-105 hover:shadow-2xl hover:z-50;
+  }
+  
+  .card-hover:hover {
+    box-shadow: 0 10px 25px rgba(174, 129, 255, 0.3);
+  }
+  
+  .card-selected-correct {
+    @apply ring-4 ring-monokai-purple;
+    box-shadow: 0 0 20px rgba(174, 129, 255, 0.6);
+  }
+  
+  .card-selected-wrong {
+    @apply ring-4 ring-monokai-red;
+    box-shadow: 0 0 20px rgba(249, 38, 114, 0.6);
+  }
+  
+  .timer-warning {
+    @apply animate-pulse text-monokai-red;
+  }
+  
+  .timer-critical {
+    @apply animate-bounce text-monokai-red;
+  }
+  
+  .magical-glow {
+    background: linear-gradient(45deg, transparent 30%, rgba(174, 129, 255, 0.1) 50%, transparent 70%);
+    background-size: 200% 200%;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  .kawaii-star {
+    filter: drop-shadow(0 0 10px rgba(230, 219, 116, 0.8));
+  }
+}
+
+@layer utilities {
+  .text-outline {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(45deg, #ae81ff, #e6db74, #66d9ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .card-zoom-hover {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .card-zoom-hover:hover {
+    z-index: 50;
+    transform-origin: center;
+  }
+}
