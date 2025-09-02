@@ -184,7 +184,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   },
   {
     "id": "correct-3",
@@ -195,7 +195,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   },
   {
     "id": "correct-4",
@@ -206,7 +206,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "spell"
   },
   {
     "id": "correct-5",
@@ -239,7 +239,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "spell"
   },
   {
     "id": "correct-8",
@@ -250,7 +250,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   },
   {
     "id": "correct-9",
@@ -272,7 +272,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   },
   {
     "id": "correct-11",
@@ -283,7 +283,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "spell"
   },
   {
     "id": "correct-12",
@@ -305,7 +305,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   },
   {
     "id": "correct-14",
@@ -327,7 +327,7 @@
       "fairy",
       "correct"
     ],
-    "card_type": "monster"
+    "card_type": "spell"
   },
   {
     "id": "correct-16",
