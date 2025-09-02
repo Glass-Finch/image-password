@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { GameState, Card, SelectedCard, GameRound } from '@/types/game'
-import { generateSessionId, getUserAgent, getScreenResolution } from '@/utils/cardUtils'
-import { generateGameRounds, isGameComplete, hasGameFailed } from '@/utils/gameLogic'
+import { generateSessionId } from '@/utils/cardUtils'
+import { generateGameRounds } from '@/utils/gameLogic'
 import { GAME_CONFIG } from '@/config/game-constants'
 
 export function useGameState(cards: Card[], deckId: string) {
@@ -28,18 +28,7 @@ export function useGameState(cards: Card[], deckId: string) {
     if (cards.length === 0) return
     
     try {
-      // Use the new category-based round generation
-      console.log('Generating category-based rounds...')
-      const rounds = generateGameRounds(cards, { 
-        id: deckId, 
-        name: '', 
-        referenceCards: [], 
-        theme: { primary: '', secondary: '', accent: '', backgroundGradient: [] },
-        successMessage: '',
-        redirectUrl: ''
-      })
-      
-      console.log('Generated rounds:', rounds.length)
+      const rounds = generateGameRounds(cards)
       setGameRounds(rounds)
       
       if (rounds.length > 0) {

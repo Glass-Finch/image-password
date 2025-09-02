@@ -45,15 +45,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         
         // Preload ALL card images with progress tracking
         const allImages = cardsData.map(card => card.image)
-        console.log(`Preloading ${allImages.length} images...`)
-        
         await preloadImagesWithProgress(allImages, (loaded, total) => {
-          const progress = Math.round((loaded / total) * 100)
-          console.log(`Loading progress: ${loaded}/${total} (${progress}%)`)
-          setLoadingProgress(progress)
+          setLoadingProgress(Math.round((loaded / total) * 100))
         })
-        
-        console.log('All images preloaded!')
         
         setIsImagesLoaded(true)
         setError(null)
