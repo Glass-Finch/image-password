@@ -52,7 +52,7 @@ export default function CardImage({
         ${className}
       `}
       onClick={handleClick}
-      whileHover={{ scale: 2.0 }}
+      whileHover={{ scale: 1.75 }}
       whileTap={isClickable ? { scale: 0.95 } : undefined}
       transition={{ duration: ANIMATION_DURATIONS.CARD_HOVER / 1000 }}
     >
@@ -62,7 +62,7 @@ export default function CardImage({
         fill
         className="object-cover"
         sizes={`(max-width: 640px) ${size === 'small' ? '160px' : size === 'medium' ? '224px' : '320px'}, ${size === 'small' ? '192px' : size === 'medium' ? '256px' : '384px'}`}
-        priority={isClickable}
+        priority={true}
         quality={95}
         unoptimized={false}
       />

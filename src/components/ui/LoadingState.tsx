@@ -4,9 +4,10 @@ import { motion } from 'framer-motion'
 
 interface LoadingStateProps {
   message?: string
+  progress?: number
 }
 
-export default function LoadingState({ message = 'Loading magical challenge...' }: LoadingStateProps) {
+export default function LoadingState({ message = 'Loading magical challenge...', progress = 0 }: LoadingStateProps) {
   const spinnerVariants = {
     animate: {
       rotate: 360,
@@ -80,7 +81,7 @@ export default function LoadingState({ message = 'Loading magical challenge...' 
         </h2>
         
         <div className="flex items-center justify-center space-x-1 text-monokai-text-dim">
-          <span>Shuffling cards</span>
+          <span>Loading images</span>
           {[0, 1, 2].map((index) => (
             <motion.span
               key={index}
@@ -95,6 +96,23 @@ export default function LoadingState({ message = 'Loading magical challenge...' 
             </motion.span>
           ))}
         </div>
+        
+        {progress > 0 && (
+          <div className="mt-4 w-64 mx-auto">
+            <div className="flex justify-between text-sm text-monokai-text-dim mb-2">
+              <span>Progress</span>
+              <span>{progress}%</span>
+            </div>
+            <div className="w-full bg-monokai-bg-dark rounded-full h-2">
+              <motion.div
+                className="bg-monokai-purple h-2 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+          </div>
+        )}
       </motion.div>
 
       {/* Background magical particles */}

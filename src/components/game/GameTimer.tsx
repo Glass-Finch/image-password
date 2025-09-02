@@ -9,11 +9,11 @@ interface GameTimerProps {
 }
 
 export default function GameTimer({ className = '' }: GameTimerProps) {
-  const { gameState, handleTimeout } = useGame()
+  const { gameState, handleTimeout, isImagesLoaded } = useGame()
   const [timeRemaining, setTimeRemaining] = useState(60)
 
   useEffect(() => {
-    if (gameState.gameStatus !== 'playing') return
+    if (gameState.gameStatus !== 'playing' || !isImagesLoaded) return
 
     const interval = setInterval(() => {
       setTimeRemaining(prev => {
@@ -27,7 +27,7 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [gameState.gameStatus, handleTimeout])
+  }, [gameState.gameStatus, handleTimeout, isImagesLoaded])
 
   // Reset timer when round changes or game restarts
   useEffect(() => {

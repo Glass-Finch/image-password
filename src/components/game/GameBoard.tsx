@@ -16,7 +16,9 @@ export default function GameBoard() {
     config, 
     gameState, 
     isLoading, 
-    error 
+    error,
+    loadingProgress,
+    isImagesLoaded
   } = useGame()
 
   const handleSuccessComplete = async () => {
@@ -48,8 +50,8 @@ export default function GameBoard() {
     }
   }
 
-  if (isLoading) {
-    return <LoadingState />
+  if (isLoading || !isImagesLoaded) {
+    return <LoadingState progress={loadingProgress} />
   }
 
   if (error) {

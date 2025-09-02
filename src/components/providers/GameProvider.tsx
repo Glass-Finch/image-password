@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { Card, DeckConfig } from '@/types/game'
 import { DECK_CONFIGS, DEFAULT_DECK } from '@/config/deck-configs'
 import { useGameState } from '@/hooks/useGameState'
-import { preloadImagesInBackground } from '@/utils/imagePreloader'
+import { preloadImagesWithProgress } from '@/utils/imagePreloader'
 
 interface GameContextType {
   cards: Card[]
@@ -16,6 +16,8 @@ interface GameContextType {
   currentRoundData: ReturnType<typeof useGameState>['currentRoundData']
   isLoading: boolean
   error: string | null
+  loadingProgress: number
+  isImagesLoaded: boolean
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined)
@@ -24,6 +26,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [cards, setCards] = useState<Card[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [loadingProgress, setLoadingProgress] = useState(0)
+  const [isImagesLoaded, setIsImagesLoaded] = useState(false)
   
   const config = DECK_CONFIGS[DEFAULT_DECK]
   const gameState = useGameState(cards, config.id)
@@ -39,12 +43,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         const cardsData: Card[] = await response.json()
         setCards(cardsData)
         
-        // Preload reference deck images immediately
-        const referenceImages = cardsData
-          .filter(card => config.referenceCards.includes(card.id))
-          .map(card => card.image)
-        preloadImagesInBackground(referenceImages)
+        // Preload ALL card images with progress tracking
+        const allImages = cardsData.map(card => card.image)
+        console.log(`Preloading ${allImages.length} images...`)
         
+        await preloadImagesWithProgress(allImages, (loaded, total) => {
+          const progress = Math.round((loaded / total) * 100)
+          console.log(`Loading progress: ${loaded}/${total} (${progress}%)`)
+          setLoadingProgress(progress)
+        })
+        
+        console.log('All images preloaded!')
+        
+        setIsImagesLoaded(true)
         setError(null)
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error loading cards'
@@ -68,6 +79,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     currentRoundData: gameState.currentRoundData,
     isLoading,
     error,
+    loadingProgress,
+    isImagesLoaded,
   }
 
   return (
