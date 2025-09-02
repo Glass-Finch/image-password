@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { Card, DeckConfig } from '@/types/game'
 import { DECK_CONFIGS, DEFAULT_DECK } from '@/config/deck-configs'
 import { useGameState } from '@/hooks/useGameState'
+import { preloadImagesInBackground } from '@/utils/imagePreloader'
 
 interface GameContextType {
   cards: Card[]
@@ -37,6 +38,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         }
         const cardsData: Card[] = await response.json()
         setCards(cardsData)
+        
+        // Preload reference deck images immediately
+        const referenceImages = cardsData
+          .filter(card => config.referenceCards.includes(card.id))
+          .map(card => card.image)
+        preloadImagesInBackground(referenceImages)
+        
         setError(null)
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error loading cards'

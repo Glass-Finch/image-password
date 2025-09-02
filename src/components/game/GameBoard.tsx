@@ -90,9 +90,21 @@ export default function GameBoard() {
         <LockedScreen reason="failed" />
       )}
 
+      {/* Kawaii Title */}
+      {gameState.gameStatus === 'playing' && (
+        <div className="text-center py-6">
+          <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+            ✨ Yu-Gi-Oh! Trials of the Fairies ✨
+          </h1>
+          <p className="text-monokai-text-dim text-lg">
+            🧚‍♀️ Prove your fairy deck mastery! 🧚‍♀️
+          </p>
+        </div>
+      )}
+
       {/* Main game layout */}
       {gameState.gameStatus === 'playing' && (
-        <div className="container mx-auto px-4 py-4 max-w-7xl">
+        <div className="container mx-auto px-4 py-2 max-w-7xl">
           {/* Mobile layout - stacked */}
           <div className="block md:hidden">
             <motion.div

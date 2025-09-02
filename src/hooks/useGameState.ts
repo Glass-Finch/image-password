@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { GameState, Card, SelectedCard, GameRound } from '@/types/game'
 import { generateSessionId, getUserAgent, getScreenResolution } from '@/utils/cardUtils'
 import { generateGameRounds, isGameComplete, hasGameFailed } from '@/utils/gameLogic'
+import { preloadImagesInBackground } from '@/utils/imagePreloader'
 import { GAME_CONFIG } from '@/config/game-constants'
 
 export function useGameState(cards: Card[], deckId: string) {
@@ -76,6 +77,10 @@ export function useGameState(cards: Card[], deckId: string) {
       setGameRounds(rounds)
       
       if (rounds.length > 0) {
+        // Preload all images for smooth transitions
+        const allRoundImages = rounds.flatMap(round => round.choices.map(card => card.image))
+        preloadImagesInBackground(allRoundImages)
+        
         setGameState(prev => ({
           ...prev,
           currentRoundChoices: rounds[0].choices,
