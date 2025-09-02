@@ -1,0 +1,226 @@
+[
+  {
+    "id": "fairy-1",
+    "name": "Blue Dragon Summoner",
+    "image": "/images/cards/fairy/2025-09-02-Blue-Dragon-Summoner-55969226.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-2",
+    "name": "Arcana Force 0 - The Fool",
+    "image": "/images/cards/fairy/2025-09-02_Arcana-Force-0-The-Fool-62892347.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-3",
+    "name": "Arcana Force I - The Magician",
+    "image": "/images/cards/fairy/2025-09-02_Arcana-Force-I-8396952.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-4",
+    "name": "Arcana Force VII - The Chariot",
+    "image": "/images/cards/fairy/2025-09-02_Arcana-Force-VII-34568403.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-5",
+    "name": "Armed Dragon LV3",
+    "image": "/images/cards/fairy/2025-09-02_Armed-Dragon-LV3-980973.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-6",
+    "name": "Armed Dragon LV5",
+    "image": "/images/cards/fairy/2025-09-02_Armed-Dragon-LV5-46384672.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-7",
+    "name": "Attachment Cybern",
+    "image": "/images/cards/fairy/2025-09-02_Attachment-Cybern-79875526.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-8",
+    "name": "Couple of Aces",
+    "image": "/images/cards/fairy/2025-09-02_Couple-of_Aces-26259179.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-9",
+    "name": "Maha Vailo",
+    "image": "/images/cards/fairy/2025-09-02_Maha-Vailo-93013676.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-10",
+    "name": "Mystical Elf",
+    "image": "/images/cards/fairy/2025-09-02_Mystical-Elf-15025844.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-11",
+    "name": "Origami Goddess",
+    "image": "/images/cards/fairy/2025-09-02_Origami-Goddess-7930346.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-12",
+    "name": "Spirit Ryu",
+    "image": "/images/cards/fairy/2025-09-02_Spirit-Ryu-67957315.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-13",
+    "name": "Valkyrie Zweite",
+    "image": "/images/cards/fairy/2025-09-02_Valkyrie-Zweite-30411385.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-14",
+    "name": "Whirlwind Prodigy",
+    "image": "/images/cards/fairy/2025-09-02_Whirlwind-Prodigy-15090429.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "fairy-15",
+    "name": "White Magical Hat",
+    "image": "/images/cards/fairy/2025-09-02_White-Magical-Hat-15150365.jpg",
+    "score": 0,
+    "tags": ["fairy", "reference"]
+  },
+  {
+    "id": "correct-1",
+    "name": "Herald of Orange Light",
+    "image": "/images/cards/placeholder.svg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-2",
+    "name": "Honest",
+    "image": "/images/cards/placeholder.svg", 
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-3",
+    "name": "Fairy Tail - Snow",
+    "image": "/images/cards/placeholder.svg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-4",
+    "name": "Trickstar Holly Angel",
+    "image": "/images/cards/placeholder.svg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-5",
+    "name": "Guiding Ariadne",
+    "image": "/images/cards/placeholder.svg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "wrong-1",
+    "name": "Blue-Eyes White Dragon",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["dragon", "distractor"]
+  },
+  {
+    "id": "wrong-2",
+    "name": "Red-Eyes Black Dragon",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["dragon", "distractor"]
+  },
+  {
+    "id": "wrong-3",
+    "name": "Cyber Dragon",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["machine", "distractor"]
+  },
+  {
+    "id": "wrong-4",
+    "name": "Elemental HERO Neos",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-5",
+    "name": "Dark Magician",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
+  },
+  {
+    "id": "wrong-6",
+    "name": "Summoned Skull",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-7",
+    "name": "Jinzo",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["machine", "distractor"]
+  },
+  {
+    "id": "wrong-8",
+    "name": "Goblin Attack Force",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-9",
+    "name": "La Jinn the Mystical Genie",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-10",
+    "name": "Lord of D.",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
+  },
+  {
+    "id": "wrong-11",
+    "name": "Gemini Elf",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
+  },
+  {
+    "id": "wrong-12",
+    "name": "Vorse Raider",
+    "image": "/images/cards/placeholder.svg",
+    "score": -1,
+    "tags": ["beast-warrior", "distractor"]
+  }
+]
