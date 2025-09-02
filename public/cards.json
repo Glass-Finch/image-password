@@ -607,5 +607,82 @@
     "image": "/images/cards/distractors/2025-09-02_Zodiac-Ratpier-78872731.jpg",
     "score": -1,
     "tags": ["beast-warrior", "distractor"]
+  },
+  {
+    "id": "wrong-57",
+    "name": "Tragoedia",
+    "image": "/images/cards/distractors/2025-09-02_Tragoedia-98777036.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-58",
+    "name": "Blue-Eyes Jet Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Blue-Eyes-Jet-Dragon-30576089.jpg",
+    "score": -1,
+    "tags": ["dragon", "distractor"]
+  },
+  {
+    "id": "wrong-59",
+    "name": "Exchange of the Spirit",
+    "image": "/images/cards/distractors/2025-09-02_Exchange-of-the-Spirit-17484499.jpg",
+    "score": -1,
+    "tags": ["trap", "distractor"]
+  },
+  {
+    "id": "wrong-60",
+    "name": "Five-Headed Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Five-Headed-Dragon-99267150.jpg",
+    "score": -1,
+    "tags": ["dragon", "distractor"]
+  },
+  {
+    "id": "wrong-61",
+    "name": "Fusionist",
+    "image": "/images/cards/distractors/2025-09-02_Fusionist-1641882.jpg",
+    "score": -1,
+    "tags": ["beast", "distractor"]
+  },
+  {
+    "id": "wrong-62",
+    "name": "Greed Quasar",
+    "image": "/images/cards/distractors/2025-09-02_Greed-Quasar-50263751.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-63",
+    "name": "Magical Hats",
+    "image": "/images/cards/distractors/2025-09-02_Magical-Hats-81210420.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-64",
+    "name": "Moisture Creature",
+    "image": "/images/cards/distractors/2025-09-02_Moisture-Creature-75285069.jpg",
+    "score": -1,
+    "tags": ["aqua", "distractor"]
+  },
+  {
+    "id": "wrong-65",
+    "name": "Ojama King",
+    "image": "/images/cards/distractors/2025-09-02_Ojama-King-90140980.jpg",
+    "score": -1,
+    "tags": ["beast", "distractor"]
+  },
+  {
+    "id": "wrong-66",
+    "name": "Red Nova Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Red-Nova-Dragon-97489701.jpg",
+    "score": -1,
+    "tags": ["dragon", "distractor"]
+  },
+  {
+    "id": "wrong-67",
+    "name": "Seal of Orichalcos",
+    "image": "/images/cards/distractors/2025-09-02_Seal-of-Orichalcos-48179391.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
   }
 ]
