@@ -1,0 +1,223 @@
+{
+  "config": {
+    "totalRounds": 3,
+    "choicesPerRound": 5,
+    "positiveCardsPerRound": 1,
+    "negativeCardsPerRound": 4,
+    "redirectUrl": "https://your-target-website.com"
+  },
+  "deckCards": [
+    {
+      "id": "deck-001",
+      "name": "Blue-Eyes White Dragon",
+      "imageUrl": "/images/deck/blue-eyes-white-dragon.jpg",
+      "quantity": 3
+    },
+    {
+      "id": "deck-002", 
+      "name": "Blue-Eyes Alternative White Dragon",
+      "imageUrl": "/images/deck/blue-eyes-alternative-white-dragon.jpg",
+      "quantity": 3
+    },
+    {
+      "id": "deck-003",
+      "name": "The White Stone of Ancients",
+      "imageUrl": "/images/deck/white-stone-of-ancients.jpg",
+      "quantity": 3
+    },
+    {
+      "id": "deck-004",
+      "name": "Sage with Eyes of Blue",
+      "imageUrl": "/images/deck/sage-with-eyes-of-blue.jpg",
+      "quantity": 3
+    },
+    {
+      "id": "deck-005",
+      "name": "Blue-Eyes Chaos MAX Dragon",
+      "imageUrl": "/images/deck/blue-eyes-chaos-max-dragon.jpg",
+      "quantity": 2
+    },
+    {
+      "id": "deck-006",
+      "name": "Blue-Eyes Twin Burst Dragon", 
+      "imageUrl": "/images/deck/blue-eyes-twin-burst-dragon.jpg",
+      "quantity": 1
+    },
+    {
+      "id": "deck-007",
+      "name": "Blue-Eyes Ultimate Dragon",
+      "imageUrl": "/images/deck/blue-eyes-ultimate-dragon.jpg",
+      "quantity": 1
+    },
+    {
+      "id": "deck-008",
+      "name": "Polymerization",
+      "imageUrl": "/images/deck/polymerization.jpg",
+      "quantity": 3
+    },
+    {
+      "id": "deck-009", 
+      "name": "Trade-In",
+      "imageUrl": "/images/deck/trade-in.jpg",
+      "quantity": 3
+    },
+    {
+      "id": "deck-010",
+      "name": "Return of the Dragon Lords",
+      "imageUrl": "/images/deck/return-of-the-dragon-lords.jpg",
+      "quantity": 2
+    }
+  ],
+  "choiceCards": [
+    {
+      "id": "choice-pos-001",
+      "name": "Dragon Spirit of White",
+      "imageUrl": "/images/choices/dragon-spirit-of-white.jpg",
+      "score": "positive"
+    },
+    {
+      "id": "choice-pos-002",
+      "name": "Maiden with Eyes of Blue", 
+      "imageUrl": "/images/choices/maiden-with-eyes-of-blue.jpg",
+      "score": "positive"
+    },
+    {
+      "id": "choice-pos-003",
+      "name": "Azure-Eyes Silver Dragon",
+      "imageUrl": "/images/choices/azure-eyes-silver-dragon.jpg",
+      "score": "positive"
+    },
+    {
+      "id": "choice-pos-004",
+      "name": "Blue-Eyes Abyss Dragon",
+      "imageUrl": "/images/choices/blue-eyes-abyss-dragon.jpg",
+      "score": "positive"
+    },
+    {
+      "id": "choice-pos-005",
+      "name": "Lord of D.",
+      "imageUrl": "/images/choices/lord-of-d.jpg",
+      "score": "positive"
+    },
+    {
+      "id": "choice-neg-001",
+      "name": "Elemental HERO Sparkman",
+      "imageUrl": "/images/choices/elemental-hero-sparkman.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-002",
+      "name": "Kuriboh",
+      "imageUrl": "/images/choices/kuriboh.jpg", 
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-003",
+      "name": "Dark Magician",
+      "imageUrl": "/images/choices/dark-magician.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-004",
+      "name": "Red-Eyes Black Dragon",
+      "imageUrl": "/images/choices/red-eyes-black-dragon.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-005",
+      "name": "Mystical Space Typhoon",
+      "imageUrl": "/images/choices/mystical-space-typhoon.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-006",
+      "name": "Celtic Guardian", 
+      "imageUrl": "/images/choices/celtic-guardian.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-007",
+      "name": "Fissure",
+      "imageUrl": "/images/choices/fissure.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-008",
+      "name": "Meteor Dragon",
+      "imageUrl": "/images/choices/meteor-dragon.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-009",
+      "name": "Wall of Illusion",
+      "imageUrl": "/images/choices/wall-of-illusion.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-010",
+      "name": "Flame Swordsman",
+      "imageUrl": "/images/choices/flame-swordsman.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-011", 
+      "name": "Time Wizard",
+      "imageUrl": "/images/choices/time-wizard.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-012",
+      "name": "Gaia The Fierce Knight",
+      "imageUrl": "/images/choices/gaia-the-fierce-knight.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-013",
+      "name": "Summoned Skull",
+      "imageUrl": "/images/choices/summoned-skull.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-014",
+      "name": "Mirror Force",
+      "imageUrl": "/images/choices/mirror-force.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-015",
+      "name": "Trap Hole",
+      "imageUrl": "/images/choices/trap-hole.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-016",
+      "name": "Man-Eater Bug",
+      "imageUrl": "/images/choices/man-eater-bug.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-017",
+      "name": "Pot of Greed",
+      "imageUrl": "/images/choices/pot-of-greed.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-018",
+      "name": "La Jinn",
+      "imageUrl": "/images/choices/la-jinn.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-019",
+      "name": "Magician of Faith", 
+      "imageUrl": "/images/choices/magician-of-faith.jpg",
+      "score": "negative"
+    },
+    {
+      "id": "choice-neg-020",
+      "name": "Giant Soldier of Stone",
+      "imageUrl": "/images/choices/giant-soldier-of-stone.jpg",
+      "score": "negative"
+    }
+  ]
+}
