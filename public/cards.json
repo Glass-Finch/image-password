@@ -382,7 +382,7 @@
       "trap",
       "distractor"
     ],
-    "card_type": "trap"
+    "card_type": "spell"
   },
   {
     "id": "wrong-5",
@@ -448,7 +448,7 @@
       "spell",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-11",
@@ -492,7 +492,7 @@
       "spell",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-15",
@@ -687,10 +687,10 @@
     "image": "/images/cards/distractors/2025-09-02_Metaverse-89208725.jpg",
     "score": -1,
     "tags": [
-      "spell",
+      "trap",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-33",
@@ -767,7 +767,7 @@
       "spell",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-40",
@@ -896,10 +896,10 @@
     "image": "/images/cards/distractors/2025-09-02_Toon-Defense-43509019.jpg",
     "score": -1,
     "tags": [
-      "spell",
+      "trap",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-52",
@@ -1020,7 +1020,7 @@
       "spell",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "monster"
   },
   {
     "id": "wrong-63",
@@ -1028,10 +1028,10 @@
     "image": "/images/cards/distractors/2025-09-02_Magical-Hats-81210420.jpg",
     "score": -1,
     "tags": [
-      "spell",
+      "trap",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-64",
@@ -1171,10 +1171,10 @@
     "image": "/images/cards/distractors/2025-09-02_Tutan-Mask-3149764.jpg",
     "score": -1,
     "tags": [
-      "spell",
+      "trap",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-77",
@@ -1185,7 +1185,7 @@
       "spell",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "trap"
   },
   {
     "id": "wrong-78",
@@ -1196,7 +1196,7 @@
       "fiend",
       "distractor"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   },
   {
     "id": "wrong-79",
@@ -1207,6 +1207,6 @@
       "zombie",
       "distractor"
     ],
-    "card_type": "monster"
+    "card_type": "trap"
   }
 ]

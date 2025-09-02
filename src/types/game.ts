@@ -3,6 +3,7 @@ export interface Card {
   name: string
   image: string
   score: number // +1 for correct, -1 for distractor
+  card_type: 'monster' | 'spell' | 'trap'
   tags?: string[]
 }
 

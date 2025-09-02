@@ -45,14 +45,14 @@ export default function CardImage({
   return (
     <motion.div
       className={`
-        relative rounded-xl overflow-hidden border-2 border-monokai-bg-light
+        card-zoom-hover rounded-xl overflow-hidden border-2 border-monokai-bg-light
         ${sizeClasses[size]}
         ${isClickable ? 'cursor-pointer hover:border-monokai-purple transition-all duration-200 hover:shadow-lg hover:shadow-monokai-purple/20' : ''}
         ${getSelectionClass()}
         ${className}
       `}
       onClick={handleClick}
-      whileHover={isClickable ? { scale: 1.2 } : { scale: 1.15 }}
+      whileHover={{ scale: 2.0 }}
       whileTap={isClickable ? { scale: 0.95 } : undefined}
       transition={{ duration: ANIMATION_DURATIONS.CARD_HOVER / 1000 }}
     >
@@ -61,8 +61,10 @@ export default function CardImage({
         alt={card.name}
         fill
         className="object-cover"
-        sizes={`(max-width: 640px) ${size === 'small' ? '80px' : size === 'medium' ? '112px' : '144px'}, ${size === 'small' ? '96px' : size === 'medium' ? '128px' : '160px'}`}
+        sizes={`(max-width: 640px) ${size === 'small' ? '160px' : size === 'medium' ? '224px' : '320px'}, ${size === 'small' ? '192px' : size === 'medium' ? '256px' : '384px'}`}
         priority={isClickable}
+        quality={95}
+        unoptimized={false}
       />
       
       {/* Magical glow overlay for interactive cards */}

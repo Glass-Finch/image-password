@@ -68,7 +68,9 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
           ⚡ Choose the Card
         </h2>
         <p className="text-sm text-monokai-text-dim">
-          Pick the card that best complements the reference deck
+          {gameState.currentRound === 1 && 'Pick the monster that complements the fairy deck'}
+          {gameState.currentRound === 2 && 'Pick the spell that complements the fairy deck'}
+          {gameState.currentRound === 3 && 'Pick the trap that complements the fairy deck'}
         </p>
       </div>
       

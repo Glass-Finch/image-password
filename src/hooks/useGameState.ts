@@ -29,51 +29,18 @@ export function useGameState(cards: Card[], deckId: string) {
     if (cards.length === 0) return
     
     try {
-      const correctCards = cards.filter(c => c.score === 1)
-      const wrongCards = cards.filter(c => c.score === -1)
+      // Use the new category-based round generation
+      console.log('Generating category-based rounds...')
+      const rounds = generateGameRounds(cards, { 
+        id: deckId, 
+        name: '', 
+        referenceCards: [], 
+        theme: { primary: '', secondary: '', accent: '', backgroundGradient: [] },
+        successMessage: '',
+        redirectUrl: ''
+      })
       
-      if (correctCards.length < 3 || wrongCards.length < 9) {
-        console.error('Insufficient cards for game')
-        setGameState(prev => ({ ...prev, gameStatus: 'failed', networkError: true }))
-        return
-      }
-      
-      const rounds: GameRound[] = []
-      const usedCorrect: string[] = []
-      const usedWrong: string[] = []
-      
-      for (let i = 0; i < GAME_CONFIG.ROUNDS_COUNT; i++) {
-        const availableCorrect = correctCards.filter(c => !usedCorrect.includes(c.id))
-        const availableWrong = wrongCards.filter(c => !usedWrong.includes(c.id))
-        
-        const correctCard = availableCorrect[Math.floor(Math.random() * availableCorrect.length)]
-        const selectedWrongCards: Card[] = []
-        const tempUsedWrong = [...usedWrong]
-        
-        for (let j = 0; j < 5; j++) {
-          const remainingWrong = availableWrong.filter(c => !tempUsedWrong.includes(c.id))
-          if (remainingWrong.length === 0) {
-            break
-          }
-          const wrongCard = remainingWrong[Math.floor(Math.random() * remainingWrong.length)]
-          selectedWrongCards.push(wrongCard)
-          tempUsedWrong.push(wrongCard.id)
-        }
-        
-        usedWrong.push(...selectedWrongCards.map(c => c.id))
-        
-        // Shuffle choices
-        const choices = [correctCard, ...selectedWrongCards].sort(() => Math.random() - 0.5)
-        
-        rounds.push({
-          choices,
-          correctId: correctCard.id,
-          roundNumber: i + 1
-        })
-        
-        usedCorrect.push(correctCard.id)
-      }
-      
+      console.log('Generated rounds:', rounds.length)
       setGameRounds(rounds)
       
       if (rounds.length > 0) {

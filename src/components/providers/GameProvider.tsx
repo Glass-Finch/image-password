@@ -32,7 +32,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function loadCards() {
       try {
-        const response = await fetch('/cards.json')
+        const response = await fetch(`/cards.json?t=${Date.now()}`)
         if (!response.ok) {
           throw new Error('Failed to load cards data')
         }

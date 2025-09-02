@@ -71,6 +71,11 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
         <div className="text-lg text-monokai-text-dim font-semibold">
           Round {gameState.currentRound} of 3
         </div>
+        <div className="text-md text-monokai-yellow font-bold">
+          {gameState.currentRound === 1 && '🎭 Monster Cards'}
+          {gameState.currentRound === 2 && '📜 Spell Cards'}
+          {gameState.currentRound === 3 && '🪤 Trap Cards'}
+        </div>
       </div>
 
       {/* Progress bar */}
