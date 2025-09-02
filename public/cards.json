@@ -106,142 +106,506 @@
   },
   {
     "id": "correct-1",
-    "name": "Herald of Orange Light",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Arcana Force XIV - Temperance",
+    "image": "/images/cards/correct/2025-09-02_Arcana-Force-XIV-Temperance-60953118.jpg",
     "score": 1,
     "tags": ["fairy", "correct"]
   },
   {
     "id": "correct-2",
-    "name": "Honest",
-    "image": "/images/cards/placeholder.svg", 
+    "name": "Call of the Haunted",
+    "image": "/images/cards/correct/2025-09-02_Call-of-the-Haunted-97077563.jpg",
     "score": 1,
     "tags": ["fairy", "correct"]
   },
   {
     "id": "correct-3",
-    "name": "Fairy Tail - Snow",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Dark Bribe",
+    "image": "/images/cards/correct/2025-09-02_Dark-Bribe-77538567.jpg",
     "score": 1,
     "tags": ["fairy", "correct"]
   },
   {
     "id": "correct-4",
-    "name": "Trickstar Holly Angel",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Goddess Skuld's Oracle",
+    "image": "/images/cards/correct/2025-09-02_Goddess-Skulds-Oracle-38576155.jpg",
     "score": 1,
     "tags": ["fairy", "correct"]
   },
   {
     "id": "correct-5",
     "name": "Guiding Ariadne",
-    "image": "/images/cards/placeholder.svg",
+    "image": "/images/cards/correct/2025-09-02_Guiding-Ariadne-98301564.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-6",
+    "name": "Honest",
+    "image": "/images/cards/correct/2025-09-02_Honest-37742478.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-7",
+    "name": "Light Barrier",
+    "image": "/images/cards/correct/2025-09-02_Light-Barrier-73206827.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-8",
+    "name": "Magic Cylinder",
+    "image": "/images/cards/correct/2025-09-02_Magic-Cylinder-62279055.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-9",
+    "name": "Maha Vailo - Light of the Heavens",
+    "image": "/images/cards/correct/2025-09-02_Maha-Vailo-Light-of-the-Heavens-45796834.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-10",
+    "name": "Mirror Force",
+    "image": "/images/cards/correct/2025-09-02_Mirror-Force-44095762.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-11",
+    "name": "Power of the Guardians",
+    "image": "/images/cards/correct/2025-09-02_Power-of-the-Guardians-1118137.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-12",
+    "name": "Shining Angel",
+    "image": "/images/cards/correct/2025-09-02_Shining-Angel-95956346.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-13",
+    "name": "Solemn Judgment",
+    "image": "/images/cards/correct/2025-09-02_Solemn-Judgment-41420027.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-14",
+    "name": "Soul of Purity and Light",
+    "image": "/images/cards/correct/2025-09-02_Soul-of-Purity-and-Light-77527210.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-15",
+    "name": "Valhalla, Hall of the Fallen",
+    "image": "/images/cards/correct/2025-09-02_Valhalla-Hall-of-the-Fallen-1353770.jpg",
+    "score": 1,
+    "tags": ["fairy", "correct"]
+  },
+  {
+    "id": "correct-16",
+    "name": "Valkyrie Dritte",
+    "image": "/images/cards/correct/2025-09-02_Valkyrie-Dritte-3026686.jpg",
     "score": 1,
     "tags": ["fairy", "correct"]
   },
   {
     "id": "wrong-1",
-    "name": "Blue-Eyes White Dragon",
-    "image": "/images/cards/placeholder.svg",
+    "name": "ABC-Dragon Buster",
+    "image": "/images/cards/distractors/2025-09-02_ABC-Dragon-Buster-1561110.jpg",
     "score": -1,
-    "tags": ["dragon", "distractor"]
+    "tags": ["machine", "distractor"]
   },
   {
     "id": "wrong-2",
-    "name": "Red-Eyes Black Dragon",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Abyss Actor - Superstar",
+    "image": "/images/cards/distractors/2025-09-02_Abyss-Actor-Superstar-25629622.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-3",
+    "name": "Blue-Eyes White Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Blue-Eyes-White-Dragon-89631139.jpg",
     "score": -1,
     "tags": ["dragon", "distractor"]
   },
   {
-    "id": "wrong-3",
-    "name": "Cyber Dragon",
-    "image": "/images/cards/placeholder.svg",
-    "score": -1,
-    "tags": ["machine", "distractor"]
-  },
-  {
     "id": "wrong-4",
-    "name": "Elemental HERO Neos",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Bubble Barrier",
+    "image": "/images/cards/distractors/2025-09-02_Bubble-Barrier-79777187.jpg",
     "score": -1,
-    "tags": ["warrior", "distractor"]
+    "tags": ["trap", "distractor"]
   },
   {
     "id": "wrong-5",
-    "name": "Dark Magician",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Chain Burst",
+    "image": "/images/cards/distractors/2025-09-02_Chain-Burst-48276469.jpg",
     "score": -1,
-    "tags": ["spellcaster", "distractor"]
+    "tags": ["trap", "distractor"]
   },
   {
     "id": "wrong-6",
-    "name": "Summoned Skull",
-    "image": "/images/cards/placeholder.svg",
-    "score": -1,
-    "tags": ["fiend", "distractor"]
-  },
-  {
-    "id": "wrong-7",
-    "name": "Jinzo",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Clockwork Knight",
+    "image": "/images/cards/distractors/2025-09-02_Clockwork-Knight-41739381.jpg",
     "score": -1,
     "tags": ["machine", "distractor"]
   },
   {
-    "id": "wrong-8",
-    "name": "Goblin Attack Force",
-    "image": "/images/cards/placeholder.svg",
+    "id": "wrong-7",
+    "name": "Cubic Karma",
+    "image": "/images/cards/distractors/2025-09-02_Cubic-Karma-9659580.jpg",
     "score": -1,
-    "tags": ["warrior", "distractor"]
+    "tags": ["trap", "distractor"]
+  },
+  {
+    "id": "wrong-8",
+    "name": "Cyber Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Cyber-Dragon-70095154.jpg",
+    "score": -1,
+    "tags": ["machine", "distractor"]
   },
   {
     "id": "wrong-9",
-    "name": "La Jinn the Mystical Genie",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Cynet Conflict",
+    "image": "/images/cards/distractors/2025-09-02_Cynet-Conflict-7403341.jpg",
     "score": -1,
-    "tags": ["fiend", "distractor"]
+    "tags": ["trap", "distractor"]
   },
   {
     "id": "wrong-10",
-    "name": "Lord of D.",
-    "image": "/images/cards/placeholder.svg",
+    "name": "DNA Surgery",
+    "image": "/images/cards/distractors/2025-09-02_DNA-Surgery-74701381.jpg",
     "score": -1,
-    "tags": ["spellcaster", "distractor"]
+    "tags": ["spell", "distractor"]
   },
   {
     "id": "wrong-11",
-    "name": "Gemini Elf",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Dark Magician Girl",
+    "image": "/images/cards/distractors/2025-09-02_Dark-Magician-Girl-38033121.jpg",
     "score": -1,
     "tags": ["spellcaster", "distractor"]
   },
   {
     "id": "wrong-12",
-    "name": "Vorse Raider",
-    "image": "/images/cards/placeholder.svg",
+    "name": "Dark World Dealings",
+    "image": "/images/cards/distractors/2025-09-02_Dark-World-Dealings-74117290.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-13",
+    "name": "Des Frog",
+    "image": "/images/cards/distractors/2025-09-02_Des-Frog-84451804.jpg",
+    "score": -1,
+    "tags": ["aqua", "distractor"]
+  },
+  {
+    "id": "wrong-14",
+    "name": "Destiny Board",
+    "image": "/images/cards/distractors/2025-09-02_Destiny-Board-94212438.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-15",
+    "name": "Dinomist Charge",
+    "image": "/images/cards/distractors/2025-09-02_Dinomist-Charge-77116346.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-16",
+    "name": "Drillroid",
+    "image": "/images/cards/distractors/2025-09-02_Drillroid-71218746.jpg",
+    "score": -1,
+    "tags": ["machine", "distractor"]
+  },
+  {
+    "id": "wrong-17",
+    "name": "Elemental HERO Avian",
+    "image": "/images/cards/distractors/2025-09-02_Elemental-HERO-Avian-21844576.jpg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-18",
+    "name": "Evil HERO Malicious Edge",
+    "image": "/images/cards/distractors/2025-09-02_Evil-HERO-Malicious-Edge-58554959.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-19",
+    "name": "Exodia the Forbidden One",
+    "image": "/images/cards/distractors/2025-09-02_Exodia-the-Forbidden-One-33396948.jpg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
+  },
+  {
+    "id": "wrong-20",
+    "name": "Field Barrier",
+    "image": "/images/cards/distractors/2025-09-02_Field-Barrier-7153114.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-21",
+    "name": "Firewall Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Firewall-Dragon-5043010.jpg",
+    "score": -1,
+    "tags": ["cyberse", "distractor"]
+  },
+  {
+    "id": "wrong-22",
+    "name": "Ghostrick Jackfrost",
+    "image": "/images/cards/distractors/2025-09-02_Ghostrick-Jackfrost-61318483.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-23",
+    "name": "Grapha, Dragon Lord of Dark World",
+    "image": "/images/cards/distractors/2025-09-02_Grapha-Dragon-Lord-of-Dark-World-34230233.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-24",
+    "name": "Harpie Lady Sisters",
+    "image": "/images/cards/distractors/2025-09-02_Harpie-Lady-Sisters-12206212.jpg",
+    "score": -1,
+    "tags": ["winged-beast", "distractor"]
+  },
+  {
+    "id": "wrong-25",
+    "name": "Inferno Reckless Summon",
+    "image": "/images/cards/distractors/2025-09-02_Inferno-Reckless-Summon-12247206.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-26",
+    "name": "It's a Toon World",
+    "image": "/images/cards/distractors/2025-09-02_Its-a-Toon-World-300201007.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-27",
+    "name": "Kuriboh",
+    "image": "/images/cards/distractors/2025-09-02_Kuriboh-40640057.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-28",
+    "name": "Kuribohrn",
+    "image": "/images/cards/distractors/2025-09-02_Kuribohrn-78355370.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-29",
+    "name": "Magical Musketeer Caspar",
+    "image": "/images/cards/distractors/2025-09-02_Magical-Musketeer-Caspar-32841045.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-30",
+    "name": "Mask Change II",
+    "image": "/images/cards/distractors/2025-09-02_Mask-Change-II-93600443.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-31",
+    "name": "Mathmech Sigma",
+    "image": "/images/cards/distractors/2025-09-02_Mathmech-Sigma-27182739.jpg",
+    "score": -1,
+    "tags": ["cyberse", "distractor"]
+  },
+  {
+    "id": "wrong-32",
+    "name": "Metaverse",
+    "image": "/images/cards/distractors/2025-09-02_Metaverse-89208725.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-33",
+    "name": "Mystic Tomato",
+    "image": "/images/cards/distractors/2025-09-02_Mystic-Tomato-83011278.jpg",
+    "score": -1,
+    "tags": ["plant", "distractor"]
+  },
+  {
+    "id": "wrong-34",
+    "name": "Necroface",
+    "image": "/images/cards/distractors/2025-09-02_Necroface-28297833.jpg",
+    "score": -1,
+    "tags": ["zombie", "distractor"]
+  },
+  {
+    "id": "wrong-35",
+    "name": "Nekroz of Clausolas",
+    "image": "/images/cards/distractors/2025-09-02_Nekroz-of-Clausolas-99185129.jpg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
+  },
+  {
+    "id": "wrong-36",
+    "name": "Number 39: Utopia",
+    "image": "/images/cards/distractors/2025-09-02_Number-39-Utopia-84013237.jpg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-37",
+    "name": "Numeron Wall",
+    "image": "/images/cards/distractors/2025-09-02_Numeron-Wall-42352091.jpg",
+    "score": -1,
+    "tags": ["rock", "distractor"]
+  },
+  {
+    "id": "wrong-38",
+    "name": "Ojama Knight",
+    "image": "/images/cards/distractors/2025-09-02_Ojama-Knight-40391316.jpg",
+    "score": -1,
+    "tags": ["beast", "distractor"]
+  },
+  {
+    "id": "wrong-39",
+    "name": "Ojama Pajama",
+    "image": "/images/cards/distractors/2025-09-02_Ojama-Pajama-75884822.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-40",
+    "name": "Ojama Yellow",
+    "image": "/images/cards/distractors/2025-09-02_Ojama-Yellow-42941100.jpg",
+    "score": -1,
+    "tags": ["beast", "distractor"]
+  },
+  {
+    "id": "wrong-41",
+    "name": "Pendulum Reborn",
+    "image": "/images/cards/distractors/2025-09-02_Pendulum-Reborn-77826734.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-42",
+    "name": "Power Bond",
+    "image": "/images/cards/distractors/2025-09-02_Power-Bond-37630732.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-43",
+    "name": "Qliphort Helix",
+    "image": "/images/cards/distractors/2025-09-02_Qliphort-Helix-37991342.jpg",
+    "score": -1,
+    "tags": ["machine", "distractor"]
+  },
+  {
+    "id": "wrong-44",
+    "name": "Red-Eyes Black Dragon",
+    "image": "/images/cards/distractors/2025-09-02_Red-Eyes-Black-Dragon-74677422.jpg",
+    "score": -1,
+    "tags": ["dragon", "distractor"]
+  },
+  {
+    "id": "wrong-45",
+    "name": "Rikka Petal",
+    "image": "/images/cards/distractors/2025-09-02_Rikka-Petal-71734607.jpg",
+    "score": -1,
+    "tags": ["plant", "distractor"]
+  },
+  {
+    "id": "wrong-46",
+    "name": "Ritual Raven",
+    "image": "/images/cards/distractors/2025-09-02_Ritual-Raven-34334692.jpg",
+    "score": -1,
+    "tags": ["winged-beast", "distractor"]
+  },
+  {
+    "id": "wrong-47",
+    "name": "S-Force Pla-Tina",
+    "image": "/images/cards/distractors/2025-09-02_S-Force-Pla-Tina-58363151.jpg",
+    "score": -1,
+    "tags": ["warrior", "distractor"]
+  },
+  {
+    "id": "wrong-48",
+    "name": "Terraforming",
+    "image": "/images/cards/distractors/2025-09-02_Terraforming-73628505.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-49",
+    "name": "Terrifying Toddler of Torment",
+    "image": "/images/cards/distractors/2025-09-02_Terrifying-Toddler-of-Torment-48468330.jpg",
+    "score": -1,
+    "tags": ["fiend", "distractor"]
+  },
+  {
+    "id": "wrong-50",
+    "name": "The Dark Magicians",
+    "image": "/images/cards/distractors/2025-09-02_The-Dark-Magicians-50237654.jpg",
+    "score": -1,
+    "tags": ["spellcaster", "distractor"]
+  },
+  {
+    "id": "wrong-51",
+    "name": "Toon Defense",
+    "image": "/images/cards/distractors/2025-09-02_Toon-Defense-43509019.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-52",
+    "name": "Trap Dustshoot",
+    "image": "/images/cards/distractors/2025-09-02_Trap-Dustshoot-64697231.jpg",
+    "score": -1,
+    "tags": ["trap", "distractor"]
+  },
+  {
+    "id": "wrong-53",
+    "name": "Traptrix Mantis",
+    "image": "/images/cards/distractors/2025-09-02_Traptrix-Mantis-82738277.jpg",
+    "score": -1,
+    "tags": ["plant", "distractor"]
+  },
+  {
+    "id": "wrong-54",
+    "name": "Wetlands",
+    "image": "/images/cards/distractors/2025-09-02_Wetlands-2084239.jpg",
+    "score": -1,
+    "tags": ["spell", "distractor"]
+  },
+  {
+    "id": "wrong-55",
+    "name": "Yosenju Kama 1",
+    "image": "/images/cards/distractors/2025-09-02_Yosenju-Kama-1-65247798.jpg",
     "score": -1,
     "tags": ["beast-warrior", "distractor"]
   },
   {
-    "id": "wrong-13",
-    "name": "Flame Swordsman",
-    "image": "/images/cards/placeholder.svg",
+    "id": "wrong-56",
+    "name": "Zodiac Ratpier",
+    "image": "/images/cards/distractors/2025-09-02_Zodiac-Ratpier-78872731.jpg",
     "score": -1,
-    "tags": ["warrior", "distractor"]
-  },
-  {
-    "id": "wrong-14",
-    "name": "Gaia the Fierce Knight",
-    "image": "/images/cards/placeholder.svg",
-    "score": -1,
-    "tags": ["warrior", "distractor"]
-  },
-  {
-    "id": "wrong-15",
-    "name": "Time Wizard",
-    "image": "/images/cards/placeholder.svg",
-    "score": -1,
-    "tags": ["spellcaster", "distractor"]
+    "tags": ["beast-warrior", "distractor"]
   }
 ]

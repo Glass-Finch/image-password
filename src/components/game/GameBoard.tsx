@@ -40,7 +40,6 @@ export default function GameBoard() {
         window.location.href = response.url
       } else {
         // Fallback to direct redirect
-        console.log('Using fallback redirect to:', redirectUrl)
         window.location.href = redirectUrl
       }
     } catch (error) {

@@ -52,7 +52,6 @@ export function useGameState(cards: Card[], deckId: string) {
         for (let j = 0; j < 5; j++) {
           const remainingWrong = availableWrong.filter(c => !tempUsedWrong.includes(c.id))
           if (remainingWrong.length === 0) {
-            console.error(`Not enough unique wrong cards for round ${i + 1}, selection ${j + 1}`)
             break
           }
           const wrongCard = remainingWrong[Math.floor(Math.random() * remainingWrong.length)]
@@ -64,8 +63,6 @@ export function useGameState(cards: Card[], deckId: string) {
         
         // Shuffle choices
         const choices = [correctCard, ...selectedWrongCards].sort(() => Math.random() - 0.5)
-        
-        console.log(`Round ${i + 1}: Generated ${choices.length} cards, correct: ${correctCard.name}`)
         
         rounds.push({
           choices,
