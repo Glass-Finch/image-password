@@ -1,252 +1,205 @@
-# Yugioh Image Puzzle - Password Protection System
+# ✨ Yu-Gi-Oh! Trials of the Fairies ✨
 
-A Next.js-based password-protected landing page that uses image-based puzzles instead of traditional passwords. Users must demonstrate knowledge of a specific Yugioh card deck to gain access.
+A Next.js-based password-protected landing page that uses image-based puzzles instead of traditional passwords. Users must demonstrate comprehensive knowledge of Yu-Gi-Oh! fairy deck strategy across monsters, spells, and traps to gain access.
 
-## 🎴 Current Status: READY FOR DEPLOYMENT
+## 🎴 Current Status: PRODUCTION READY
 
-- ✅ **Real Fairy Deck**: 15 authentic Yugioh card images integrated
-- ✅ **Working Game Logic**: 3-round challenge with timer and validation  
-- ✅ **Mobile Responsive**: Optimized for all devices
-- ✅ **Basic Tests**: Core utility functions tested (13 tests passing)
-- ✅ **Clean Build**: 43.3 kB optimized bundle, no errors
+- ✅ **Complete Card Database**: 130 authentic Yu-Gi-Oh! cards (15 reference + 24 correct + 91 distractors)
+- ✅ **Category-Based Rounds**: Monster → Spell → Trap progression  
+- ✅ **Image Preloading**: All images loaded before gameplay with progress bar
+- ✅ **Mobile Responsive**: Optimized for all devices with 1.75x hover zoom
+- ✅ **Clean Codebase**: Linted, tested, and production-ready
 
-## 🎯 Features
+## 🎯 Game Features
 
-- **Image-based Authentication**: 3-round card selection challenge
-- **Deck-Agnostic Architecture**: Easily configurable for different card decks
-- **Mobile-Responsive Design**: Optimized layouts for all devices
-- **Real-time Timer**: 60-second countdown per round with visual feedback
-- **Security Features**: Automatic lockout and card shuffling on failure
-- **Analytics Tracking**: Optional Supabase integration for user behavior analysis
-- **Success Animations**: Kawaii-themed celebration screen
-- **Monokai Theme**: Dark, magical aesthetic with custom color palette
+### 🎮 **Three-Round Challenge**
+- **Round 1**: 🎭 Monster Cards - Choose 1 correct fairy monster from 6 options
+- **Round 2**: 📜 Spell Cards - Choose 1 correct fairy spell from 6 options  
+- **Round 3**: 🪤 Trap Cards - Choose 1 correct fairy trap from 6 options
+- **Timer**: 60 seconds per round with visual countdown
+- **Punishment**: Wrong choice shows lock screen, manual restart required
+
+### 🃏 **Card Database**
+- **Reference Deck**: 15 fairy cards displayed on left (5 rows × 3 cards)
+- **Correct Cards**: 24 fairy support cards (11 monsters, 8 spells, 5 traps)
+- **Distractor Cards**: 91 non-fairy cards (50 monsters, 17 spells, 24 traps)
+- **All Real Cards**: Authentic Yu-Gi-Oh! card images with proper categorization
+
+### 🎨 **Visual Design**
+- **Purple Theme**: Monokai color palette with purple as primary accent
+- **Kawaii Elements**: Magical sparkles, animated progress bars, success celebrations
+- **Card Interactions**: 1.75x hover zoom with proper z-index layering
+- **Responsive Layout**: Desktop (side-by-side) and mobile (stacked) optimized
 
 ## 🛠 Tech Stack
 
-- **Frontend**: Next.js 14, React, TypeScript
+- **Frontend**: Next.js 14 with App Router, React, TypeScript
 - **Styling**: TailwindCSS with custom Monokai theme
-- **Animations**: Framer Motion
-- **Analytics**: Supabase (optional)
-- **Deployment**: Vercel
+- **Animations**: Framer Motion for smooth interactions
+- **Analytics**: Supabase integration (optional)
+- **Deployment**: Vercel-ready with environment configuration
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- Node.js 18+ and npm
-- Optional: Supabase account for analytics
-
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd image-password
-   ```
+```bash
+git clone <repository-url>
+cd image-password
+npm install
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+### Configuration
 
-3. **Configure environment variables**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your configuration
-   ```
+Copy environment template:
+```bash
+cp .env.example .env.local
+```
 
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
+Edit `.env.local`:
+```env
+# Required
+FAIRY_SUCCESS_URL=https://your-secret-destination.com
+NEXT_PUBLIC_DEFAULT_DECK=fairy
 
-5. **Open browser**
-   ```
-   http://localhost:3000
-   ```
+# Optional (Supabase Analytics)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_ANALYTICS_ENABLED=true
+```
 
-## ⚙️ Configuration
+### Development
 
-### Environment Variables
+```bash
+npm run dev          # Start development server
+npm run build        # Production build
+npm run lint         # Code linting
+npm run type-check   # TypeScript validation
+npm test             # Run test suite
+```
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_DEFAULT_DECK` | Default deck to use ('fairy') | Yes |
-| `FAIRY_SUCCESS_URL` | Redirect URL on successful completion | Yes |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | No |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | No |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key | No |
-| `NEXT_PUBLIC_ANALYTICS_ENABLED` | Enable/disable analytics | No |
+## 🎯 Game Flow
 
-### Adding New Decks
+1. **Loading**: Progress bar loads all 130 card images
+2. **Round 1**: Select correct monster from 6 fairy monsters vs 5 distractor monsters
+3. **Round 2**: Select correct spell from 6 fairy spells vs 5 distractor spells
+4. **Round 3**: Select correct trap from 6 fairy traps vs 5 distractor traps
+5. **Success**: Kawaii celebration animation → redirect to secret URL
+6. **Failure**: Lock screen with restart button (reshuffles cards)
 
-1. **Update deck configuration** (`src/config/deck-configs.ts`):
-   ```typescript
-   export const DRAGON_DECK_CONFIG: DeckConfig = {
-     id: 'dragon',
-     name: 'Dragon Deck Challenge',
-     referenceCards: ['dragon-1', 'dragon-2', ...], // 15 cards
-     theme: {
-       primary: '#ff6b35',
-       secondary: '#f7931e', 
-       accent: '#ffbe0b',
-       backgroundGradient: ['#2c1810', '#4a2c17']
-     },
-     successMessage: 'Dragon Master! 🐉',
-     redirectUrl: 'DRAGON_SUCCESS_URL'
-   }
-   ```
+## 📐 Layout
 
-2. **Add cards to data file** (`data/cards.json`):
-   ```json
-   {
-     "id": "dragon-1",
-     "name": "Blue-Eyes White Dragon",
-     "image": "/images/cards/dragon/dragon-1.jpg",
-     "score": 0,
-     "tags": ["dragon", "reference"]
-   }
-   ```
+### Desktop
+```
+✨ Yu-Gi-Oh! Trials of the Fairies ✨
+🧚‍♀️ Prove your fairy deck mastery! 🧚‍♀️
 
-3. **Set environment variable**:
-   ```
-   DRAGON_SUCCESS_URL=https://your-secret-page.com
-   ```
+┌─────────────────────┬─────────────────────┐
+│   🎴 Reference Deck │    ⏱️ 1:00         │
+│   (5 rows × 3)      │   Round 1 of 3     │
+│   [🎴][🎴][🎴]     │   🎭 Monster Cards  │
+│   [🎴][🎴][🎴]     │                     │
+│   [🎴][🎴][🎴]     │   ⚡ Choose the Card │
+│   [🎴][🎴][🎴]     │   [🎴][🎴][🎴]    │
+│   [🎴][🎴][🎴]     │   [🎴][🎴][🎴]    │
+└─────────────────────┴─────────────────────┘
+```
 
-### Card Requirements
+### Mobile
+- Card choices on top (2 rows × 3 cards)
+- Timer and progress in middle
+- Reference deck at bottom (scrollable)
 
-- **Reference Deck**: Exactly 15 cards (score: 0)
-- **Correct Answers**: Minimum 3 cards (score: 1) 
-- **Distractors**: Minimum 9 cards (score: -1)
-- **Total**: At least 27 cards for basic functionality
+## 🔒 Security Features
 
-## 🎮 Game Flow
-
-1. **Round 1-3**: User selects 1 card from 4 choices
-2. **Timer**: 60 seconds per round
-3. **Success**: All 3 rounds correct → redirect to secret URL
-4. **Failure**: Wrong choice or timeout → locked screen with restart
+- **Session Isolation**: Each attempt gets unique session ID
+- **Card Reshuffling**: Wrong choices trigger complete card randomization
+- **Server-Side Verification**: API routes validate completion before redirect
+- **Environment Masking**: Success URL hidden via environment variables
+- **No Persistence**: Game resets completely on browser refresh
 
 ## 🎨 Customization
 
-### Themes
+### Adding New Decks
 
-Modify `tailwind.config.js` for custom color schemes:
+1. **Add card images** to `public/images/cards/`
+2. **Update cards.json** with new card data
+3. **Configure deck** in `src/config/deck-configs.ts`
+4. **Set environment variables** for success URL
 
-```javascript
-colors: {
-  monokai: {
-    bg: '#your-bg-color',
-    green: '#your-accent-color',
-    // ... other colors
-  }
-}
-```
+### Card Requirements
+- **Reference deck**: Exactly 15 cards (score: 0)
+- **Correct answers**: Minimum 3 each of monsters/spells/traps (score: 1)
+- **Distractors**: Minimum 15 each of monsters/spells/traps (score: -1)
 
-### Animations
+## 📊 Analytics (Optional)
 
-Adjust animation durations in `src/config/game-constants.ts`:
-
-```typescript
-export const ANIMATION_DURATIONS = {
-  CARD_HOVER: 200,
-  CARD_SELECTION: 300,
-  SUCCESS_CELEBRATION: 800,
-}
-```
-
-## 📊 Analytics
-
-When Supabase is configured, the system tracks:
-
-- Session starts and completions
-- Round-by-round card selections
-- Selection times and timeout events  
-- User agent and screen resolution
-- Success/failure rates per deck
-
-### Database Schema
-
-```sql
--- Sessions table
-CREATE TABLE game_sessions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  session_id TEXT UNIQUE NOT NULL,
-  deck_id TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  completed_at TIMESTAMPTZ,
-  success BOOLEAN,
-  total_duration INTEGER
-);
-
--- Round attempts table
-CREATE TABLE round_attempts (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  session_id TEXT REFERENCES game_sessions(session_id),
-  round_number INTEGER NOT NULL,
-  cards_shown TEXT[],
-  correct_card_id TEXT NOT NULL,
-  selected_card_id TEXT,
-  selection_time INTEGER,
-  was_timeout BOOLEAN DEFAULT FALSE
-);
-```
+When Supabase is configured, tracks:
+- Session attempts and completions
+- Round-by-round selections and timing
+- Success/failure rates by card type
+- User agent and device information
 
 ## 🚢 Deployment
 
 ### Vercel (Recommended)
+1. Connect repository to Vercel
+2. Set environment variables in dashboard
+3. Deploy automatically on git push
 
-1. **Connect repository** to Vercel
-2. **Set environment variables** in Vercel dashboard
-3. **Deploy** automatically on git push
-
-### Manual Deployment
-
-```bash
-npm run build
-npm start
+### Environment Variables
+```env
+FAIRY_SUCCESS_URL=https://your-secret-blog.com
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-key
 ```
 
-## 🔧 Development
+## 🧪 Testing
 
-### Scripts
+- **Unit Tests**: Core utility functions tested
+- **Build Testing**: TypeScript and ESLint validation
+- **Game Logic**: Category-based round generation verified
 
-- `npm run dev` - Start development server
-- `npm run build` - Build production bundle
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript check
+```bash
+npm test           # Run test suite
+npm run lint       # Check code quality
+npm run type-check # Validate TypeScript
+```
 
-### Project Structure
+## 📁 Project Structure
 
 ```
 src/
 ├── app/                 # Next.js 14 app directory
+│   ├── api/            # API routes (analytics, redirect)
+│   └── ...             # Pages and layouts
 ├── components/          # React components
-│   ├── game/           # Game-specific components  
 │   ├── deck/           # Card display components
-│   ├── ui/             # Reusable UI components
-│   └── providers/      # Context providers
+│   ├── game/           # Game logic components
+│   ├── providers/      # Context providers
+│   └── ui/             # Reusable UI components
 ├── hooks/              # Custom React hooks
 ├── utils/              # Utility functions
 ├── config/             # Configuration files
-├── types/              # TypeScript type definitions
-└── styles/             # Additional styles
-
-data/
-└── cards.json          # Card data
+└── types/              # TypeScript definitions
 
 public/
-└── images/             # Static assets
+├── images/cards/       # Card images (130 total)
+│   ├── fairy/         # Reference deck (15)
+│   ├── correct/       # Fairy support (24)
+│   └── distractors/   # Non-fairy (91)
+└── cards.json         # Card metadata
 ```
 
-## 🔒 Security Features
+## 🌟 Key Features
 
-- **Server-side verification** of game completion
-- **Card shuffling** on failure to prevent answer lookup
-- **Session isolation** - no cross-session data persistence
-- **Environment variable masking** for sensitive URLs
-- **Rate limiting** through automatic lockouts
+- **Deck-Agnostic Architecture**: Easily configurable for different card themes
+- **Category-Based Challenge**: Tests knowledge across all card types
+- **High-Quality Images**: 1.75x hover zoom with crisp detail visibility
+- **Comprehensive Preloading**: All images loaded before gameplay
+- **Purple Monokai Theme**: Dark magical aesthetic with kawaii elements
+- **Security-First Design**: Prevents answer lookup and memorization
 
 ## 📝 License
 
@@ -255,22 +208,19 @@ This project is licensed under the ISC License - see the LICENSE file for detail
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
 
-## 🐛 Issues
+## 🐛 Support
 
-If you encounter any issues:
+For issues or questions:
+1. Check existing [Issues](../../issues)
+2. Verify environment configuration
+3. Ensure card images are properly formatted
+4. Check browser console for errors
 
-1. Check the [Issues](../../issues) page
-2. Ensure environment variables are properly configured
-3. Verify card data meets minimum requirements
-4. Check browser console for JavaScript errors
+---
 
-## 🌟 Acknowledgments
-
-- Inspired by Yugioh Trading Card Game
-- Built with modern React and Next.js best practices
-- Designed for security-conscious applications
+*Built with modern React/Next.js practices for security-conscious applications requiring domain-specific knowledge authentication.*

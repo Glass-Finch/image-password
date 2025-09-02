@@ -12,7 +12,7 @@ interface CardChoicesProps {
 }
 
 export default function CardChoices({ className = '' }: CardChoicesProps) {
-  const { gameState, selectCard, currentRoundData } = useGame()
+  const { gameState, selectCard, currentRoundData, analytics } = useGame()
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
   const [feedbackCards, setFeedbackCards] = useState<Record<string, boolean>>({})
 
@@ -23,6 +23,22 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
 
     setSelectedCardId(card.id)
     const isCorrect = card.id === gameState.correctCardId
+    
+    // Track round attempt
+    const roundTypes = ['monster', 'spell', 'trap']
+    const roundType = roundTypes[gameState.currentRound - 1]
+    
+    analytics.trackRound(
+      gameState.sessionId,
+      gameState.deckId,
+      gameState.currentRound,
+      roundType,
+      gameState.currentRoundChoices.map(c => c.id),
+      gameState.correctCardId,
+      card.id,
+      Date.now() - gameState.roundStartTime,
+      false
+    )
     
     // Show immediate visual feedback
     setFeedbackCards(prev => ({

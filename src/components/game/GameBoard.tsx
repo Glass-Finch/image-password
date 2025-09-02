@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGame } from '@/components/providers/GameProvider'
 import { getReferenceCards } from '@/utils/gameLogic'
@@ -18,15 +19,24 @@ export default function GameBoard() {
     isLoading, 
     error,
     loadingProgress,
-    isImagesLoaded
+    isImagesLoaded,
+    analytics
   } = useGame()
 
+  // Track completion when game ends
+  useEffect(() => {
+    if (gameState.gameStatus === 'success' && gameState.completedAt) {
+      const duration = gameState.completedAt - gameState.roundStartTime
+      analytics.trackCompletion(gameState.sessionId, true, duration)
+    } else if (gameState.gameStatus === 'failed') {
+      analytics.trackCompletion(gameState.sessionId, false, Date.now() - gameState.roundStartTime)
+    }
+  }, [gameState.gameStatus, gameState.completedAt, gameState.sessionId, gameState.roundStartTime, analytics])
+
   const handleSuccessComplete = async () => {
-    // For development/demo, redirect directly to the configured URL
     const redirectUrl = process.env.NEXT_PUBLIC_SUCCESS_URL || 'https://example.com/success'
     
     try {
-      // In production, you'd verify with API first
       const response = await fetch('/api/success-redirect', {
         method: 'POST',
         headers: {
@@ -41,7 +51,6 @@ export default function GameBoard() {
       if (response.ok) {
         window.location.href = response.url
       } else {
-        // Fallback to direct redirect
         window.location.href = redirectUrl
       }
     } catch (error) {

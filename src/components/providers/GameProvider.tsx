@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { Card, DeckConfig } from '@/types/game'
 import { DECK_CONFIGS, DEFAULT_DECK } from '@/config/deck-configs'
 import { useGameState } from '@/hooks/useGameState'
+import { useAnalytics } from '@/hooks/useAnalytics'
 import { preloadImagesWithProgress } from '@/utils/imagePreloader'
 
 interface GameContextType {
@@ -18,6 +19,7 @@ interface GameContextType {
   error: string | null
   loadingProgress: number
   isImagesLoaded: boolean
+  analytics: ReturnType<typeof useAnalytics>
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined)
@@ -31,6 +33,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   
   const config = DECK_CONFIGS[DEFAULT_DECK]
   const gameState = useGameState(cards, config.id)
+  const analytics = useAnalytics()
 
   // Load cards data
   useEffect(() => {
@@ -63,6 +66,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     loadCards()
   }, [])
 
+  // Track initial session
+  useEffect(() => {
+    if (!isLoading && !error && gameState.gameState.sessionId && isImagesLoaded) {
+      analytics.trackSession(gameState.gameState.sessionId, config.id)
+    }
+  }, [isLoading, error, gameState.gameState.sessionId, config.id, analytics, isImagesLoaded])
+
   const contextValue: GameContextType = {
     cards,
     config,
@@ -75,6 +85,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     error,
     loadingProgress,
     isImagesLoaded,
+    analytics,
   }
 
   return (

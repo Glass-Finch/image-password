@@ -500,10 +500,10 @@
     "image": "/images/cards/distractors/2025-09-02_Cubic-Karma-9659580.jpg",
     "score": -1,
     "tags": [
-      "trap",
+      "spell",
       "distractor"
     ],
-    "card_type": "trap"
+    "card_type": "spell"
   },
   {
     "id": "wrong-8",
@@ -1347,10 +1347,10 @@
     "image": "/images/cards/distractors/2025-09-02_Cold-Feet-40383551.jpg",
     "score": -1,
     "tags": [
-      "trap",
+      "spell",
       "distractor"
     ],
-    "card_type": "trap"
+    "card_type": "spell"
   },
   {
     "id": "wrong-85",
@@ -1380,10 +1380,10 @@
     "image": "/images/cards/distractors/2025-09-02_Humble-Sentry-95642274.jpg",
     "score": -1,
     "tags": [
-      "warrior",
+      "spell",
       "distractor"
     ],
-    "card_type": "monster"
+    "card_type": "spell"
   },
   {
     "id": "wrong-88",
@@ -1402,10 +1402,10 @@
     "image": "/images/cards/distractors/2025-09-02_Self-Mummification-15103313.jpg",
     "score": -1,
     "tags": [
-      "trap",
+      "spell",
       "distractor"
     ],
-    "card_type": "trap"
+    "card_type": "spell"
   },
   {
     "id": "wrong-90",
@@ -1413,10 +1413,10 @@
     "image": "/images/cards/distractors/2025-09-02_Time-Magic-Hammer-10960419.jpg",
     "score": -1,
     "tags": [
-      "spell",
+      "spellcaster",
       "distractor"
     ],
-    "card_type": "spell"
+    "card_type": "monster"
   },
   {
     "id": "wrong-91",

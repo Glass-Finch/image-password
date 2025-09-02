@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Card } from '@/types/game'
 import { ANIMATION_DURATIONS } from '@/config/game-constants'
+import CardZoomModal from '@/components/ui/CardZoomModal'
 
 interface CardImageProps {
   card: Card
@@ -30,10 +32,16 @@ export default function CardImage({
   size = 'medium',
   className = '',
 }: CardImageProps) {
+  const [showZoomModal, setShowZoomModal] = useState(false)
+
   const handleClick = () => {
     if (isClickable && onClick) {
       onClick()
     }
+  }
+
+  const handleTapToZoom = () => {
+    setShowZoomModal(true)
   }
 
   const getSelectionClass = () => {
@@ -43,19 +51,21 @@ export default function CardImage({
   }
 
   return (
-    <motion.div
-      className={`
-        card-zoom-hover rounded-xl overflow-hidden border-2 border-monokai-bg-light
-        ${sizeClasses[size]}
-        ${isClickable ? 'cursor-pointer hover:border-monokai-purple transition-all duration-200 hover:shadow-lg hover:shadow-monokai-purple/20' : ''}
-        ${getSelectionClass()}
-        ${className}
-      `}
-      onClick={handleClick}
-      whileHover={{ scale: 1.75 }}
-      whileTap={isClickable ? { scale: 0.95 } : undefined}
-      transition={{ duration: ANIMATION_DURATIONS.CARD_HOVER / 1000 }}
-    >
+    <>
+      <motion.div
+        className={`
+          card-zoom-hover rounded-xl overflow-hidden border-2 border-monokai-bg-light
+          ${sizeClasses[size]}
+          ${isClickable ? 'cursor-pointer hover:border-monokai-purple transition-all duration-200 hover:shadow-lg hover:shadow-monokai-purple/20' : ''}
+          ${getSelectionClass()}
+          ${className}
+        `}
+        onClick={handleClick}
+        onDoubleClick={handleTapToZoom}
+        whileHover={{ scale: 1.75 }}
+        whileTap={isClickable ? { scale: 0.95 } : undefined}
+        transition={{ duration: ANIMATION_DURATIONS.CARD_HOVER / 1000 }}
+      >
       <Image
         src={card.image}
         alt={card.name}
@@ -97,5 +107,12 @@ export default function CardImage({
         </motion.div>
       )}
     </motion.div>
+
+    <CardZoomModal
+      card={card}
+      isOpen={showZoomModal}
+      onClose={() => setShowZoomModal(false)}
+    />
+  </>
   )
 }
