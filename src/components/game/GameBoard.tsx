@@ -34,29 +34,8 @@ export default function GameBoard() {
   }, [gameState.gameStatus, gameState.completedAt, gameState.sessionId, gameState.roundStartTime, analytics])
 
   const handleSuccessComplete = async () => {
-    const redirectUrl = process.env.NEXT_PUBLIC_SUCCESS_URL || 'https://example.com/success'
-    
-    try {
-      const response = await fetch('/api/success-redirect', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          sessionId: gameState.sessionId,
-          deckId: gameState.deckId,
-        }),
-      })
-
-      if (response.ok) {
-        window.location.href = response.url
-      } else {
-        window.location.href = redirectUrl
-      }
-    } catch (error) {
-      console.error('Error during redirect, using fallback:', error)
-      window.location.href = redirectUrl
-    }
+    // Redirect to our success page with session ID for verification
+    window.location.href = `/success?session=${gameState.sessionId}`
   }
 
   if (isLoading || !isImagesLoaded) {
