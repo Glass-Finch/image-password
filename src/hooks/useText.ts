@@ -63,7 +63,15 @@ interface TextConfig {
     preventLookup: string
   }
   hints: {
-    studyDeck: string
+    studyCollection: string
+  }
+  studyPhase: {
+    title: string
+    instructions: string
+    tips: string[]
+    buttonText: string
+    loadingButton: string
+    studyTip: string
   }
 }
 

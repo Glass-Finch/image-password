@@ -64,6 +64,19 @@
     "preventLookup": "The puzzle has been reset to prevent answer lookup. New cards have been shuffled."
   },
   "hints": {
-    "studyDeck": "Study the reference deck carefully. Choose cards that would best complement it strategically."
+    "studyCollection": "Study the reference deck carefully. Choose cards that would best complement it strategically."
+  },
+  "studyPhase": {
+    "title": "Ready for the Challenge?",
+    "instructions": "Are you up for the challenge of completing this Yu-Gi-Oh deck? Study the cards and then click the button when you're ready to begin.",
+    "tips": [
+      "Study the reference deck carefully",
+      "Look for patterns and synergies",
+      "You'll have 60 seconds per round",
+      "Wrong choices restart the challenge"
+    ],
+    "buttonText": "🚀 Begin Challenge",
+    "loadingButton": "Loading Images...",
+    "studyTip": "💡 Tip: Familiarize yourself with each card before starting!"
   }
 }

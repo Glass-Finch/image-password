@@ -40,7 +40,7 @@ export interface GameState {
   collectionId: string
   currentRound: number // 1-3
   timeRemaining: number // 60 seconds per round
-  gameStatus: 'playing' | 'success' | 'failed' | 'locked'
+  gameStatus: 'studying' | 'playing' | 'success' | 'failed' | 'locked'
   selectedItems: SelectedItem[]
   currentRoundChoices: Item[]
   correctItemId: string

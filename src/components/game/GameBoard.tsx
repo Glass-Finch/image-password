@@ -7,6 +7,7 @@ import { useText } from '@/hooks/useText'
 import { getReferenceItems } from '@/utils/gameLogic'
 import ReferenceCollection from '@/components/collection/ReferenceCollection'
 import ItemChoices from './ItemChoices'
+import StudyPhase from './StudyPhase'
 import GameTimer from './GameTimer'
 import SuccessOverlay from '@/components/ui/SuccessOverlay'
 import LockedScreen from '@/components/ui/LockedScreen'
@@ -21,7 +22,8 @@ export default function GameBoard() {
     error,
     loadingProgress,
     isImagesLoaded,
-    analytics
+    analytics,
+    startChallenge
   } = useGame()
   const text = useText()
 
@@ -83,7 +85,7 @@ export default function GameBoard() {
       )}
 
       {/* Kawaii Title */}
-      {gameState.gameStatus === 'playing' && (
+      {(gameState.gameStatus === 'studying' || gameState.gameStatus === 'playing') && (
         <div className="text-center py-6">
           <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
             {text.game.title}
@@ -95,7 +97,7 @@ export default function GameBoard() {
       )}
 
       {/* Main game layout */}
-      {gameState.gameStatus === 'playing' && (
+      {(gameState.gameStatus === 'studying' || gameState.gameStatus === 'playing') && (
         <div className="container mx-auto px-4 py-2 max-w-7xl">
           {/* Mobile layout - stacked */}
           <div className="block md:hidden">
@@ -105,8 +107,18 @@ export default function GameBoard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <GameTimer className="bg-monokai-bg/90 backdrop-blur-sm rounded-lg p-3" />
-              <ItemChoices />
+              {gameState.gameStatus === 'playing' && (
+                <GameTimer className="bg-monokai-bg/90 backdrop-blur-sm rounded-lg p-3" />
+              )}
+              {gameState.gameStatus === 'playing' ? (
+                <ItemChoices />
+              ) : (
+                <StudyPhase 
+                  onStartChallenge={startChallenge}
+                  loadingProgress={loadingProgress}
+                  isImagesLoaded={isImagesLoaded}
+                />
+              )}
               <div className="border-t border-monokai-bg-light pt-4">
                 <ReferenceCollection items={referenceItems} />
               </div>
@@ -128,8 +140,16 @@ export default function GameBoard() {
               
               {/* Right side - Timer and choices */}
               <div className="flex flex-col justify-start pt-8 space-y-6">
-                <GameTimer />
-                <ItemChoices />
+                {gameState.gameStatus === 'playing' && <GameTimer />}
+                {gameState.gameStatus === 'playing' ? (
+                  <ItemChoices />
+                ) : (
+                  <StudyPhase 
+                    onStartChallenge={startChallenge}
+                    loadingProgress={loadingProgress}
+                    isImagesLoaded={isImagesLoaded}
+                  />
+                )}
               </div>
             </motion.div>
           </div>
