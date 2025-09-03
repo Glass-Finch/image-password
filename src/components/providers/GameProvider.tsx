@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useRef } from 'react'
 import { Item, CollectionConfig } from '@/types/game'
 import { COLLECTION_CONFIGS, DEFAULT_COLLECTION } from '@/config/collection-configs'
 import { useGameState } from '@/hooks/useGameState'
@@ -32,6 +32,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [isImagesLoaded, setIsImagesLoaded] = useState(false)
+  const trackedSessionRef = useRef<string | null>(null)
   
   const config = COLLECTION_CONFIGS[DEFAULT_COLLECTION]
   const text = useText()
@@ -69,10 +70,14 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     loadItems()
   }, [])
 
-  // Track initial session
+  // Track initial session (only once per session)
   useEffect(() => {
-    if (!isLoading && !error && gameState.gameState.sessionId && isImagesLoaded) {
-      analytics.trackSession(gameState.gameState.sessionId, config.id)
+    const currentSessionId = gameState.gameState.sessionId
+    
+    if (!isLoading && !error && currentSessionId && isImagesLoaded && 
+        trackedSessionRef.current !== currentSessionId) {
+      analytics.trackSession(currentSessionId, config.id)
+      trackedSessionRef.current = currentSessionId
     }
   }, [isLoading, error, gameState.gameState.sessionId, config.id, analytics, isImagesLoaded])
 

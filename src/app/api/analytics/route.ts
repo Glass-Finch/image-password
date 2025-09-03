@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/config/supabase'
+import { getGeolocationFromIP, getClientIP } from '@/utils/geolocation'
 
 export async function POST(request: NextRequest) {
   if (!supabase) {
@@ -12,6 +13,10 @@ export async function POST(request: NextRequest) {
 
     switch (type) {
       case 'session':
+        // Get IP address and geolocation data
+        const clientIP = getClientIP(request)
+        const geoData = await getGeolocationFromIP(clientIP)
+        
         const { error: sessionError } = await supabase
           .from('game_sessions')
           .insert([{
@@ -19,6 +24,27 @@ export async function POST(request: NextRequest) {
             deck_id: payload.deckId,
             user_agent: payload.userAgent,
             screen_resolution: payload.screenResolution,
+            viewport_size: payload.viewportSize,
+            browser_type: payload.browserType,
+            browser_version: payload.browserVersion,
+            operating_system: payload.operatingSystem,
+            device_type: payload.deviceType,
+            device_model: payload.deviceModel,
+            language: payload.language,
+            timezone: payload.timezone,
+            referrer_url: payload.referrerUrl,
+            landing_page: payload.landingPage,
+            utm_source: payload.utmSource,
+            utm_medium: payload.utmMedium,
+            utm_campaign: payload.utmCampaign,
+            utm_term: payload.utmTerm,
+            utm_content: payload.utmContent,
+            ip_address: clientIP,
+            country: geoData.country,
+            region: geoData.region,
+            city: geoData.city,
+            is_returning_visitor: payload.isReturningVisitor,
+            visitor_id: payload.visitorId,
             created_at: new Date().toISOString()
           }])
 
@@ -32,6 +58,7 @@ export async function POST(request: NextRequest) {
             session_id: payload.sessionId,
             deck_id: payload.deckId,
             round_number: payload.roundNumber,
+            round_type: payload.roundType || 'unknown', // Default to 'unknown' if not provided
             cards_shown: payload.cardsShown,
             correct_card_id: payload.correctCardId,
             selected_card_id: payload.selectedCardId,

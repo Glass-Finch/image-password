@@ -2,18 +2,58 @@
 
 import { useCallback } from 'react'
 import { supabase, isAnalyticsEnabled } from '@/config/supabase'
+import { getBrowserInfo } from '@/utils/browserDetection'
+import { getTrafficData } from '@/utils/urlParams'
+import { getVisitorId, isReturningVisitor } from '@/utils/visitorTracking'
 
 export function useAnalytics() {
   const trackSession = useCallback(async (sessionId: string, deckId: string) => {
-    if (!isAnalyticsEnabled || !supabase) return
+    if (!isAnalyticsEnabled) return
 
     try {
-      await supabase.from('game_sessions').insert([{
-        session_id: sessionId,
-        deck_id: deckId,
-        user_agent: navigator.userAgent,
-        screen_resolution: `${screen.width}x${screen.height}`,
-      }])
+      // Collect enhanced browser and device information
+      const browserInfo = getBrowserInfo()
+      const trafficData = getTrafficData()
+      const visitorId = getVisitorId()
+      const returningVisitor = isReturningVisitor()
+
+      // Use API route instead of direct Supabase call to handle server-side geolocation
+      const response = await fetch('/api/analytics', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'session',
+          payload: {
+            sessionId,
+            deckId,
+            userAgent: navigator.userAgent,
+            screenResolution: `${screen.width}x${screen.height}`,
+            viewportSize: browserInfo.viewportSize,
+            browserType: browserInfo.browserType,
+            browserVersion: browserInfo.browserVersion,
+            operatingSystem: browserInfo.operatingSystem,
+            deviceType: browserInfo.deviceType,
+            deviceModel: browserInfo.deviceModel,
+            language: browserInfo.language,
+            timezone: browserInfo.timezone,
+            referrerUrl: trafficData.referrerUrl,
+            landingPage: trafficData.landingPage,
+            utmSource: trafficData.utmParams.utm_source,
+            utmMedium: trafficData.utmParams.utm_medium,
+            utmCampaign: trafficData.utmParams.utm_campaign,
+            utmTerm: trafficData.utmParams.utm_term,
+            utmContent: trafficData.utmParams.utm_content,
+            isReturningVisitor: returningVisitor,
+            visitorId: visitorId
+          }
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
     } catch (error) {
       console.error('Failed to track session:', error)
     }
@@ -30,37 +70,61 @@ export function useAnalytics() {
     selectionTime?: number,
     wasTimeout: boolean = false
   ) => {
-    if (!isAnalyticsEnabled || !supabase) return
+    if (!isAnalyticsEnabled) return
 
     try {
-      await supabase.from('round_attempts').insert([{
-        session_id: sessionId,
-        deck_id: deckId,
-        round_number: roundNumber,
-        round_type: roundType,
-        cards_shown: cardsShown,
-        correct_card_id: correctCardId,
-        selected_card_id: selectedCardId,
-        selection_time: selectionTime,
-        was_timeout: wasTimeout,
-      }])
+      const response = await fetch('/api/analytics', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'round',
+          payload: {
+            sessionId,
+            deckId,
+            roundNumber,
+            roundType,
+            cardsShown,
+            correctCardId,
+            selectedCardId,
+            selectionTime,
+            wasTimeout,
+            timestamp: Date.now()
+          }
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
     } catch (error) {
       console.error('Failed to track round:', error)
     }
   }, [])
 
   const trackCompletion = useCallback(async (sessionId: string, success: boolean, totalDuration: number) => {
-    if (!isAnalyticsEnabled || !supabase) return
+    if (!isAnalyticsEnabled) return
 
     try {
-      await supabase
-        .from('game_sessions')
-        .update({
-          completed_at: new Date().toISOString(),
-          success,
-          total_duration: totalDuration
+      const response = await fetch('/api/analytics', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'completion',
+          payload: {
+            sessionId,
+            success,
+            totalDuration
+          }
         })
-        .eq('session_id', sessionId)
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
     } catch (error) {
       console.error('Failed to track completion:', error)
     }
