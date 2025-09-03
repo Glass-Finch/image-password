@@ -1,16 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card } from '@/types/game'
+import { Item } from '@/types/game'
 import ItemImage from './ItemImage'
 import { GAME_CONFIG } from '@/config/game-constants'
 
-interface ReferenceDeckProps {
-  cards: Card[]
+interface ReferenceCollectionProps {
+  items: Item[]
   className?: string
 }
 
-export default function ReferenceDeck({ cards, className = '' }: ReferenceDeckProps) {
+export default function ReferenceCollection({ items, className = '' }: ReferenceCollectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -43,10 +43,10 @@ export default function ReferenceDeck({ cards, className = '' }: ReferenceDeckPr
         initial="hidden"
         animate="visible"
       >
-        {cards.map((card, index) => (
-          <motion.div key={card.id} variants={itemVariants}>
+        {items.map((item, index) => (
+          <motion.div key={item.id} variants={itemVariants}>
             <ItemImage 
-              card={card} 
+              item={item} 
               size="large"
               className="shadow-lg"
             />
@@ -54,9 +54,9 @@ export default function ReferenceDeck({ cards, className = '' }: ReferenceDeckPr
         ))}
       </motion.div>
       
-      {cards.length !== GAME_CONFIG.REFERENCE_DECK_SIZE && (
+      {items.length !== GAME_CONFIG.REFERENCE_COLLECTION_SIZE && (
         <div className="text-center text-monokai-red text-sm">
-          Warning: Expected {GAME_CONFIG.REFERENCE_DECK_SIZE} reference cards, found {cards.length}
+          Warning: Expected {GAME_CONFIG.REFERENCE_COLLECTION_SIZE} reference items, found {items.length}
         </div>
       )}
     </div>

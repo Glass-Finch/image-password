@@ -14,7 +14,7 @@ import LoadingState from '@/components/ui/LoadingState'
 
 export default function GameBoard() {
   const { 
-    cards, 
+    items, 
     config, 
     gameState, 
     isLoading, 
@@ -64,7 +64,7 @@ export default function GameBoard() {
     )
   }
 
-  const referenceCards = getReferenceItems(cards, config)
+  const referenceItems = getReferenceItems(items, config)
 
   return (
     <div className="min-h-screen relative">
@@ -108,7 +108,7 @@ export default function GameBoard() {
               <GameTimer className="bg-monokai-bg/90 backdrop-blur-sm rounded-lg p-3" />
               <ItemChoices />
               <div className="border-t border-monokai-bg-light pt-4">
-                <ReferenceCollection cards={referenceCards} />
+                <ReferenceCollection items={referenceItems} />
               </div>
             </motion.div>
           </div>
@@ -123,7 +123,7 @@ export default function GameBoard() {
             >
               {/* Left side - Reference deck */}
               <div className="flex flex-col justify-center">
-                <ReferenceCollection cards={referenceCards} />
+                <ReferenceCollection items={referenceItems} />
               </div>
               
               {/* Right side - Timer and choices */}
