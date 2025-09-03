@@ -3,12 +3,12 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Card } from '@/types/game'
+import { Item } from '@/types/game'
 import { ANIMATION_DURATIONS } from '@/config/game-constants'
 import ItemZoomModal from '@/components/ui/ItemZoomModal'
 
-interface CardImageProps {
-  card: Card
+interface ItemImageProps {
+  item: Item
   onClick?: () => void
   isSelected?: boolean
   isCorrect?: boolean | null
@@ -23,15 +23,15 @@ const sizeClasses = {
   large: 'w-40 h-56 sm:w-48 sm:h-64',
 }
 
-export default function CardImage({
-  card,
+export default function ItemImage({
+  item,
   onClick,
   isSelected = false,
   isCorrect = null,
   isClickable = false,
   size = 'medium',
   className = '',
-}: CardImageProps) {
+}: ItemImageProps) {
   const [showZoomModal, setShowZoomModal] = useState(false)
 
   const handleClick = () => {
@@ -64,11 +64,11 @@ export default function CardImage({
         onDoubleClick={handleTapToZoom}
         whileHover={{ scale: 1.75 }}
         whileTap={isClickable ? { scale: 0.95 } : undefined}
-        transition={{ duration: ANIMATION_DURATIONS.CARD_HOVER / 1000 }}
+        transition={{ duration: ANIMATION_DURATIONS.ITEM_HOVER / 1000 }}
       >
       <Image
-        src={card.image}
-        alt={card.name}
+        src={item.image}
+        alt={item.name}
         fill
         className="object-cover"
         sizes={`(max-width: 640px) ${size === 'small' ? '160px' : size === 'medium' ? '224px' : '320px'}, ${size === 'small' ? '192px' : size === 'medium' ? '256px' : '384px'}`}
@@ -89,7 +89,7 @@ export default function CardImage({
           whileHover={{ translateY: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="text-outline">{card.name}</div>
+          <div className="text-outline">{item.name}</div>
         </motion.div>
       )}
       
@@ -101,7 +101,7 @@ export default function CardImage({
           }`}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: ANIMATION_DURATIONS.CARD_SELECTION / 1000 }}
+          transition={{ duration: ANIMATION_DURATIONS.ITEM_SELECTION / 1000 }}
         >
           {isCorrect ? '✓' : '✗'}
         </motion.div>
@@ -109,7 +109,7 @@ export default function CardImage({
     </motion.div>
 
     <ItemZoomModal
-      card={card}
+      item={item}
       isOpen={showZoomModal}
       onClose={() => setShowZoomModal(false)}
     />

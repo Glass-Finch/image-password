@@ -37,14 +37,13 @@ export interface SelectedItem {
 
 export interface GameState {
   sessionId: string
-  deckId: string
+  collectionId: string
   currentRound: number // 1-3
   timeRemaining: number // 60 seconds per round
   gameStatus: 'playing' | 'success' | 'failed' | 'locked'
   selectedItems: SelectedItem[]
   currentRoundChoices: Item[]
   correctItemId: string
-  correctCardId: string // Backward compatibility
   usedCorrectItems: string[]
   usedWrongItems: string[]
   roundStartTime: number

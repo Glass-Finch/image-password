@@ -2,57 +2,57 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Card } from '@/types/game'
+import { Item } from '@/types/game'
 import ItemImage from '@/components/collection/ItemImage'
 import { useGame } from '@/components/providers/GameProvider'
 import { useText } from '@/hooks/useText'
 import { GAME_CONFIG, ANIMATION_DURATIONS } from '@/config/game-constants'
 
-interface CardChoicesProps {
+interface ItemChoicesProps {
   className?: string
 }
 
-export default function CardChoices({ className = '' }: CardChoicesProps) {
-  const { gameState, selectCard, currentRoundData, analytics } = useGame()
+export default function ItemChoices({ className = '' }: ItemChoicesProps) {
+  const { gameState, selectItem, currentRoundData, analytics } = useGame()
   const text = useText()
-  const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
-  const [feedbackCards, setFeedbackCards] = useState<Record<string, boolean>>({})
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
+  const [feedbackItems, setFeedbackItems] = useState<Record<string, boolean>>({})
 
-  const handleCardSelect = async (card: Card) => {
-    if (gameState.gameStatus !== 'playing' || gameState.isSubmitting || selectedCardId) {
+  const handleItemSelect = async (item: Item) => {
+    if (gameState.gameStatus !== 'playing' || gameState.isSubmitting || selectedItemId) {
       return
     }
 
-    setSelectedCardId(card.id)
-    const isCorrect = card.id === gameState.correctCardId
+    setSelectedItemId(item.id)
+    const isCorrect = item.id === gameState.correctItemId
     
     // Track round attempt
     const roundType = text?.rounds.types?.[gameState.currentRound - 1] || 'unknown'
     
     analytics.trackRound(
       gameState.sessionId,
-      gameState.deckId,
+      gameState.collectionId,
       gameState.currentRound,
       roundType,
       gameState.currentRoundChoices.map(c => c.id),
-      gameState.correctCardId,
-      card.id,
+      gameState.correctItemId,
+      item.id,
       Date.now() - gameState.roundStartTime,
       false
     )
     
     // Show immediate visual feedback
-    setFeedbackCards(prev => ({
+    setFeedbackItems(prev => ({
       ...prev,
-      [card.id]: isCorrect
+      [item.id]: isCorrect
     }))
 
     // Wait for animation before proceeding
     setTimeout(() => {
-      selectCard(card.id)
-      setSelectedCardId(null)
-      setFeedbackCards({})
-    }, ANIMATION_DURATIONS.CARD_SELECTION)
+      selectItem(item.id)
+      setSelectedItemId(null)
+      setFeedbackItems({})
+    }, ANIMATION_DURATIONS.ITEM_SELECTION)
   }
 
   const containerVariants = {
@@ -96,14 +96,14 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
         animate="visible"
         key={gameState.currentRound}
       >
-        {gameState.currentRoundChoices.map((card) => (
-          <motion.div key={card.id} variants={itemVariants}>
+        {gameState.currentRoundChoices.map((item) => (
+          <motion.div key={item.id} variants={itemVariants}>
             <ItemImage
-              card={card}
-              onClick={() => handleCardSelect(card)}
-              isSelected={selectedCardId === card.id}
-              isCorrect={feedbackCards[card.id]}
-              isClickable={gameState.gameStatus === 'playing' && !gameState.isSubmitting && !selectedCardId}
+              item={item}
+              onClick={() => handleItemSelect(item)}
+              isSelected={selectedItemId === item.id}
+              isCorrect={feedbackItems[item.id]}
+              isClickable={gameState.gameStatus === 'playing' && !gameState.isSubmitting && !selectedItemId}
               size="large"
               className="mx-auto shadow-xl"
             />

@@ -1,21 +1,21 @@
 import { useState, useEffect, useCallback } from 'react'
-import { GameState, Card, SelectedCard, GameRound } from '@/types/game'
+import { GameState, Item, SelectedItem, GameRound } from '@/types/game'
 import { generateSessionId } from '@/utils/itemUtils'
 import { generateGameRounds } from '@/utils/gameLogic'
 import { GAME_CONFIG } from '@/config/game-constants'
 
-export function useGameState(cards: Card[], collectionId: string, roundTypes?: string[]) {
+export function useGameState(items: Item[], collectionId: string, roundTypes?: string[]) {
   const [gameState, setGameState] = useState<GameState>(() => ({
     sessionId: generateSessionId(),
-    deckId: collectionId,
+    collectionId: collectionId,
     currentRound: 1,
     timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
     gameStatus: 'playing',
-    selectedCards: [],
+    selectedItems: [],
     currentRoundChoices: [],
-    correctCardId: '',
-    usedCorrectCards: [],
-    usedWrongCards: [],
+    correctItemId: '',
+    usedCorrectItems: [],
+    usedWrongItems: [],
     roundStartTime: Date.now(),
     isSubmitting: false,
     networkError: false,
@@ -23,68 +23,68 @@ export function useGameState(cards: Card[], collectionId: string, roundTypes?: s
 
   const [gameRounds, setGameRounds] = useState<GameRound[]>([])
 
-  // Initialize game rounds - trigger when cards change or session restarts
+  // Initialize game rounds - trigger when items change or session restarts
   useEffect(() => {
-    if (cards.length === 0) return
+    if (items.length === 0) return
     
     try {
-      const rounds = generateGameRounds(cards, roundTypes)
+      const rounds = generateGameRounds(items, roundTypes)
       setGameRounds(rounds)
       
       if (rounds.length > 0) {
         setGameState(prev => ({
           ...prev,
           currentRoundChoices: rounds[0].choices,
-          correctCardId: rounds[0].correctId,
+          correctItemId: rounds[0].correctId,
         }))
       }
     } catch (error) {
       console.error('Failed to initialize game:', error)
       setGameState(prev => ({ ...prev, gameStatus: 'failed', networkError: true }))
     }
-  }, [cards, collectionId, gameState.sessionId, roundTypes])
+  }, [items, collectionId, gameState.sessionId, roundTypes])
 
   const restartGame = useCallback(() => {
     const newSessionId = generateSessionId()
     setGameState({
       sessionId: newSessionId,
-      deckId: collectionId,
+      collectionId: collectionId,
       currentRound: 1,
       timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
       gameStatus: 'playing',
-      selectedCards: [],
+      selectedItems: [],
       currentRoundChoices: [],
-      correctCardId: '',
-      usedCorrectCards: [],
-      usedWrongCards: [],
+      correctItemId: '',
+      usedCorrectItems: [],
+      usedWrongItems: [],
       roundStartTime: Date.now(),
       isSubmitting: false,
       networkError: false,
     })
   }, [collectionId])
 
-  const selectCard = useCallback((cardId: string) => {
+  const selectItem = useCallback((itemId: string) => {
     if (gameState.isSubmitting || gameState.gameStatus !== 'playing') return
 
-    const isCorrect = cardId === gameState.correctCardId
+    const isCorrect = itemId === gameState.correctItemId
     const selectionTime = Date.now() - gameState.roundStartTime
 
-    const selectedCard: SelectedCard = {
+    const selectedItem: SelectedItem = {
       roundNumber: gameState.currentRound,
-      cardId,
+      itemId,
       isCorrect,
       selectionTime,
       timestamp: Date.now(),
     }
 
     setGameState(prev => {
-      const newSelectedCards = [...prev.selectedCards, selectedCard]
+      const newSelectedItems = [...prev.selectedItems, selectedItem]
       
       if (!isCorrect) {
         // Wrong answer - show punishment screen
         return {
           ...prev,
-          selectedCards: newSelectedCards,
+          selectedItems: newSelectedItems,
           gameStatus: 'failed',
         }
       }
@@ -93,7 +93,7 @@ export function useGameState(cards: Card[], collectionId: string, roundTypes?: s
         // Game completed successfully
         return {
           ...prev,
-          selectedCards: newSelectedCards,
+          selectedItems: newSelectedItems,
           gameStatus: 'success',
           completedAt: Date.now(),
         }
@@ -105,15 +105,15 @@ export function useGameState(cards: Card[], collectionId: string, roundTypes?: s
       
       return {
         ...prev,
-        selectedCards: newSelectedCards,
+        selectedItems: newSelectedItems,
         currentRound: nextRound,
         currentRoundChoices: nextRoundData ? nextRoundData.choices : [],
-        correctCardId: nextRoundData ? nextRoundData.correctId : '',
+        correctItemId: nextRoundData ? nextRoundData.correctId : '',
         timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
         roundStartTime: Date.now(),
       }
     })
-  }, [gameState.isSubmitting, gameState.gameStatus, gameState.correctCardId, gameState.roundStartTime, gameState.currentRound, gameRounds])
+  }, [gameState.isSubmitting, gameState.gameStatus, gameState.correctItemId, gameState.roundStartTime, gameState.currentRound, gameRounds])
 
   const handleTimeout = useCallback(() => {
     setGameState(prev => ({
@@ -129,7 +129,7 @@ export function useGameState(cards: Card[], collectionId: string, roundTypes?: s
 
   return {
     gameState,
-    selectCard,
+    selectItem,
     handleTimeout,
     restartGame,
     updateTimeRemaining,

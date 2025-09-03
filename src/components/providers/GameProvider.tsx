@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { Card, DeckConfig } from '@/types/game'
+import { Item, CollectionConfig } from '@/types/game'
 import { COLLECTION_CONFIGS, DEFAULT_COLLECTION } from '@/config/collection-configs'
 import { useGameState } from '@/hooks/useGameState'
 import { useAnalytics } from '@/hooks/useAnalytics'
@@ -9,10 +9,10 @@ import { useText } from '@/hooks/useText'
 import { preloadImagesWithProgress } from '@/utils/imagePreloader'
 
 interface GameContextType {
-  cards: Card[]
-  config: DeckConfig
+  items: Item[]
+  config: CollectionConfig
   gameState: ReturnType<typeof useGameState>['gameState']
-  selectCard: ReturnType<typeof useGameState>['selectCard']
+  selectItem: ReturnType<typeof useGameState>['selectItem']
   handleTimeout: ReturnType<typeof useGameState>['handleTimeout']
   restartGame: ReturnType<typeof useGameState>['restartGame']
   currentRoundData: ReturnType<typeof useGameState>['currentRoundData']
@@ -26,7 +26,7 @@ interface GameContextType {
 const GameContext = createContext<GameContextType | undefined>(undefined)
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
-  const [cards, setCards] = useState<Card[]>([])
+  const [items, setItems] = useState<Item[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [loadingProgress, setLoadingProgress] = useState(0)
@@ -34,22 +34,22 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   
   const config = COLLECTION_CONFIGS[DEFAULT_COLLECTION]
   const text = useText()
-  const gameState = useGameState(cards, config.id, text?.rounds.types)
+  const gameState = useGameState(items, config.id, text?.rounds.types)
   const analytics = useAnalytics()
 
-  // Load cards data
+  // Load items data
   useEffect(() => {
-    async function loadCards() {
+    async function loadItems() {
       try {
         const response = await fetch(`/items.json?t=${Date.now()}`)
         if (!response.ok) {
-          throw new Error('Failed to load cards data')
+          throw new Error('Failed to load items data')
         }
-        const cardsData: Card[] = await response.json()
-        setCards(cardsData)
+        const itemsData: Item[] = await response.json()
+        setItems(itemsData)
         
-        // Preload ALL card images with progress tracking
-        const allImages = cardsData.map(card => card.image)
+        // Preload ALL item images with progress tracking
+        const allImages = itemsData.map(item => item.image)
         await preloadImagesWithProgress(allImages, (loaded, total) => {
           setLoadingProgress(Math.round((loaded / total) * 100))
         })
@@ -57,15 +57,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         setIsImagesLoaded(true)
         setError(null)
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error loading cards'
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error loading items'
         setError(errorMessage)
-        console.error('Failed to load cards:', err)
+        console.error('Failed to load items:', err)
       } finally {
         setIsLoading(false)
       }
     }
 
-    loadCards()
+    loadItems()
   }, [])
 
   // Track initial session
@@ -76,10 +76,10 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [isLoading, error, gameState.gameState.sessionId, config.id, analytics, isImagesLoaded])
 
   const contextValue: GameContextType = {
-    cards,
+    items,
     config,
     gameState: gameState.gameState,
-    selectCard: gameState.selectCard,
+    selectItem: gameState.selectItem,
     handleTimeout: gameState.handleTimeout,
     restartGame: gameState.restartGame,
     currentRoundData: gameState.currentRoundData,

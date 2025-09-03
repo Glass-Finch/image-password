@@ -2,15 +2,15 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Card } from '@/types/game'
+import { Item } from '@/types/game'
 
-interface CardZoomModalProps {
-  card: Card
+interface ItemZoomModalProps {
+  item: Item
   isOpen: boolean
   onClose: () => void
 }
 
-export default function CardZoomModal({ card, isOpen, onClose }: CardZoomModalProps) {
+export default function ItemZoomModal({ item, isOpen, onClose }: ItemZoomModalProps) {
   if (!isOpen) return null
 
   return (
@@ -30,8 +30,8 @@ export default function CardZoomModal({ card, isOpen, onClose }: CardZoomModalPr
       >
         <div className="relative w-full aspect-[2/3] rounded-xl overflow-hidden border-2 border-monokai-purple shadow-2xl">
           <Image
-            src={card.image}
-            alt={card.name}
+            src={item.image}
+            alt={item.name}
             fill
             className="object-cover"
             quality={100}
@@ -41,13 +41,13 @@ export default function CardZoomModal({ card, isOpen, onClose }: CardZoomModalPr
         
         <div className="mt-4 text-center">
           <h3 className="text-lg font-bold text-monokai-text mb-2">
-            {card.name}
+            {item.name}
           </h3>
           <div className="flex justify-center items-center space-x-2 text-sm text-monokai-text-dim">
             <span className="px-2 py-1 bg-monokai-bg-dark rounded-full">
-              {card.card_type}
+              {item.item_type}
             </span>
-            {card.tags?.filter(tag => tag !== 'correct' && tag !== 'distractor' && tag !== 'reference').map(tag => (
+            {item.tags?.filter(tag => tag !== 'correct' && tag !== 'distractor' && tag !== 'reference').map(tag => (
               <span key={tag} className="px-2 py-1 bg-monokai-bg-light rounded-full">
                 {tag}
               </span>
