@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An image-based password-protected landing page.",
   "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,7 +20,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Glass-Finch/image-password/issues"
   },
