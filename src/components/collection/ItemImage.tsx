@@ -15,12 +15,13 @@ interface ItemImageProps {
   isClickable?: boolean
   size?: 'small' | 'medium' | 'large'
   className?: string
+  priority?: boolean
 }
 
 const sizeClasses = {
-  small: 'w-20 h-28 sm:w-24 sm:h-32',
-  medium: 'w-28 h-40 sm:w-32 sm:h-44',
-  large: 'w-40 h-56 sm:w-48 sm:h-64',
+  small: 'w-20 h-28 sm:w-24 sm:h-32 lg:w-28 lg:h-36',
+  medium: 'w-28 h-40 sm:w-32 sm:h-44 lg:w-36 lg:h-48',
+  large: 'w-32 h-44 sm:w-40 sm:h-56 lg:w-48 lg:h-64',
 }
 
 export default function ItemImage({
@@ -31,6 +32,7 @@ export default function ItemImage({
   isClickable = false,
   size = 'medium',
   className = '',
+  priority = false,
 }: ItemImageProps) {
   const [showZoomModal, setShowZoomModal] = useState(false)
 
@@ -56,13 +58,12 @@ export default function ItemImage({
         className={`
           card-zoom-hover rounded-xl overflow-hidden border-2 border-monokai-bg-light
           ${sizeClasses[size]}
-          ${isClickable ? 'cursor-pointer hover:border-monokai-purple transition-all duration-200 hover:shadow-lg hover:shadow-monokai-purple/20' : ''}
+          ${isClickable ? 'cursor-pointer hover:border-monokai-purple transition-all duration-200 hover:shadow-lg hover:shadow-monokai-purple/20' : 'transition-all duration-200'} card-hover-mobile card-hover-tablet card-hover-desktop
           ${getSelectionClass()}
           ${className}
         `}
         onClick={handleClick}
         onDoubleClick={handleTapToZoom}
-        whileHover={{ scale: 1.75 }}
         whileTap={isClickable ? { scale: 0.95 } : undefined}
         transition={{ duration: ANIMATION_DURATIONS.ITEM_HOVER / 1000 }}
       >
@@ -71,10 +72,13 @@ export default function ItemImage({
         alt={item.name}
         fill
         className="object-cover"
-        sizes={`(max-width: 640px) ${size === 'small' ? '160px' : size === 'medium' ? '224px' : '320px'}, ${size === 'small' ? '192px' : size === 'medium' ? '256px' : '384px'}`}
-        priority={true}
-        quality={95}
+        sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 256px"
+        priority={priority}
+        quality={priority ? 95 : 85}
         unoptimized={false}
+        onError={(e) => {
+          console.warn(`Failed to load image: ${item.image}`)
+        }}
       />
       
       {/* Magical glow overlay for interactive cards */}

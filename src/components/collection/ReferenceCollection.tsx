@@ -27,18 +27,18 @@ export default function ReferenceCollection({ items, className = '' }: Reference
   }
 
   return (
-    <div className={`space-y-4 bg-monokai-bg-dark/50 rounded-xl p-6 border border-monokai-bg-light ${className}`}>
+    <div className={`space-y-3 sm:space-y-4 bg-monokai-bg-dark/50 rounded-xl p-4 sm:p-6 border border-monokai-bg-light ${className}`}>
       <div className="text-center">
-        <h2 className="text-2xl font-bold gradient-text mb-2">
+        <h2 className="text-xl sm:text-2xl font-bold gradient-text mb-2">
           🎴 Reference Deck
         </h2>
-        <p className="text-sm text-monokai-text-dim">
+        <p className="text-xs sm:text-sm text-monokai-text-dim">
           Choose cards that complement this deck
         </p>
       </div>
       
       <motion.div
-        className="grid grid-cols-3 gap-4 justify-center max-w-2xl mx-auto"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-4 justify-center max-w-xs sm:max-w-lg lg:max-w-2xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -49,6 +49,7 @@ export default function ReferenceCollection({ items, className = '' }: Reference
               item={item} 
               size="large"
               className="shadow-lg"
+              priority={true}
             />
           </motion.div>
         ))}

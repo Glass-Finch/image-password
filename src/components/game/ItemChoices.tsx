@@ -79,18 +79,18 @@ export default function ItemChoices({ className = '' }: ItemChoicesProps) {
   }
 
   return (
-    <div className={`space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 border border-monokai-blue/30 ${className}`}>
+    <div className={`space-y-4 sm:space-y-6 bg-monokai-bg-dark/30 rounded-xl p-4 sm:p-6 border border-monokai-blue/30 ${className}`}>
       <div className="text-center">
-        <h2 className="text-2xl font-bold gradient-text mb-2">
+        <h2 className="text-xl sm:text-2xl font-bold gradient-text mb-2">
           {text?.ui.chooseItem || '⚡ Choose the Card'}
         </h2>
-        <p className="text-sm text-monokai-text-dim">
+        <p className="text-xs sm:text-sm text-monokai-text-dim">
           {text && text.rounds.types && text.rounds.instructions[text.rounds.types[gameState.currentRound - 1]]}
         </p>
       </div>
       
       <motion.div
-        className="grid grid-cols-3 gap-4 justify-center items-center max-w-3xl mx-auto"
+        className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 justify-center items-center max-w-sm sm:max-w-2xl lg:max-w-3xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

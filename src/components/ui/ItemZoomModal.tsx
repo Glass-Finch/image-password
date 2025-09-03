@@ -22,7 +22,7 @@ export default function ItemZoomModal({ item, isOpen, onClose }: ItemZoomModalPr
       onClick={onClose}
     >
       <motion.div
-        className="relative max-w-sm w-full"
+        className="relative max-w-xs sm:max-w-sm lg:max-w-md w-full"
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.5, opacity: 0 }}
