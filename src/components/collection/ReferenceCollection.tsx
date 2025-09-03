@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Card } from '@/types/game'
-import CardImage from './CardImage'
+import ItemImage from './ItemImage'
 import { GAME_CONFIG } from '@/config/game-constants'
 
 interface ReferenceDeckProps {
@@ -45,7 +45,7 @@ export default function ReferenceDeck({ cards, className = '' }: ReferenceDeckPr
       >
         {cards.map((card, index) => (
           <motion.div key={card.id} variants={itemVariants}>
-            <CardImage 
+            <ItemImage 
               card={card} 
               size="large"
               className="shadow-lg"

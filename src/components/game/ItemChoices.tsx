@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card } from '@/types/game'
-import CardImage from '@/components/deck/CardImage'
+import ItemImage from '@/components/collection/ItemImage'
 import { useGame } from '@/components/providers/GameProvider'
 import { useText } from '@/hooks/useText'
 import { GAME_CONFIG, ANIMATION_DURATIONS } from '@/config/game-constants'
@@ -27,8 +27,7 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
     const isCorrect = card.id === gameState.correctCardId
     
     // Track round attempt
-    const roundTypes = ['monster', 'spell', 'trap']
-    const roundType = roundTypes[gameState.currentRound - 1]
+    const roundType = text?.rounds.types?.[gameState.currentRound - 1] || 'unknown'
     
     analytics.trackRound(
       gameState.sessionId,
@@ -83,12 +82,10 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
     <div className={`space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 border border-monokai-blue/30 ${className}`}>
       <div className="text-center">
         <h2 className="text-2xl font-bold gradient-text mb-2">
-          {text?.ui.chooseCard || '⚡ Choose the Card'}
+          {text?.ui.chooseItem || '⚡ Choose the Card'}
         </h2>
         <p className="text-sm text-monokai-text-dim">
-          {text && gameState.currentRound === 1 && text.rounds.instructions.monster}
-          {text && gameState.currentRound === 2 && text.rounds.instructions.spell}
-          {text && gameState.currentRound === 3 && text.rounds.instructions.trap}
+          {text && text.rounds.types && text.rounds.instructions[text.rounds.types[gameState.currentRound - 1]]}
         </p>
       </div>
       
@@ -101,7 +98,7 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
       >
         {gameState.currentRoundChoices.map((card) => (
           <motion.div key={card.id} variants={itemVariants}>
-            <CardImage
+            <ItemImage
               card={card}
               onClick={() => handleCardSelect(card)}
               isSelected={selectedCardId === card.id}

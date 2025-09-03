@@ -4,10 +4,12 @@ import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useText } from '@/hooks/useText'
 
 function SuccessContent() {
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session')
+  const text = useText()
   const [isVerified, setIsVerified] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [iframeError, setIframeError] = useState(false)
@@ -47,10 +49,10 @@ function SuccessContent() {
         >
           <div className="text-6xl mb-4">🔐</div>
           <h1 className="text-2xl font-bold gradient-text mb-2">
-            Verifying Access...
+            {text?.messages.verifyingAccess || 'Verifying Access...'}
           </h1>
           <p className="text-monokai-text-dim">
-            Confirming your fairy deck mastery
+            {text?.errors.confirmingMastery || 'Confirming your mastery'}
           </p>
         </motion.div>
       </div>
@@ -67,16 +69,16 @@ function SuccessContent() {
         >
           <div className="text-6xl mb-4">❌</div>
           <h1 className="text-2xl font-bold text-monokai-red mb-4">
-            Access Denied
+            {text?.messages.accessDenied || 'Access Denied'}
           </h1>
           <p className="text-monokai-text mb-6">
-            You must complete the fairy deck challenge to access this content.
+            {text?.errors.mustComplete || 'You must complete the challenge to access this content.'}
           </p>
           <button
             onClick={() => window.location.href = '/'}
             className="bg-monokai-purple text-monokai-bg px-6 py-3 rounded-lg font-bold hover:bg-monokai-blue transition-colors"
           >
-            Return to Challenge
+            {text?.buttons.returnToChallenge || 'Return to Challenge'}
           </button>
         </motion.div>
       </div>
@@ -93,16 +95,16 @@ function SuccessContent() {
         >
           <div className="text-6xl mb-4">🎉</div>
           <h1 className="text-3xl font-bold gradient-text mb-4">
-            Access Granted!
+            {text?.messages.accessGranted || 'Access Granted!'}
           </h1>
           <p className="text-monokai-text mb-6">
-            Congratulations! You&apos;ve proven your fairy deck mastery.
+            {text?.errors.congratulationsMessage || 'Congratulations! You\'ve proven your mastery.'}
           </p>
           <button
             onClick={() => window.open(secretUrl, '_blank')}
             className="bg-monokai-purple text-monokai-bg px-8 py-4 rounded-lg font-bold hover:bg-monokai-blue transition-colors text-lg"
           >
-            Enter Secret Area 🚀
+            {text?.buttons.enterSecretArea || 'Enter Secret Area 🚀'}
           </button>
         </motion.div>
       </div>
@@ -115,8 +117,8 @@ function SuccessContent() {
       <div className="bg-gradient-to-r from-monokai-purple to-monokai-blue p-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <span className="text-lg font-bold text-white">✨ Fairy Deck Master</span>
-            <span className="text-xs text-monokai-text hidden sm:inline">Exclusive Content</span>
+            <span className="text-lg font-bold text-white">{text?.ui.successHeader || '✨ Challenge Master'}</span>
+            <span className="text-xs text-monokai-text hidden sm:inline">{text?.ui.exclusiveContent || 'Exclusive Content'}</span>
           </div>
           
           <div className="flex items-center space-x-2">
@@ -125,14 +127,14 @@ function SuccessContent() {
               className="bg-monokai-bg/20 hover:bg-monokai-bg/40 text-white px-3 py-1 rounded text-sm transition-colors"
               title="Return to Puzzle"
             >
-              🎮 Puzzle
+              {text?.buttons.returnToPuzzle || '🎮 Puzzle'}
             </button>
             <button
               onClick={() => window.close()}
               className="bg-monokai-bg/20 hover:bg-monokai-bg/40 text-white px-3 py-1 rounded text-sm transition-colors"
               title="Close Tab"
             >
-              ✕ Close
+              {text?.buttons.closeTab || '✕ Close'}
             </button>
           </div>
         </div>

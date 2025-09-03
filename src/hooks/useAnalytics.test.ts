@@ -25,7 +25,7 @@ describe('useAnalytics', () => {
     const { result } = renderHook(() => useAnalytics())
     
     // Should not throw error
-    await expect(result.current.trackSession('test-session', 'fairy')).resolves.toBeUndefined()
+    await expect(result.current.trackSession('test-session', 'default')).resolves.toBeUndefined()
   })
 
   test('trackRound calls Supabase correctly', async () => {
@@ -34,7 +34,7 @@ describe('useAnalytics', () => {
     // Should not throw error
     await expect(result.current.trackRound(
       'test-session',
-      'fairy', 
+      'default', 
       1,
       'monster',
       ['card1', 'card2'],

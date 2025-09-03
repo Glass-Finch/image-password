@@ -74,9 +74,7 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
           {text && formatText(text.timer.roundOf, { round: gameState.currentRound.toString() })}
         </div>
         <div className="text-md text-monokai-yellow font-bold">
-          {text && gameState.currentRound === 1 && text.rounds.monster}
-          {text && gameState.currentRound === 2 && text.rounds.spell}
-          {text && gameState.currentRound === 3 && text.rounds.trap}
+          {text && text.rounds.types && text.rounds.labels[text.rounds.types[gameState.currentRound - 1]]}
         </div>
       </div>
 

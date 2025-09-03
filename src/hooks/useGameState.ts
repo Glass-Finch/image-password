@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
 import { GameState, Card, SelectedCard, GameRound } from '@/types/game'
-import { generateSessionId } from '@/utils/cardUtils'
+import { generateSessionId } from '@/utils/itemUtils'
 import { generateGameRounds } from '@/utils/gameLogic'
 import { GAME_CONFIG } from '@/config/game-constants'
 
-export function useGameState(cards: Card[], deckId: string) {
+export function useGameState(cards: Card[], collectionId: string, roundTypes?: string[]) {
   const [gameState, setGameState] = useState<GameState>(() => ({
     sessionId: generateSessionId(),
-    deckId,
+    deckId: collectionId,
     currentRound: 1,
     timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
     gameStatus: 'playing',
@@ -28,7 +28,7 @@ export function useGameState(cards: Card[], deckId: string) {
     if (cards.length === 0) return
     
     try {
-      const rounds = generateGameRounds(cards)
+      const rounds = generateGameRounds(cards, roundTypes)
       setGameRounds(rounds)
       
       if (rounds.length > 0) {
@@ -42,13 +42,13 @@ export function useGameState(cards: Card[], deckId: string) {
       console.error('Failed to initialize game:', error)
       setGameState(prev => ({ ...prev, gameStatus: 'failed', networkError: true }))
     }
-  }, [cards, deckId, gameState.sessionId])
+  }, [cards, collectionId, gameState.sessionId, roundTypes])
 
   const restartGame = useCallback(() => {
     const newSessionId = generateSessionId()
     setGameState({
       sessionId: newSessionId,
-      deckId,
+      deckId: collectionId,
       currentRound: 1,
       timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
       gameStatus: 'playing',
@@ -61,7 +61,7 @@ export function useGameState(cards: Card[], deckId: string) {
       isSubmitting: false,
       networkError: false,
     })
-  }, [deckId])
+  }, [collectionId])
 
   const selectCard = useCallback((cardId: string) => {
     if (gameState.isSubmitting || gameState.gameStatus !== 'playing') return

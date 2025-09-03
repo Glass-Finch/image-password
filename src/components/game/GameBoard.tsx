@@ -4,9 +4,9 @@ import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGame } from '@/components/providers/GameProvider'
 import { useText } from '@/hooks/useText'
-import { getReferenceCards } from '@/utils/gameLogic'
-import ReferenceDeck from '@/components/deck/ReferenceDeck'
-import CardChoices from './CardChoices'
+import { getReferenceItems } from '@/utils/gameLogic'
+import ReferenceCollection from '@/components/collection/ReferenceCollection'
+import ItemChoices from './ItemChoices'
 import GameTimer from './GameTimer'
 import SuccessOverlay from '@/components/ui/SuccessOverlay'
 import LockedScreen from '@/components/ui/LockedScreen'
@@ -64,7 +64,7 @@ export default function GameBoard() {
     )
   }
 
-  const referenceCards = getReferenceCards(cards, config)
+  const referenceCards = getReferenceItems(cards, config)
 
   return (
     <div className="min-h-screen relative">
@@ -106,9 +106,9 @@ export default function GameBoard() {
               transition={{ duration: 0.6 }}
             >
               <GameTimer className="bg-monokai-bg/90 backdrop-blur-sm rounded-lg p-3" />
-              <CardChoices />
+              <ItemChoices />
               <div className="border-t border-monokai-bg-light pt-4">
-                <ReferenceDeck cards={referenceCards} />
+                <ReferenceCollection cards={referenceCards} />
               </div>
             </motion.div>
           </div>
@@ -123,13 +123,13 @@ export default function GameBoard() {
             >
               {/* Left side - Reference deck */}
               <div className="flex flex-col justify-center">
-                <ReferenceDeck cards={referenceCards} />
+                <ReferenceCollection cards={referenceCards} />
               </div>
               
               {/* Right side - Timer and choices */}
               <div className="flex flex-col justify-start pt-8 space-y-6">
                 <GameTimer />
-                <CardChoices />
+                <ItemChoices />
               </div>
             </motion.div>
           </div>

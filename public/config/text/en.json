@@ -4,9 +4,12 @@
     "subtitle": "🧚‍♀️ Prove your fairy deck building mastery and win a prize! 🧚‍♀️"
   },
   "rounds": {
-    "monster": "🎭 Monster Cards",
-    "spell": "📜 Spell Cards",
-    "trap": "🪤 Trap Cards",
+    "types": ["monster", "spell", "trap"],
+    "labels": {
+      "monster": "🎭 Monster Cards",
+      "spell": "📜 Spell Cards",
+      "trap": "🪤 Trap Cards"
+    },
     "instructions": {
       "monster": "Pick the monster that best complements the deck on the left",
       "spell": "Pick the spell that best complements the deck on the left",
@@ -14,13 +17,13 @@
     }
   },
   "ui": {
-    "chooseCard": "⚡ Choose the Card",
-    "referenceDeck": "🎴 Reference Deck",
-    "deckInstructions": "Choose cards that best complement this deck",
+    "chooseItem": "⚡ Choose the Card",
+    "referenceCollection": "🎴 Reference Deck", 
+    "collectionInstructions": "Choose cards that best complement this deck",
     "loadingMessage": "Loading magical challenge...",
     "loadingImages": "Loading images",
     "loadingRoundChoices": "Loading round choices...",
-    "fairyMaster": "✨ Fairy Deck Master",
+    "successHeader": "✨ Fairy Deck Master",
     "exclusiveContent": "Exclusive Content"
   },
   "timer": {
@@ -53,13 +56,14 @@
     "timeoutMessage": "You ran out of time. Try again with fresh cards!",
     "mustComplete": "You must complete the fairy deck challenge to access this content.",
     "failedToLoad": "Failed to load cards data",
-    "confirmingMastery": "Confirming your fairy deck mastery"
+    "confirmingMastery": "Confirming your fairy deck mastery",
+    "congratulationsMessage": "Congratulations! You've proven your fairy deck mastery."
   },
   "security": {
     "securityNotice": "Security Notice",
     "preventLookup": "The puzzle has been reset to prevent answer lookup. New cards have been shuffled."
   },
   "hints": {
-    "studyDeck": "Study the reference deck carefully. Choose cards that would complement it strategically."
+    "studyDeck": "Study the reference deck carefully. Choose cards that would best complement it strategically."
   }
 }

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Yugioh Image Puzzle',
-  description: 'A password-protected landing page using Yugioh card knowledge',
+  title: 'Image Knowledge Challenge',
+  description: 'A password-protected landing page using image-based knowledge authentication',
   robots: 'noindex, nofollow',
 }
 

@@ -2,9 +2,10 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Card, DeckConfig } from '@/types/game'
-import { DECK_CONFIGS, DEFAULT_DECK } from '@/config/deck-configs'
+import { COLLECTION_CONFIGS, DEFAULT_COLLECTION } from '@/config/collection-configs'
 import { useGameState } from '@/hooks/useGameState'
 import { useAnalytics } from '@/hooks/useAnalytics'
+import { useText } from '@/hooks/useText'
 import { preloadImagesWithProgress } from '@/utils/imagePreloader'
 
 interface GameContextType {
@@ -31,15 +32,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [isImagesLoaded, setIsImagesLoaded] = useState(false)
   
-  const config = DECK_CONFIGS[DEFAULT_DECK]
-  const gameState = useGameState(cards, config.id)
+  const config = COLLECTION_CONFIGS[DEFAULT_COLLECTION]
+  const text = useText()
+  const gameState = useGameState(cards, config.id, text?.rounds.types)
   const analytics = useAnalytics()
 
   // Load cards data
   useEffect(() => {
     async function loadCards() {
       try {
-        const response = await fetch(`/cards.json?t=${Date.now()}`)
+        const response = await fetch(`/items.json?t=${Date.now()}`)
         if (!response.ok) {
           throw new Error('Failed to load cards data')
         }

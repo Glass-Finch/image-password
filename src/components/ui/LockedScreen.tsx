@@ -139,7 +139,7 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
 
           <motion.button
             onClick={() => {
-              const studyUrl = process.env.NEXT_PUBLIC_LOSS_REDIRECT_URL || 'https://yugioh.fandom.com/wiki/Fairy'
+              const studyUrl = process.env.NEXT_PUBLIC_LOSS_REDIRECT_URL || 'https://example.com/study'
               window.open(studyUrl, '_blank')
             }}
             className="

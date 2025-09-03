@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Card } from '@/types/game'
 import { ANIMATION_DURATIONS } from '@/config/game-constants'
-import CardZoomModal from '@/components/ui/CardZoomModal'
+import ItemZoomModal from '@/components/ui/ItemZoomModal'
 
 interface CardImageProps {
   card: Card
@@ -108,7 +108,7 @@ export default function CardImage({
       )}
     </motion.div>
 
-    <CardZoomModal
+    <ItemZoomModal
       card={card}
       isOpen={showZoomModal}
       onClose={() => setShowZoomModal(false)}

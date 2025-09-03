@@ -8,23 +8,22 @@ interface TextConfig {
     subtitle: string
   }
   rounds: {
-    monster: string
-    spell: string
-    trap: string
+    types: string[]
+    labels: {
+      [key: string]: string
+    }
     instructions: {
-      monster: string
-      spell: string
-      trap: string
+      [key: string]: string
     }
   }
   ui: {
-    chooseCard: string
-    referenceDeck: string
-    deckInstructions: string
+    chooseItem: string
+    referenceCollection: string
+    collectionInstructions: string
     loadingMessage: string
     loadingImages: string
     loadingRoundChoices: string
-    fairyMaster: string
+    successHeader: string
     exclusiveContent: string
   }
   timer: {
@@ -43,7 +42,6 @@ interface TextConfig {
   }
   messages: {
     success: string
-    fairyMasterSuccess: string
     accessGranted: string
     accessDenied: string
     wrongChoice: string
@@ -58,6 +56,7 @@ interface TextConfig {
     mustComplete: string
     failedToLoad: string
     confirmingMastery: string
+    congratulationsMessage: string
   }
   security: {
     securityNotice: string
