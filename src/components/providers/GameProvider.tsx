@@ -15,6 +15,7 @@ interface GameContextType {
   selectItem: ReturnType<typeof useGameState>['selectItem']
   handleTimeout: ReturnType<typeof useGameState>['handleTimeout']
   restartGame: ReturnType<typeof useGameState>['restartGame']
+  startChallenge: ReturnType<typeof useGameState>['startChallenge']
   currentRoundData: ReturnType<typeof useGameState>['currentRoundData']
   isLoading: boolean
   error: string | null
@@ -82,6 +83,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     selectItem: gameState.selectItem,
     handleTimeout: gameState.handleTimeout,
     restartGame: gameState.restartGame,
+    startChallenge: gameState.startChallenge,
     currentRoundData: gameState.currentRoundData,
     isLoading,
     error,

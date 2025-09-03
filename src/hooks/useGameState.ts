@@ -10,7 +10,7 @@ export function useGameState(items: Item[], collectionId: string, roundTypes?: s
     collectionId: collectionId,
     currentRound: 1,
     timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
-    gameStatus: 'playing',
+    gameStatus: 'studying',
     selectedItems: [],
     currentRoundChoices: [],
     correctItemId: '',
@@ -51,7 +51,7 @@ export function useGameState(items: Item[], collectionId: string, roundTypes?: s
       collectionId: collectionId,
       currentRound: 1,
       timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
-      gameStatus: 'playing',
+      gameStatus: 'studying',
       selectedItems: [],
       currentRoundChoices: [],
       correctItemId: '',
@@ -127,12 +127,21 @@ export function useGameState(items: Item[], collectionId: string, roundTypes?: s
     setGameState(prev => ({ ...prev, timeRemaining: time }))
   }, [])
 
+  const startChallenge = useCallback(() => {
+    setGameState(prev => ({ 
+      ...prev, 
+      gameStatus: 'playing',
+      roundStartTime: Date.now()
+    }))
+  }, [])
+
   return {
     gameState,
     selectItem,
     handleTimeout,
     restartGame,
     updateTimeRemaining,
+    startChallenge,
     currentRoundData: gameRounds[gameState.currentRound - 1],
   }
 }
