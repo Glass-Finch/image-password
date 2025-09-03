@@ -10,6 +10,14 @@ export function generateCategoryBasedRounds(items: Item[], roundTypes: string[] 
   const correctImages = items.filter(c => c.score === 1)
   const wrongImages = items.filter(c => c.score === -1)
   
+  if (correctImages.length === 0) {
+    throw new Error('No correct images found in collection')
+  }
+  
+  if (wrongImages.length < 5) {
+    throw new Error('Not enough wrong images found in collection')
+  }
+  
   const challengeTypes = roundTypes
   const rounds: GameRound[] = []
   const usedCorrect: string[] = []
@@ -19,19 +27,30 @@ export function generateCategoryBasedRounds(items: Item[], roundTypes: string[] 
     const roundType = challengeTypes[i]
     
     // Get available images of the specific type for this round
-    const availableCorrect = correctImages.filter(c => 
+    let availableCorrect = correctImages.filter(c => 
       !usedCorrect.includes(c.id) && c.item_type === roundType
     )
-    const availableWrong = wrongImages.filter(c => 
+    let availableWrong = wrongImages.filter(c => 
       !usedWrong.includes(c.id) && c.item_type === roundType
     )
     
+    // Fallback: if no specific type available, use any available images
     if (availableCorrect.length === 0) {
-      throw new Error(`Not enough correct ${roundType} images for round ${i + 1}`)
+      availableCorrect = correctImages.filter(c => !usedCorrect.includes(c.id))
+      console.warn(`No correct ${roundType} images available for round ${i + 1}, using fallback`)
     }
     
     if (availableWrong.length < 5) {
-      throw new Error(`Not enough wrong ${roundType} images for round ${i + 1}`)
+      availableWrong = wrongImages.filter(c => !usedWrong.includes(c.id))
+      console.warn(`Not enough wrong ${roundType} images for round ${i + 1}, using fallback`)
+    }
+    
+    if (availableCorrect.length === 0) {
+      throw new Error(`No correct images available for round ${i + 1}`)
+    }
+    
+    if (availableWrong.length < 5) {
+      throw new Error(`Not enough wrong images available for round ${i + 1}`)
     }
     
     const correctImage = randomSelect(availableCorrect, 1)[0]

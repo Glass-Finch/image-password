@@ -36,6 +36,7 @@ export function useGameState(items: Item[], collectionId: string, roundTypes?: s
           ...prev,
           currentRoundChoices: rounds[0].choices,
           correctItemId: rounds[0].correctId,
+          networkError: false,
         }))
       }
     } catch (error) {

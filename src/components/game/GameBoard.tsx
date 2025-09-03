@@ -87,10 +87,10 @@ export default function GameBoard() {
       {/* Kawaii Title */}
       {(gameState.gameStatus === 'studying' || gameState.gameStatus === 'playing') && (
         <div className="text-center py-6">
-          <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-2">
             {text.game.title}
           </h1>
-          <p className="text-monokai-text-dim text-lg">
+          <p className="text-monokai-text-dim text-base sm:text-lg">
             {text.game.subtitle}
           </p>
         </div>
@@ -98,11 +98,11 @@ export default function GameBoard() {
 
       {/* Main game layout */}
       {(gameState.gameStatus === 'studying' || gameState.gameStatus === 'playing') && (
-        <div className="container mx-auto px-4 py-2 max-w-7xl">
+        <div className="container mx-auto px-3 sm:px-4 py-2 max-w-7xl">
           {/* Mobile layout - stacked */}
           <div className="block md:hidden">
             <motion.div
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}

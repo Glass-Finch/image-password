@@ -76,4 +76,23 @@
     z-index: 50;
     transform-origin: center;
   }
+
+  /* Responsive hover scaling */
+  @media (max-width: 767px) {
+    .card-hover-mobile:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .card-hover-tablet:hover {
+      transform: scale(1.25);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card-hover-desktop:hover {
+      transform: scale(1.75);
+    }
+  }
 }
