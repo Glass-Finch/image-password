@@ -27,7 +27,7 @@ export default function ReferenceCollection({ items, className = '' }: Reference
   }
 
   return (
-    <div className={`space-y-3 sm:space-y-4 bg-monokai-bg-dark/50 rounded-xl p-4 sm:p-6 border border-monokai-bg-light ${className}`}>
+    <div className={`space-y-3 sm:space-y-4 bg-monokai-bg-dark/50 rounded-xl p-6 sm:p-8 lg:p-10 border border-monokai-bg-light ${className}`}>
       <div className="text-center">
         <h2 className="text-xl sm:text-2xl font-bold gradient-text mb-2">
           🎴 Reference Deck
@@ -38,7 +38,7 @@ export default function ReferenceCollection({ items, className = '' }: Reference
       </div>
       
       <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-4 justify-center max-w-xs sm:max-w-lg lg:max-w-2xl mx-auto"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 justify-items-center max-w-xs sm:max-w-lg lg:max-w-3xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

@@ -19,9 +19,9 @@ interface ItemImageProps {
 }
 
 const sizeClasses = {
-  small: 'w-20 h-28 sm:w-24 sm:h-32 lg:w-28 lg:h-36',
-  medium: 'w-28 h-40 sm:w-32 sm:h-44 lg:w-36 lg:h-48',
-  large: 'w-32 h-44 sm:w-40 sm:h-56 lg:w-48 lg:h-64',
+  small: 'w-20 h-28 sm:w-24 sm:h-32 lg:w-28 lg:h-40',
+  medium: 'w-28 h-40 sm:w-32 sm:h-44 lg:w-36 lg:h-52',
+  large: 'w-36 h-52 sm:w-44 sm:h-60 lg:w-48 lg:h-64',
 }
 
 export default function ItemImage({
@@ -72,7 +72,7 @@ export default function ItemImage({
         alt={item.name}
         fill
         className="object-cover"
-        sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 256px"
+        sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, (max-width: 1024px) 192px, 192px"
         priority={priority}
         quality={priority ? 95 : 85}
         unoptimized={false}

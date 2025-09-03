@@ -79,7 +79,7 @@ export default function ItemChoices({ className = '' }: ItemChoicesProps) {
   }
 
   return (
-    <div className={`space-y-4 sm:space-y-6 bg-monokai-bg-dark/30 rounded-xl p-4 sm:p-6 border border-monokai-blue/30 ${className}`}>
+    <div className={`space-y-4 sm:space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 sm:p-8 lg:p-10 border border-monokai-blue/30 ${className}`}>
       <div className="text-center">
         <h2 className="text-xl sm:text-2xl font-bold gradient-text mb-2">
           {text?.ui.chooseItem || '⚡ Choose the Card'}
@@ -90,7 +90,7 @@ export default function ItemChoices({ className = '' }: ItemChoicesProps) {
       </div>
       
       <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 justify-center items-center max-w-sm sm:max-w-2xl lg:max-w-3xl mx-auto"
+        className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 justify-items-center items-center max-w-sm sm:max-w-2xl lg:max-w-4xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -105,7 +105,7 @@ export default function ItemChoices({ className = '' }: ItemChoicesProps) {
               isCorrect={feedbackItems[item.id]}
               isClickable={gameState.gameStatus === 'playing' && !gameState.isSubmitting && !selectedItemId}
               size="large"
-              className="mx-auto shadow-xl"
+              className="shadow-xl"
             />
           </motion.div>
         ))}
