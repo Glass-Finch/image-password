@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGame } from '@/components/providers/GameProvider'
+import { useText } from '@/hooks/useText'
 import { getReferenceCards } from '@/utils/gameLogic'
 import ReferenceDeck from '@/components/deck/ReferenceDeck'
 import CardChoices from './CardChoices'
@@ -22,6 +23,7 @@ export default function GameBoard() {
     isImagesLoaded,
     analytics
   } = useGame()
+  const text = useText()
 
   // Track completion when game ends
   useEffect(() => {
@@ -38,8 +40,8 @@ export default function GameBoard() {
     window.location.href = `/success?session=${gameState.sessionId}`
   }
 
-  if (isLoading || !isImagesLoaded) {
-    return <LoadingState progress={loadingProgress} />
+  if (isLoading || !isImagesLoaded || !text) {
+    return <LoadingState progress={loadingProgress} message={text?.ui.loadingMessage} />
   }
 
   if (error) {
@@ -48,14 +50,14 @@ export default function GameBoard() {
         <div className="text-center max-w-md mx-4">
           <div className="text-6xl mb-4">⚠️</div>
           <h2 className="text-2xl font-bold text-monokai-red mb-4">
-            Loading Error
+            {text.messages.loadingError}
           </h2>
           <p className="text-monokai-text mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
             className="bg-monokai-blue text-monokai-bg px-6 py-2 rounded-lg hover:bg-monokai-green transition-colors"
           >
-            Reload Page
+            {text.buttons.reloadPage}
           </button>
         </div>
       </div>
@@ -84,10 +86,10 @@ export default function GameBoard() {
       {gameState.gameStatus === 'playing' && (
         <div className="text-center py-6">
           <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
-            ✨ Yu-Gi-Oh! Trials of the Fairies ✨
+            {text.game.title}
           </h1>
           <p className="text-monokai-text-dim text-lg">
-            🧚‍♀️ Prove your fairy deck building mastery and win a prize! 🧚‍♀️
+            {text.game.subtitle}
           </p>
         </div>
       )}

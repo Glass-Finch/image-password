@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Card } from '@/types/game'
 import CardImage from '@/components/deck/CardImage'
 import { useGame } from '@/components/providers/GameProvider'
+import { useText } from '@/hooks/useText'
 import { GAME_CONFIG, ANIMATION_DURATIONS } from '@/config/game-constants'
 
 interface CardChoicesProps {
@@ -13,6 +14,7 @@ interface CardChoicesProps {
 
 export default function CardChoices({ className = '' }: CardChoicesProps) {
   const { gameState, selectCard, currentRoundData, analytics } = useGame()
+  const text = useText()
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
   const [feedbackCards, setFeedbackCards] = useState<Record<string, boolean>>({})
 
@@ -72,7 +74,7 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
   if (!currentRoundData || !gameState.currentRoundChoices.length) {
     return (
       <div className={`text-center text-monokai-text-dim ${className}`}>
-        Loading round choices...
+        {text?.ui.loadingRoundChoices || 'Loading round choices...'}
       </div>
     )
   }
@@ -81,12 +83,12 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
     <div className={`space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 border border-monokai-blue/30 ${className}`}>
       <div className="text-center">
         <h2 className="text-2xl font-bold gradient-text mb-2">
-          ⚡ Choose the Card
+          {text?.ui.chooseCard || '⚡ Choose the Card'}
         </h2>
         <p className="text-sm text-monokai-text-dim">
-          {gameState.currentRound === 1 && 'Pick the monster that complements the fairy deck'}
-          {gameState.currentRound === 2 && 'Pick the spell that complements the fairy deck'}
-          {gameState.currentRound === 3 && 'Pick the trap that complements the fairy deck'}
+          {text && gameState.currentRound === 1 && text.rounds.instructions.monster}
+          {text && gameState.currentRound === 2 && text.rounds.instructions.spell}
+          {text && gameState.currentRound === 3 && text.rounds.instructions.trap}
         </p>
       </div>
       
