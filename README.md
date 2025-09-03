@@ -1,276 +1,200 @@
-# Yugioh Image Puzzle - Password Protection System
+# 🎯 Generic Image Knowledge Authentication Platform
 
-A Next.js-based password-protected landing page that uses image-based puzzles instead of traditional passwords. Users must demonstrate knowledge of a specific Yugioh card deck to gain access.
+A Next.js-based password-protected landing page that uses image-based puzzles instead of traditional passwords. Users must demonstrate comprehensive knowledge of a specific image collection to gain access. **Completely theme-agnostic with Yu-Gi-Oh Fairy Deck as the current theme example.**
 
-## 🎴 Current Status: READY FOR DEPLOYMENT
+## 🎴 Current Status: PRODUCTION READY
 
-- ✅ **Real Fairy Deck**: 15 authentic Yugioh card images integrated
-- ✅ **Working Game Logic**: 3-round challenge with timer and validation  
-- ✅ **Mobile Responsive**: Optimized for all devices
-- ✅ **Basic Tests**: Core utility functions tested (13 tests passing)
-- ✅ **Clean Build**: 43.3 kB optimized bundle, no errors
+- ✅ **Theme-Agnostic Platform**: Generic system with Yu-Gi-Oh as configurable theme
+- ✅ **Complete Text Extraction**: All content configurable via JSON files
+- ✅ **130 Image Database**: Reference collection + correct/distractor images
+- ✅ **Category-Based Rounds**: Configurable round types and progression  
+- ✅ **Mobile Features**: Tap-to-zoom modal, responsive design
+- ✅ **URL Obfuscation**: Iframe-based success page hides destination
+- ✅ **Analytics Ready**: Supabase integration with category tracking
 
-## 🎯 Features
+## 🚀 **Key Features**
 
-- **Image-based Authentication**: 3-round card selection challenge
-- **Deck-Agnostic Architecture**: Easily configurable for different card decks
-- **Mobile-Responsive Design**: Optimized layouts for all devices
-- **Real-time Timer**: 60-second countdown per round with visual feedback
-- **Security Features**: Automatic lockout and card shuffling on failure
-- **Analytics Tracking**: Optional Supabase integration for user behavior analysis
-- **Success Animations**: Kawaii-themed celebration screen
-- **Monokai Theme**: Dark, magical aesthetic with custom color palette
+### 🎮 **Three-Round Challenge System**
+- **Configurable rounds**: Any number of image categories
+- **60-second timer**: Visual countdown with progressive warnings
+- **Punishment system**: Wrong choice shows lock screen + study button
+- **Success flow**: Celebration animation → iframe redirect
 
-## 🛠 Tech Stack
+### 🎨 **Complete Theme System**
+- **JSON-driven content**: All text/labels in `public/config/text/en.json`
+- **No hardcoded strings**: Codebase is completely theme-neutral
+- **Easy theme switching**: Change JSON file + images = new theme
+- **Multi-language ready**: Add new language JSON files
+
+### 📱 **Enhanced Mobile Experience**
+- **Tap-to-zoom modal**: Double-tap any image for full-screen detail
+- **1.75x hover zoom**: Desktop card inspection with proper layering
+- **Responsive layout**: Optimized for all screen sizes
+- **Study integration**: "Go Study Up" button opens learning materials
+
+### 🔒 **Advanced Security & UX**
+- **URL obfuscation**: Success content in iframe (secret URL hidden)
+- **Image preloading**: All 130+ images loaded before gameplay
+- **Session isolation**: Each attempt gets unique tracking ID
+- **Analytics tracking**: Comprehensive Supabase data collection
+
+## 🛠 **Tech Stack**
 
 - **Frontend**: Next.js 14, React, TypeScript
-- **Styling**: TailwindCSS with custom Monokai theme
+- **Styling**: TailwindCSS with Monokai theme
 - **Animations**: Framer Motion
 - **Analytics**: Supabase (optional)
-- **Deployment**: Vercel
+- **Text System**: JSON-based configuration
+- **Deployment**: Vercel-ready
 
-## 🚀 Quick Start
+## 📁 **Theme-Agnostic Architecture**
 
-### Prerequisites
+### File Structure
+```
+src/
+├── app/                          # Next.js routes
+├── components/
+│   ├── collection/              # Generic image display (was deck/)
+│   │   ├── ItemImage.tsx        # Generic image component (was CardImage)
+│   │   └── ReferenceCollection.tsx  # Generic collection display (was ReferenceDeck)
+│   ├── game/                    # Core game logic
+│   ├── providers/               # Context providers
+│   └── ui/                      # UI components
+├── config/
+│   ├── collection-configs.ts    # Generic collection config (was deck-configs)
+│   └── game-constants.ts        # Game mechanics
+├── hooks/
+│   ├── useText.ts              # Text/theme loading
+│   └── useAnalytics.ts         # Data tracking
+└── utils/                      # Generic utilities
 
-- Node.js 18+ and npm
-- Optional: Supabase account for analytics
+public/
+├── images/cards/               # Theme images
+│   ├── reference/             # Reference collection (was fairy/)
+│   ├── correct/               # Matching images  
+│   └── distractors/          # Non-matching images
+├── cards.json                 # Image metadata
+└── config/text/
+    └── en.json               # All theme-specific text
+```
 
-### Installation
+## 🎯 **Current Theme: Yu-Gi-Oh Fairy Deck**
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd image-password
-   ```
+### Game Flow
+1. **Loading**: Progress bar preloads all 130 images
+2. **Round 1**: 🎭 Monster Cards - Choose 1 correct fairy monster from 6 options
+3. **Round 2**: 📜 Spell Cards - Choose 1 correct fairy spell from 6 options  
+4. **Round 3**: 🪤 Trap Cards - Choose 1 correct fairy trap from 6 options
+5. **Success**: "✨ Fairy Deck Master" → iframe with hidden URL
+6. **Failure**: Lock screen → "Try Again 🎮" or "Go Study Up 📚"
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+### Content
+- **Title**: "✨ Yu-Gi-Oh! Trials of the Fairies ✨"
+- **Challenge**: Prove fairy deck building mastery
+- **Categories**: Monster/Spell/Trap card knowledge
+- **Study materials**: Yu-Gi-Oh wiki integration
 
-3. **Configure environment variables**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your configuration
-   ```
+## 🔄 **Creating New Themes**
 
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open browser**
-   ```
-   http://localhost:3000
-   ```
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_DEFAULT_DECK` | Default deck to use ('fairy') | Yes |
-| `FAIRY_SUCCESS_URL` | Redirect URL on successful completion | Yes |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | No |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | No |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key | No |
-| `NEXT_PUBLIC_ANALYTICS_ENABLED` | Enable/disable analytics | No |
-
-### Adding New Decks
-
-1. **Update deck configuration** (`src/config/deck-configs.ts`):
-   ```typescript
-   export const DRAGON_DECK_CONFIG: DeckConfig = {
-     id: 'dragon',
-     name: 'Dragon Deck Challenge',
-     referenceCards: ['dragon-1', 'dragon-2', ...], // 15 cards
-     theme: {
-       primary: '#ff6b35',
-       secondary: '#f7931e', 
-       accent: '#ffbe0b',
-       backgroundGradient: ['#2c1810', '#4a2c17']
-     },
-     successMessage: 'Dragon Master! 🐉',
-     redirectUrl: 'DRAGON_SUCCESS_URL'
-   }
-   ```
-
-2. **Add cards to data file** (`data/cards.json`):
-   ```json
-   {
-     "id": "dragon-1",
-     "name": "Blue-Eyes White Dragon",
-     "image": "/images/cards/dragon/dragon-1.jpg",
-     "score": 0,
-     "tags": ["dragon", "reference"]
-   }
-   ```
-
-3. **Set environment variable**:
-   ```
-   DRAGON_SUCCESS_URL=https://your-secret-page.com
-   ```
-
-### Card Requirements
-
-- **Reference Deck**: Exactly 15 cards (score: 0)
-- **Correct Answers**: Minimum 3 cards (score: 1) 
-- **Distractors**: Minimum 9 cards (score: -1)
-- **Total**: At least 27 cards for basic functionality
-
-## 🎮 Game Flow
-
-1. **Round 1-3**: User selects 1 card from 4 choices
-2. **Timer**: 60 seconds per round
-3. **Success**: All 3 rounds correct → redirect to secret URL
-4. **Failure**: Wrong choice or timeout → locked screen with restart
-
-## 🎨 Customization
-
-### Themes
-
-Modify `tailwind.config.js` for custom color schemes:
-
-```javascript
-colors: {
-  monokai: {
-    bg: '#your-bg-color',
-    green: '#your-accent-color',
-    // ... other colors
+### 1. Update Text Configuration
+```json
+// public/config/text/pokemon-en.json
+{
+  "game": {
+    "title": "✨ Pokémon Grass Challenge ✨",
+    "subtitle": "🌱 Prove your grass-type mastery! 🌱"
+  },
+  "rounds": {
+    "types": ["basic", "stage1", "stage2"],
+    "labels": {
+      "basic": "🌱 Basic Pokémon",
+      "stage1": "🌿 Stage 1",
+      "stage2": "🌳 Stage 2"
+    }
   }
 }
 ```
 
-### Animations
+### 2. Replace Images
+```
+public/images/cards/
+├── reference/     # 15 grass-type Pokémon
+├── correct/       # Grass support cards
+└── distractors/   # Fire/water/other types
+```
 
-Adjust animation durations in `src/config/game-constants.ts`:
-
-```typescript
-export const ANIMATION_DURATIONS = {
-  CARD_HOVER: 200,
-  CARD_SELECTION: 300,
-  SUCCESS_CELEBRATION: 800,
+### 3. Update Cards Data
+```json
+// public/cards.json
+{
+  "card_type": "basic",  // or "stage1", "stage2"
+  "tags": ["grass", "reference"]
 }
 ```
 
-## 📊 Analytics
+**No code changes needed!** The same generic system works for any theme.
 
-When Supabase is configured, the system tracks:
-
-- Session starts and completions
-- Round-by-round card selections
-- Selection times and timeout events  
-- User agent and screen resolution
-- Success/failure rates per deck
-
-### Database Schema
-
-```sql
--- Sessions table
-CREATE TABLE game_sessions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  session_id TEXT UNIQUE NOT NULL,
-  deck_id TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  completed_at TIMESTAMPTZ,
-  success BOOLEAN,
-  total_duration INTEGER
-);
-
--- Round attempts table
-CREATE TABLE round_attempts (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  session_id TEXT REFERENCES game_sessions(session_id),
-  round_number INTEGER NOT NULL,
-  cards_shown TEXT[],
-  correct_card_id TEXT NOT NULL,
-  selected_card_id TEXT,
-  selection_time INTEGER,
-  was_timeout BOOLEAN DEFAULT FALSE
-);
-```
-
-## 🚢 Deployment
-
-### Vercel (Recommended)
-
-1. **Connect repository** to Vercel
-2. **Set environment variables** in Vercel dashboard
-3. **Deploy** automatically on git push
-
-### Manual Deployment
+## 🚀 **Quick Start**
 
 ```bash
-npm run build
-npm start
+git clone <repository-url>
+cd image-password
+npm install
+cp .env.example .env.local
+# Edit .env.local with your URLs
+npm run dev
 ```
 
-## 🔧 Development
+## ⚙️ **Configuration**
 
-### Scripts
+### Environment Variables
+```env
+# Required
+DEFAULT_SUCCESS_URL=https://your-secret-destination.com
+NEXT_PUBLIC_SUCCESS_URL=https://your-secret-destination.com
+NEXT_PUBLIC_LOSS_REDIRECT_URL=https://your-study-materials.com
 
-- `npm run dev` - Start development server
-- `npm run build` - Build production bundle
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript check
-
-### Project Structure
-
-```
-src/
-├── app/                 # Next.js 14 app directory
-├── components/          # React components
-│   ├── game/           # Game-specific components  
-│   ├── deck/           # Card display components
-│   ├── ui/             # Reusable UI components
-│   └── providers/      # Context providers
-├── hooks/              # Custom React hooks
-├── utils/              # Utility functions
-├── config/             # Configuration files
-├── types/              # TypeScript type definitions
-└── styles/             # Additional styles
-
-data/
-└── cards.json          # Card data
-
-public/
-└── images/             # Static assets
+# Optional Analytics
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_ANALYTICS_ENABLED=true
 ```
 
-## 🔒 Security Features
+### Theme Configuration
+- **Text/Content**: Edit `public/config/text/en.json`
+- **Images**: Replace files in `public/images/cards/`
+- **Metadata**: Update `public/cards.json`
 
-- **Server-side verification** of game completion
-- **Card shuffling** on failure to prevent answer lookup
-- **Session isolation** - no cross-session data persistence
-- **Environment variable masking** for sensitive URLs
-- **Rate limiting** through automatic lockouts
+## 📊 **Analytics Features**
 
-## 📝 License
+When Supabase is configured:
+- Session tracking with device info
+- Round-by-round performance by category
+- Success/failure rates and timing
+- Study button usage tracking
 
-This project is licensed under the ISC License - see the LICENSE file for details.
+**Setup**: Run `supabase-schema.sql` in your Supabase dashboard
 
-## 🤝 Contributing
+## 🎨 **Advanced Features**
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- **Mobile tap-to-zoom**: Double-tap for full-screen image detail
+- **URL obfuscation**: Success content in iframe (destination hidden)
+- **Image preloading**: Instant round transitions
+- **Comprehensive testing**: 17 test cases covering core logic
+- **TypeScript**: Full type safety throughout
 
-## 🐛 Issues
+## 🌟 **Benefits**
 
-If you encounter any issues:
+- **Generic platform**: Works for any image-based knowledge challenge
+- **Easy theming**: JSON + images = new theme (no coding required)
+- **Multi-language ready**: Add translation JSON files
+- **Production ready**: Clean, tested, optimized codebase
+- **Security-first**: Session isolation, URL hiding, anti-cheating measures
 
-1. Check the [Issues](../../issues) page
-2. Ensure environment variables are properly configured
-3. Verify card data meets minimum requirements
-4. Check browser console for JavaScript errors
+## 📝 **License**
 
-## 🌟 Acknowledgments
+ISC License - see LICENSE file for details.
 
-- Inspired by Yugioh Trading Card Game
-- Built with modern React and Next.js best practices
-- Designed for security-conscious applications
+---
+
+*A completely generic image-based knowledge authentication platform. Current theme: Yu-Gi-Oh Fairy Deck mastery challenge.*

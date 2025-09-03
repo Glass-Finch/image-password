@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useGame } from '@/components/providers/GameProvider'
+import { useText, formatText } from '@/hooks/useText'
 
 interface GameTimerProps {
   className?: string
@@ -10,6 +11,7 @@ interface GameTimerProps {
 
 export default function GameTimer({ className = '' }: GameTimerProps) {
   const { gameState, handleTimeout, isImagesLoaded } = useGame()
+  const text = useText()
   const [timeRemaining, setTimeRemaining] = useState(60)
 
   useEffect(() => {
@@ -69,12 +71,10 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
           ⏱️ {formatTime(timeRemaining)}
         </motion.div>
         <div className="text-lg text-monokai-text-dim font-semibold">
-          Round {gameState.currentRound} of 3
+          {text && formatText(text.timer.roundOf, { round: gameState.currentRound.toString() })}
         </div>
         <div className="text-md text-monokai-yellow font-bold">
-          {gameState.currentRound === 1 && '🎭 Monster Cards'}
-          {gameState.currentRound === 2 && '📜 Spell Cards'}
-          {gameState.currentRound === 3 && '🪤 Trap Cards'}
+          {text && text.rounds.types && text.rounds.labels[text.rounds.types[gameState.currentRound - 1]]}
         </div>
       </div>
 
@@ -99,23 +99,23 @@ export default function GameTimer({ className = '' }: GameTimerProps) {
       </div>
 
       {/* Warning messages */}
-      {timeRemaining <= 30 && timeRemaining > 10 && (
+      {text && timeRemaining <= 30 && timeRemaining > 10 && (
         <motion.div
           className="text-center text-monokai-yellow text-sm"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          Time is running out!
+          {text.timer.timeRunningOut}
         </motion.div>
       )}
       
-      {timeRemaining <= 10 && timeRemaining > 0 && (
+      {text && timeRemaining <= 10 && timeRemaining > 0 && (
         <motion.div
           className="text-center text-monokai-red text-sm font-bold"
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 0.5, repeat: Infinity }}
         >
-          HURRY UP! {timeRemaining} seconds left!
+          {formatText(text.timer.hurryUp, { seconds: timeRemaining.toString() })}
         </motion.div>
       )}
     </div>

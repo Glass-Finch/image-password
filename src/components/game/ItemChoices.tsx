@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card } from '@/types/game'
-import CardImage from '@/components/deck/CardImage'
+import ItemImage from '@/components/collection/ItemImage'
 import { useGame } from '@/components/providers/GameProvider'
+import { useText } from '@/hooks/useText'
 import { GAME_CONFIG, ANIMATION_DURATIONS } from '@/config/game-constants'
 
 interface CardChoicesProps {
@@ -12,7 +13,8 @@ interface CardChoicesProps {
 }
 
 export default function CardChoices({ className = '' }: CardChoicesProps) {
-  const { gameState, selectCard, currentRoundData } = useGame()
+  const { gameState, selectCard, currentRoundData, analytics } = useGame()
+  const text = useText()
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
   const [feedbackCards, setFeedbackCards] = useState<Record<string, boolean>>({})
 
@@ -23,6 +25,21 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
 
     setSelectedCardId(card.id)
     const isCorrect = card.id === gameState.correctCardId
+    
+    // Track round attempt
+    const roundType = text?.rounds.types?.[gameState.currentRound - 1] || 'unknown'
+    
+    analytics.trackRound(
+      gameState.sessionId,
+      gameState.deckId,
+      gameState.currentRound,
+      roundType,
+      gameState.currentRoundChoices.map(c => c.id),
+      gameState.correctCardId,
+      card.id,
+      Date.now() - gameState.roundStartTime,
+      false
+    )
     
     // Show immediate visual feedback
     setFeedbackCards(prev => ({
@@ -56,7 +73,7 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
   if (!currentRoundData || !gameState.currentRoundChoices.length) {
     return (
       <div className={`text-center text-monokai-text-dim ${className}`}>
-        Loading round choices...
+        {text?.ui.loadingRoundChoices || 'Loading round choices...'}
       </div>
     )
   }
@@ -65,12 +82,10 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
     <div className={`space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 border border-monokai-blue/30 ${className}`}>
       <div className="text-center">
         <h2 className="text-2xl font-bold gradient-text mb-2">
-          ⚡ Choose the Card
+          {text?.ui.chooseItem || '⚡ Choose the Card'}
         </h2>
         <p className="text-sm text-monokai-text-dim">
-          {gameState.currentRound === 1 && 'Pick the monster that complements the fairy deck'}
-          {gameState.currentRound === 2 && 'Pick the spell that complements the fairy deck'}
-          {gameState.currentRound === 3 && 'Pick the trap that complements the fairy deck'}
+          {text && text.rounds.types && text.rounds.instructions[text.rounds.types[gameState.currentRound - 1]]}
         </p>
       </div>
       
@@ -83,7 +98,7 @@ export default function CardChoices({ className = '' }: CardChoicesProps) {
       >
         {gameState.currentRoundChoices.map((card) => (
           <motion.div key={card.id} variants={itemVariants}>
-            <CardImage
+            <ItemImage
               card={card}
               onClick={() => handleCardSelect(card)}
               isSelected={selectedCardId === card.id}

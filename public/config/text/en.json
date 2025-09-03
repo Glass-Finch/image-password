@@ -1,0 +1,69 @@
+{
+  "game": {
+    "title": "✨ Yu-Gi-Oh! Trials of the Fairies ✨",
+    "subtitle": "🧚‍♀️ Prove your fairy deck building mastery and win a prize! 🧚‍♀️"
+  },
+  "rounds": {
+    "types": ["monster", "spell", "trap"],
+    "labels": {
+      "monster": "🎭 Monster Cards",
+      "spell": "📜 Spell Cards",
+      "trap": "🪤 Trap Cards"
+    },
+    "instructions": {
+      "monster": "Pick the monster that best complements the deck on the left",
+      "spell": "Pick the spell that best complements the deck on the left",
+      "trap": "Pick the trap that best complements the deck on the left"
+    }
+  },
+  "ui": {
+    "chooseItem": "⚡ Choose the Card",
+    "referenceCollection": "🎴 Reference Deck", 
+    "collectionInstructions": "Choose cards that best complement this deck",
+    "loadingMessage": "Loading magical challenge...",
+    "loadingImages": "Loading images",
+    "loadingRoundChoices": "Loading round choices...",
+    "successHeader": "✨ Fairy Deck Master",
+    "exclusiveContent": "Exclusive Content"
+  },
+  "timer": {
+    "roundOf": "Round {round} of 3",
+    "timeRunningOut": "Time is running out!",
+    "hurryUp": "HURRY UP! {seconds} seconds left!"
+  },
+  "buttons": {
+    "tryAgain": "Try Again 🎮",
+    "studyUp": "Go Study Up 📚",
+    "returnToPuzzle": "🎮 Puzzle",
+    "closeTab": "✕ Close",
+    "enterSecretArea": "Enter Secret Area 🚀",
+    "returnToChallenge": "Return to Challenge",
+    "reloadPage": "Reload Page"
+  },
+  "messages": {
+    "success": "Success!",
+    "fairyMasterSuccess": "Fairy Master! ✨",
+    "accessGranted": "Access Granted!",
+    "accessDenied": "Access Denied",
+    "wrongChoice": "Wrong Choice! ❌",
+    "timeUp": "Time's Up! ⏰",
+    "loadingError": "Loading Error",
+    "verifyingAccess": "Verifying Access...",
+    "welcomeExclusive": "Welcome to your exclusive content"
+  },
+  "errors": {
+    "wrongChoiceMessage": "That wasn't the right card. Give it another shot!",
+    "timeoutMessage": "You ran out of time. Try again with fresh cards!",
+    "mustComplete": "You must complete the fairy deck challenge to access this content.",
+    "failedToLoad": "Failed to load cards data",
+    "confirmingMastery": "Confirming your fairy deck mastery",
+    "congratulationsMessage": "Congratulations! You've proven your fairy deck mastery."
+  },
+  "security": {
+    "securityNotice": "Security Notice",
+    "preventLookup": "The puzzle has been reset to prevent answer lookup. New cards have been shuffled."
+  },
+  "hints": {
+    "studyDeck": "Study the reference deck carefully. Choose cards that would best complement it strategically."
+  }
+}

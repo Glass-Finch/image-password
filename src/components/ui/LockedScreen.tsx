@@ -116,25 +116,49 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
           </div>
         </motion.div>
 
-        {/* Restart button */}
-        <motion.button
-          onClick={restartGame}
-          className="
-            bg-gradient-to-r from-monokai-green to-monokai-blue
-            text-monokai-bg font-bold py-3 px-8 rounded-lg
-            hover:from-monokai-blue hover:to-monokai-green
-            transition-all duration-300 transform
-            shadow-lg
-          "
-          variants={buttonVariants}
-          whileHover="hover"
-          whileTap="tap"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-        >
-          Try Again 🎮
-        </motion.button>
+        {/* Action buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.button
+            onClick={restartGame}
+            className="
+              bg-gradient-to-r from-monokai-purple to-monokai-blue
+              text-monokai-bg font-bold py-3 px-8 rounded-lg
+              hover:from-monokai-blue hover:to-monokai-purple
+              transition-all duration-300 transform
+              shadow-lg
+            "
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            Try Again 🎮
+          </motion.button>
+
+          <motion.button
+            onClick={() => {
+              const studyUrl = process.env.NEXT_PUBLIC_LOSS_REDIRECT_URL || 'https://example.com/study'
+              window.open(studyUrl, '_blank')
+            }}
+            className="
+              bg-gradient-to-r from-monokai-yellow to-monokai-orange
+              text-monokai-bg font-bold py-3 px-8 rounded-lg
+              hover:from-monokai-orange hover:to-monokai-yellow
+              transition-all duration-300 transform
+              shadow-lg
+            "
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            Go Study Up 📚
+          </motion.button>
+        </div>
 
         {/* Hint text */}
         <motion.p

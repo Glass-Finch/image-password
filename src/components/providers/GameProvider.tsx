@@ -2,8 +2,10 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Card, DeckConfig } from '@/types/game'
-import { DECK_CONFIGS, DEFAULT_DECK } from '@/config/deck-configs'
+import { COLLECTION_CONFIGS, DEFAULT_COLLECTION } from '@/config/collection-configs'
 import { useGameState } from '@/hooks/useGameState'
+import { useAnalytics } from '@/hooks/useAnalytics'
+import { useText } from '@/hooks/useText'
 import { preloadImagesWithProgress } from '@/utils/imagePreloader'
 
 interface GameContextType {
@@ -18,6 +20,7 @@ interface GameContextType {
   error: string | null
   loadingProgress: number
   isImagesLoaded: boolean
+  analytics: ReturnType<typeof useAnalytics>
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined)
@@ -29,14 +32,16 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [isImagesLoaded, setIsImagesLoaded] = useState(false)
   
-  const config = DECK_CONFIGS[DEFAULT_DECK]
-  const gameState = useGameState(cards, config.id)
+  const config = COLLECTION_CONFIGS[DEFAULT_COLLECTION]
+  const text = useText()
+  const gameState = useGameState(cards, config.id, text?.rounds.types)
+  const analytics = useAnalytics()
 
   // Load cards data
   useEffect(() => {
     async function loadCards() {
       try {
-        const response = await fetch(`/cards.json?t=${Date.now()}`)
+        const response = await fetch(`/items.json?t=${Date.now()}`)
         if (!response.ok) {
           throw new Error('Failed to load cards data')
         }
@@ -45,15 +50,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
         
         // Preload ALL card images with progress tracking
         const allImages = cardsData.map(card => card.image)
-        console.log(`Preloading ${allImages.length} images...`)
-        
         await preloadImagesWithProgress(allImages, (loaded, total) => {
-          const progress = Math.round((loaded / total) * 100)
-          console.log(`Loading progress: ${loaded}/${total} (${progress}%)`)
-          setLoadingProgress(progress)
+          setLoadingProgress(Math.round((loaded / total) * 100))
         })
-        
-        console.log('All images preloaded!')
         
         setIsImagesLoaded(true)
         setError(null)
@@ -69,6 +68,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     loadCards()
   }, [])
 
+  // Track initial session
+  useEffect(() => {
+    if (!isLoading && !error && gameState.gameState.sessionId && isImagesLoaded) {
+      analytics.trackSession(gameState.gameState.sessionId, config.id)
+    }
+  }, [isLoading, error, gameState.gameState.sessionId, config.id, analytics, isImagesLoaded])
+
   const contextValue: GameContextType = {
     cards,
     config,
@@ -81,6 +87,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     error,
     loadingProgress,
     isImagesLoaded,
+    analytics,
   }
 
   return (

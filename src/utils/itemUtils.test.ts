@@ -1,6 +1,6 @@
-import { randomSelect, shuffle, generateSessionId } from './cardUtils'
+import { randomSelect, shuffle, generateSessionId } from './itemUtils'
 
-describe('cardUtils', () => {
+describe('itemUtils', () => {
   describe('randomSelect', () => {
     test('selects correct number of items', () => {
       const items = [1, 2, 3, 4, 5]
