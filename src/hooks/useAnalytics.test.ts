@@ -24,14 +24,14 @@ describe('useAnalytics', () => {
   test('trackSession calls Supabase correctly', async () => {
     const { result } = renderHook(() => useAnalytics())
     
-    // Should not throw error
+    // Should not throw error (will catch fetch errors in implementation)
     await expect(result.current.trackSession('test-session', 'default')).resolves.toBeUndefined()
   })
 
   test('trackRound calls Supabase correctly', async () => {
     const { result } = renderHook(() => useAnalytics())
     
-    // Should not throw error
+    // Should not throw error (will catch fetch errors in implementation)
     await expect(result.current.trackRound(
       'test-session',
       'default', 
@@ -48,7 +48,7 @@ describe('useAnalytics', () => {
   test('trackCompletion calls Supabase correctly', async () => {
     const { result } = renderHook(() => useAnalytics())
     
-    // Should not throw error
+    // Should not throw error (will catch fetch errors in implementation)
     await expect(result.current.trackCompletion('test-session', true, 45000)).resolves.toBeUndefined()
   })
 })
