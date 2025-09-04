@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useText } from '@/hooks/useText'
+import { GameErrorBoundary } from '@/components/ErrorBoundary'
 
 function SuccessContent() {
   const searchParams = useSearchParams()
@@ -147,7 +148,7 @@ function SuccessContent() {
         style={{ height: 'calc(100vh - 48px)' }}
         title="Secret Content"
         onError={() => setIframeError(true)}
-        onLoad={() => console.log('Content loaded successfully')}
+        onLoad={() => {}}
       />
     </div>
   )
@@ -155,17 +156,19 @@ function SuccessContent() {
 
 export default function SuccessPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-monokai-bg via-monokai-bg-light to-monokai-bg flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-4">🔐</div>
-          <h1 className="text-2xl font-bold gradient-text">
-            Loading...
-          </h1>
+    <GameErrorBoundary>
+      <Suspense fallback={
+        <div className="min-h-screen bg-gradient-to-br from-monokai-bg via-monokai-bg-light to-monokai-bg flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-6xl mb-4">🔐</div>
+            <h1 className="text-2xl font-bold gradient-text">
+              Loading...
+            </h1>
+          </div>
         </div>
-      </div>
-    }>
-      <SuccessContent />
-    </Suspense>
+      }>
+        <SuccessContent />
+      </Suspense>
+    </GameErrorBoundary>
   )
 }

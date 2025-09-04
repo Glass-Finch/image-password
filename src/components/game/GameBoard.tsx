@@ -12,6 +12,7 @@ import GameTimer from './GameTimer'
 import SuccessOverlay from '@/components/ui/SuccessOverlay'
 import LockedScreen from '@/components/ui/LockedScreen'
 import LoadingState from '@/components/ui/LoadingState'
+import { DevErrorTrigger } from '@/components/DevErrorTrigger'
 
 export default function GameBoard() {
   const { 
@@ -155,6 +156,9 @@ export default function GameBoard() {
           </div>
         </div>
       )}
+      
+      {/* Development error trigger */}
+      <DevErrorTrigger />
     </div>
   )
 }

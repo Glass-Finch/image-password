@@ -85,6 +85,3 @@ SELECT
 FROM round_attempts 
 GROUP BY deck_id, round_type;
 
--- Insert sample data for testing (optional)
--- INSERT INTO game_sessions (session_id, deck_id, user_agent, screen_resolution) 
--- VALUES ('test-session-1', 'fairy', 'Test Browser', '1920x1080');

@@ -43,25 +43,75 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function loadItems() {
       try {
+        // Validate we have a valid base URL
+        if (typeof window === 'undefined') {
+          throw new Error('Cannot load items - window not available')
+        }
+
         const response = await fetch(`/items.json?t=${Date.now()}`)
         if (!response.ok) {
-          throw new Error('Failed to load items data')
+          throw new Error(`Failed to load items data: ${response.status} ${response.statusText}`)
         }
+        
         const itemsData: Item[] = await response.json()
+        
+        // Validate items data structure
+        if (!Array.isArray(itemsData)) {
+          throw new Error('Invalid items data format - expected array')
+        }
+
+        if (itemsData.length === 0) {
+          throw new Error('No items found in data file')
+        }
+
+        // Validate required item fields
+        const invalidItems = itemsData.filter(item => 
+          !item.id || !item.image || !item.item_type
+        )
+        if (invalidItems.length > 0) {
+          throw new Error(`Found ${invalidItems.length} items with missing required fields (id, image, item_type)`)
+        }
+
         setItems(itemsData)
         
-        // Preload ALL item images with progress tracking
-        const allImages = itemsData.map(item => item.image)
-        await preloadImagesWithProgress(allImages, (loaded, total) => {
-          setLoadingProgress(Math.round((loaded / total) * 100))
-        })
+        // Preload ALL item images with progress tracking and error handling
+        try {
+          const allImages = itemsData.map(item => item.image).filter(Boolean)
+          if (allImages.length === 0) {
+            throw new Error('No valid image paths found in items')
+          }
+
+          await preloadImagesWithProgress(allImages, (loaded, total) => {
+            setLoadingProgress(Math.round((loaded / total) * 100))
+          })
+          
+          setIsImagesLoaded(true)
+          setError(null)
+        } catch (imageError) {
+          console.warn('Some images failed to load, but continuing:', imageError)
+          // Don't fail completely if some images don't load - set as loaded anyway
+          setIsImagesLoaded(true)
+          setError(null)
+        }
         
-        setIsImagesLoaded(true)
-        setError(null)
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error loading items'
+        let errorMessage = 'Unknown error loading items'
+        
+        if (err instanceof Error) {
+          errorMessage = err.message
+          
+          // Add helpful context for common errors
+          if (err.message.includes('Failed to fetch')) {
+            errorMessage = 'Network error: Could not load game data. Please check your internet connection.'
+          } else if (err.message.includes('JSON')) {
+            errorMessage = 'Data format error: Game configuration file is corrupted.'
+          }
+        }
+        
         setError(errorMessage)
         console.error('Failed to load items:', err)
+        
+        // Don't throw here - let the component handle the error state gracefully
       } finally {
         setIsLoading(false)
       }
@@ -76,8 +126,17 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     
     if (!isLoading && !error && currentSessionId && isImagesLoaded && 
         trackedSessionRef.current !== currentSessionId) {
-      analytics.trackSession(currentSessionId, config.id)
-      trackedSessionRef.current = currentSessionId
+      
+      // Track session with error handling (don't let analytics break the game)
+      try {
+        analytics.trackSession(currentSessionId, config.id)
+        trackedSessionRef.current = currentSessionId
+      } catch (analyticsError) {
+        // Analytics errors should not break the game experience
+        console.warn('Failed to track session, continuing without analytics:', analyticsError)
+        // Still mark as tracked to prevent retries
+        trackedSessionRef.current = currentSessionId
+      }
     }
   }, [isLoading, error, gameState.gameState.sessionId, config.id, analytics, isImagesLoaded])
 

@@ -1,234 +1,235 @@
-# 🎯 Generic Image Knowledge Authentication Platform
+# Image Password Authentication Platform
 
-A Next.js-based password-protected landing page that uses image-based puzzles instead of traditional passwords. Users must demonstrate comprehensive knowledge of a specific image collection to gain access. **Completely theme-agnostic with Yu-Gi-Oh Fairy Deck as the current theme example.**
+A Next.js application that uses image-based knowledge challenges for user verification. Features theme-agnostic architecture with comprehensive analytics.
 
-## 🎴 Current Status: PRODUCTION READY
+## Core Features
 
-- ✅ **Theme-Agnostic Platform**: Generic system with Yu-Gi-Oh as configurable theme
-- ✅ **Complete Text Extraction**: All content configurable via JSON files
-- ✅ **Study Phase**: Pre-challenge study time with image preloading
-- ✅ **130 Image Database**: Reference collection + correct/distractor images
-- ✅ **Category-Based Rounds**: Configurable round types and progression  
-- ✅ **Mobile Features**: Tap-to-zoom modal, responsive design
-- ✅ **URL Obfuscation**: Iframe-based success page hides destination
-- ✅ **Analytics Ready**: Supabase integration with category tracking
+- **Study Phase**: Pre-challenge image examination with progressive loading
+- **Multi-Round Challenge**: Configurable difficulty progression (default: 3 rounds)
+- **Mobile Optimized**: Double-tap zoom, responsive design
+- **Theme System**: JSON-based content configuration
+- **Analytics**: User behavior, geographic, and device tracking
+- **Error Recovery**: Error boundaries with user-friendly fallbacks
 
-## 🚀 **Key Features**
+## Tech Stack
 
-### 📚 **Study Phase (New)**
-- **Untimed study period**: Users can examine reference collection without pressure
-- **Image preloading**: All 130+ images load during study phase with progress bar
-- **Ready button**: Challenge only begins when user clicks "🚀 Begin Challenge"
-- **Educational approach**: Encourages proper study before timed challenge
+- Next.js 14 + React 18 + TypeScript 5.9
+- TailwindCSS + Framer Motion
+- Supabase (PostgreSQL analytics)
+- Jest + Testing Library
 
-### 🎮 **Three-Round Challenge System**
-- **Configurable rounds**: Any number of image categories
-- **60-second timer**: Only starts after study phase button click
-- **Punishment system**: Wrong choice shows lock screen + study button
-- **Success flow**: Celebration animation → iframe redirect
+## Quick Start
 
-### 🎨 **Complete Theme System**
-- **JSON-driven content**: All text/labels in `public/config/text/en.json`
-- **No hardcoded strings**: Codebase is completely theme-neutral
-- **Generic file names**: No theme-specific terminology in code
-- **Easy theme switching**: Change JSON file + images = new theme
-- **Multi-language ready**: Add new language JSON files
+```bash
+git clone <repository>
+cd image-password
+npm install
+cp .env.example .env.local
+# Edit .env.local with your configuration
+npm run dev
+```
 
-### 📱 **Enhanced Mobile Experience**
-- **Tap-to-zoom modal**: Double-tap any image for full-screen detail
-- **1.75x hover zoom**: Desktop image inspection with proper layering
-- **Responsive layout**: Optimized for all screen sizes
-- **Study integration**: "Go Study Up" button opens learning materials
+## Environment Configuration
 
-### 🔒 **Advanced Security & UX**
-- **URL obfuscation**: Success content in iframe (secret URL hidden)
-- **Image preloading**: All images loaded before challenge starts
-- **Session isolation**: Each attempt gets unique tracking ID
-- **Analytics tracking**: Comprehensive Supabase data collection
+```bash
+# Required
+DEFAULT_SUCCESS_URL=https://your-destination.com
+NEXT_PUBLIC_SUCCESS_URL=https://your-destination.com
+NEXT_PUBLIC_LOSS_REDIRECT_URL=https://your-study-url.com
 
-## 🛠 **Tech Stack**
+# Optional Analytics
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-key
+NEXT_PUBLIC_ANALYTICS_ENABLED=true
+```
 
-- **Frontend**: Next.js 14, React, TypeScript
-- **Styling**: TailwindCSS with Monokai theme
-- **Animations**: Framer Motion
-- **Analytics**: Supabase (optional)
-- **Text System**: JSON-based configuration
-- **Deployment**: Vercel-ready
+## Project Structure
 
-## 📁 **Theme-Agnostic Architecture**
-
-### File Structure (Updated)
 ```
 src/
-├── app/                          # Next.js routes
+├── app/
+│   ├── api/analytics/          # Analytics endpoints
+│   ├── page.tsx               # Main game interface
+│   └── success/page.tsx       # Success redirect
 ├── components/
-│   ├── collection/              # Generic image display (was deck/)
-│   │   ├── ItemImage.tsx        # Generic image component (was CardImage)
-│   │   └── ReferenceCollection.tsx  # Generic collection display (was ReferenceDeck)
-│   ├── game/                    # Core game logic
-│   │   ├── ItemChoices.tsx      # Generic item selection (was CardChoices)
-│   │   ├── StudyPhase.tsx       # Pre-challenge study component (new)
-│   │   └── GameTimer.tsx        # Timer component
-│   ├── providers/               # Context providers
-│   └── ui/                      # UI components
-│       └── ItemZoomModal.tsx    # Mobile zoom modal (was CardZoomModal)
-├── config/
-│   ├── collection-configs.ts    # Generic collection config (was deck-configs)
-│   └── game-constants.ts        # Game mechanics
+│   ├── game/                  # Game mechanics
+│   ├── collection/            # Image display
+│   ├── providers/             # React context
+│   └── ui/                    # Reusable components
 ├── hooks/
-│   ├── useText.ts              # Text/theme loading
-│   └── useAnalytics.ts         # Data tracking
-└── utils/                      # Generic utilities
-    ├── itemUtils.ts            # Generic utilities (was cardUtils)
-    └── gameLogic.ts            # Game logic
+│   ├── useAnalytics.ts       # Analytics tracking
+│   ├── useGameState.ts       # Game state management
+│   └── useText.ts            # Theme configuration
+├── utils/
+│   ├── gameErrors.ts         # Error constants and validation
+│   ├── analyticsUtils.ts     # Analytics helpers
+│   └── gameLogic.ts          # Round generation
+└── types/game.ts             # TypeScript definitions
 
 public/
-├── images/items/               # Theme images (was cards/)
-│   ├── reference/             # Reference collection (was fairy/)
-│   ├── correct/               # Matching images  
-│   └── distractors/          # Non-matching images
-├── items.json                 # Image metadata (was cards.json)
-└── config/text/
-    └── en.json               # All theme-specific text
+├── images/items/             # Theme assets
+│   ├── reference/           # Study collection (15 items)
+│   ├── correct/             # Valid answers (45+ items)
+│   └── distractors/         # Wrong answers (70+ items)
+├── items.json               # Image metadata
+└── config/text/en.json      # Theme text configuration
 ```
 
-## 🎯 **Current Theme: Yu-Gi-Oh Fairy Deck**
+## Analytics System
 
-### Enhanced Game Flow
-1. **Study Phase**: "Are you up for the challenge of completing this Yu-Gi-Oh deck?"
-   - Reference deck visible for study
-   - Progress bar shows image loading (0-100%)
-   - Tips and instructions displayed
-   - "🚀 Begin Challenge" button when ready
+### Database Setup (Supabase)
 
-2. **Round 1**: 🎭 Monster Cards - Choose 1 correct fairy monster from 6 options
-3. **Round 2**: 📜 Spell Cards - Choose 1 correct fairy spell from 6 options  
-4. **Round 3**: 🪤 Trap Cards - Choose 1 correct fairy trap from 6 options
-5. **Success**: "✨ Fairy Deck Master" → iframe with hidden URL
-6. **Failure**: Lock screen → "Try Again 🎮" or "Go Study Up 📚"
+Run the provided SQL schema in your Supabase dashboard:
 
-### Content
-- **Title**: "✨ Yu-Gi-Oh! Trials of the Fairies ✨"
-- **Study Instructions**: "Are you up for the challenge of completing this Yu-Gi-Oh deck?"
-- **Challenge**: Prove fairy deck building mastery
-- **Categories**: Monster/Spell/Trap card knowledge
-- **Study materials**: Yu-Gi-Oh wiki integration
+```sql
+-- See supabase-schema.sql for complete schema
+-- Creates tables: game_sessions, round_attempts
+-- Includes indexes and analytics views
+```
 
-## 🔄 **Creating New Themes**
+### Tracked Data
 
-### 1. Update Text Configuration
+**Session Level**
+- Geographic data (IP-based location)
+- Device information (browser, OS, screen size)
+- Traffic attribution (referrer, UTM parameters)
+- User behavior (new vs returning visitors)
+
+**Round Level**
+- Round performance and timing
+- Selection accuracy by category
+- User interaction patterns
+
+### Sample Queries
+
+```sql
+-- Geographic performance
+SELECT country, COUNT(*) as sessions, 
+       ROUND(AVG(total_duration)/1000) as avg_seconds
+FROM game_sessions 
+WHERE country IS NOT NULL
+GROUP BY country;
+
+-- Device performance
+SELECT device_type, browser_type, COUNT(*) as sessions
+FROM game_sessions 
+GROUP BY device_type, browser_type;
+```
+
+## Theme Configuration
+
+### Text Configuration (`public/config/text/en.json`)
+
 ```json
-// public/config/text/pokemon-en.json
 {
   "game": {
-    "title": "✨ Pokémon Grass Challenge ✨",
-    "subtitle": "🌱 Prove your grass-type mastery! 🌱"
-  },
-  "studyPhase": {
-    "instructions": "Ready to master grass-type Pokémon? Study the types and begin your challenge!"
+    "title": "Your Challenge Title",
+    "subtitle": "Prove your expertise"
   },
   "rounds": {
-    "types": ["basic", "stage1", "stage2"],
+    "types": ["category1", "category2", "category3"],
     "labels": {
-      "basic": "🌱 Basic Pokémon",
-      "stage1": "🌿 Stage 1",
-      "stage2": "🌳 Stage 2"
+      "category1": "Category 1",
+      "category2": "Category 2",
+      "category3": "Category 3"
     }
   }
 }
 ```
 
-### 2. Replace Images
+### Image Structure
+
 ```
 public/images/items/
-├── reference/     # 15 grass-type Pokémon
-├── correct/       # Grass support cards
-└── distractors/   # Fire/water/other types
+├── reference/      # Study materials (exactly 15 items)
+├── correct/        # Valid choices (15+ per category)
+└── distractors/    # Wrong choices (70+ items)
 ```
 
-### 3. Update Items Data
+### Item Metadata (`public/items.json`)
+
 ```json
-// public/items.json
-{
-  "item_type": "basic",  // or "stage1", "stage2"
-  "tags": ["grass", "reference"]
-}
+[
+  {
+    "id": "item-001",
+    "image": "/images/items/reference/item-001.jpg",
+    "item_type": "reference",
+    "tags": ["reference"]
+  }
+]
 ```
 
-**No code changes needed!** The same generic system works for any theme.
-
-## ⚙️ **Configuration**
-
-### Environment Variables
-```env
-# Required
-DEFAULT_SUCCESS_URL=https://your-secret-destination.com
-NEXT_PUBLIC_SUCCESS_URL=https://your-secret-destination.com
-NEXT_PUBLIC_LOSS_REDIRECT_URL=https://your-study-materials.com
-
-# Optional Analytics
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_ANALYTICS_ENABLED=true
-```
-
-### Theme Configuration
-- **Text/Content**: Edit `public/config/text/en.json`
-- **Images**: Replace files in `public/images/items/`
-- **Metadata**: Update `public/items.json`
-
-## 🎮 **Enhanced User Experience**
-
-### Study Phase Benefits
-- **No time pressure**: Study reference collection as long as needed
-- **Image preloading**: All images ready before challenge starts
-- **Educational approach**: Encourages proper preparation
-- **Progress feedback**: Visual loading progress during preload
-- **Smooth transition**: Instant challenge start when ready
-
-### Mobile Enhancements
-- **Double-tap zoom**: Full-screen image detail modal
-- **Touch-friendly**: Large touch targets and gestures
-- **Responsive design**: Optimal layouts for all devices
-
-## 📊 **Analytics Features**
-
-When Supabase is configured:
-- Session tracking with device info
-- Study phase duration tracking
-- Round-by-round performance by category
-- Success/failure rates and timing
-- Study button usage tracking
-
-**Setup**: Run `supabase-schema.sql` in your Supabase dashboard
-
-## 🧪 **Testing**
-
-- **17 test cases**: Core functionality verified
-- **Generic test data**: Tests use item terminology
-- **Build validation**: TypeScript and ESLint validation
-- **Theme system**: JSON loading and text extraction tested
+## Development Workflow
 
 ```bash
-npm test           # Run test suite
-npm run lint       # Check code quality  
-npm run type-check # Validate TypeScript
+# Development
+npm run dev                 # Start server
+npm run build              # Production build
+npm run start              # Production server
+
+# Quality Assurance
+npm run lint               # Code quality
+npm run type-check         # TypeScript validation
+npm test                   # Test suite (43 tests)
 ```
 
-## 🌟 **Architecture Benefits**
+## Error Handling
 
-- **Generic platform**: Works for any image-based knowledge challenge
-- **Study-first approach**: Educational rather than punitive
-- **Complete separation**: Code is 100% theme-neutral
-- **Easy theming**: JSON + images = new theme (no coding required)
-- **Multi-language ready**: Add translation JSON files
-- **Production ready**: Clean, tested, optimized codebase
-- **Security-first**: Session isolation, URL hiding, anti-cheating measures
+The application includes comprehensive error boundaries:
 
-## 📝 **License**
+- **Game-level errors**: User-friendly recovery UI
+- **Analytics errors**: Non-blocking, logged warnings
+- **Image loading errors**: Graceful fallbacks
+- **Network errors**: Retry mechanisms
 
-MIT License - see LICENSE file for details.
+## Deployment
 
----
+### Vercel (Recommended)
 
-*A completely generic image-based knowledge authentication platform with study-first approach. Current theme: Yu-Gi-Oh Fairy Deck mastery challenge.*
+1. Connect repository to Vercel
+2. Add environment variables in dashboard
+3. Deploy automatically on push to main
+
+### Database Setup
+
+1. Create Supabase project
+2. Run `supabase-schema.sql` in SQL editor
+3. Add connection details to environment
+
+## Testing
+
+The application includes 43 tests covering:
+
+- Game logic and round generation
+- Analytics tracking
+- Error boundary behavior
+- Utility functions
+
+Run tests with `npm test` or `npm test -- --watch` for development.
+
+## Architecture Notes
+
+### Theme System
+- All text content is externalized to JSON files
+- Images follow a specific folder structure
+- No hardcoded theme-specific content in code
+
+### Analytics
+- Non-blocking design - failures don't affect gameplay
+- Comprehensive tracking of user behavior and technical metrics
+- Privacy-compliant with IP anonymization options
+
+### Error Boundaries
+- Multi-level error catching
+- User-friendly recovery options
+- Development debugging tools
+
+## Current Theme: Yu-Gi-Oh Fairy Deck
+
+The platform demonstrates a Yu-Gi-Oh card knowledge verification system with three challenge rounds (Monster, Spell, Trap cards) using a fairy deck theme.
+
+To create a new theme, replace the JSON configuration, image assets, and metadata without modifying any code.
+
+## License
+
+MIT License
