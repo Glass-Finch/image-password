@@ -19,7 +19,7 @@ export default function StudyPhase({
   const text = useText()
 
   return (
-    <div className={`space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 border border-monokai-blue/30 ${className}`}>
+    <div className={`space-y-6 game-panel ${className}`}>
       <div className="text-center">
         <motion.h2 
           className="text-2xl font-bold gradient-text mb-4"
@@ -30,7 +30,7 @@ export default function StudyPhase({
         </motion.h2>
         
         <motion.p 
-          className="text-lg text-monokai-text mb-6"
+          className="text-lg text-monokai-text-secondary mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -77,7 +77,7 @@ export default function StudyPhase({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <div className="flex justify-between text-sm text-monokai-text-dim">
+          <div className="flex justify-between text-sm text-monokai-text-secondary">
             <span>Loading images...</span>
             <span>{loadingProgress}%</span>
           </div>
@@ -103,10 +103,10 @@ export default function StudyPhase({
           onClick={onStartChallenge}
           disabled={!isImagesLoaded}
           className={`
-            px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300
+            px-8 py-4 text-lg font-bold
             ${isImagesLoaded 
-              ? 'bg-gradient-to-r from-monokai-purple to-monokai-blue text-white hover:from-monokai-blue hover:to-monokai-purple shadow-lg hover:shadow-xl' 
-              : 'bg-monokai-bg-light text-monokai-text-dim cursor-not-allowed'
+              ? 'btn-neon' 
+              : 'bg-monokai-surface text-monokai-text-secondary cursor-not-allowed rounded-lg'
             }
           `}
           whileHover={isImagesLoaded ? { scale: 1.05 } : {}}

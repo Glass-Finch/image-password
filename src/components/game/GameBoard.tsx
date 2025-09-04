@@ -50,15 +50,15 @@ export default function GameBoard() {
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="text-center max-w-md mx-4">
+        <div className="game-panel text-center max-w-md mx-4">
           <div className="text-6xl mb-4">⚠️</div>
           <h2 className="text-2xl font-bold text-monokai-red mb-4">
             {text.messages.loadingError}
           </h2>
-          <p className="text-monokai-text mb-4">{error}</p>
+          <p className="text-monokai-text-secondary mb-6">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="bg-monokai-blue text-monokai-bg px-6 py-2 rounded-lg hover:bg-monokai-green transition-colors"
+            className="btn-secondary"
           >
             {text.buttons.reloadPage}
           </button>

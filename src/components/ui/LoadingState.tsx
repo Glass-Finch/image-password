@@ -80,7 +80,7 @@ export default function LoadingState({ message = 'Loading magical challenge...',
           {message}
         </h2>
         
-        <div className="flex items-center justify-center space-x-1 text-monokai-text-dim">
+        <div className="flex items-center justify-center space-x-1 text-monokai-text-secondary">
           <span>Loading images</span>
           {[0, 1, 2].map((index) => (
             <motion.span
@@ -99,7 +99,7 @@ export default function LoadingState({ message = 'Loading magical challenge...',
         
         {progress > 0 && (
           <div className="mt-4 w-64 mx-auto">
-            <div className="flex justify-between text-sm text-monokai-text-dim mb-2">
+            <div className="flex justify-between text-sm text-monokai-text-secondary mb-2">
               <span>Progress</span>
               <span>{progress}%</span>
             </div>

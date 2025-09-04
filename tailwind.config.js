@@ -19,6 +19,12 @@ module.exports = {
           bg: '#272822',
           'bg-dark': '#1e1e1e', 
           'bg-light': '#3e3d32',
+          surface: '#383830',
+          'surface-light': '#49483e',
+          border: '#75715e',
+          accent: '#ae81ff',
+          'accent-dark': '#9966cc',
+          'accent-bright': '#cc99ff',
           green: '#a6e22e',
           red: '#f92672',
           yellow: '#e6db74',
@@ -26,11 +32,12 @@ module.exports = {
           purple: '#ae81ff',
           orange: '#fd971f',
           text: '#f8f8f2',
-          'text-dim': '#75715e'
+          'text-dim': '#75715e',
+          'text-secondary': '#a8a8a2'
         }
       },
       fontFamily: {
-        mono: ['JetBrains Mono', 'Courier New', 'monospace'],
+        mono: ['DM Mono', 'JetBrains Mono', 'Courier New', 'monospace'],
         sans: ['Inter', 'system-ui', 'sans-serif']
       },
       animation: {
