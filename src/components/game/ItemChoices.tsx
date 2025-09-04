@@ -79,12 +79,12 @@ export default function ItemChoices({ className = '' }: ItemChoicesProps) {
   }
 
   return (
-    <div className={`space-y-4 sm:space-y-6 bg-monokai-bg-dark/30 rounded-xl p-6 sm:p-8 lg:p-10 border border-monokai-blue/30 ${className}`}>
+    <div className={`space-y-4 sm:space-y-6 game-panel sm:p-8 lg:p-10 ${className}`}>
       <div className="text-center">
         <h2 className="text-xl sm:text-2xl font-bold gradient-text mb-2">
           {text?.ui.chooseItem || '⚡ Choose the Card'}
         </h2>
-        <p className="text-xs sm:text-sm text-monokai-text-dim">
+        <p className="text-xs sm:text-sm text-monokai-text-secondary">
           {text && text.rounds.types && text.rounds.instructions[text.rounds.types[gameState.currentRound - 1]]}
         </p>
       </div>

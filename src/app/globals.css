@@ -1,12 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   html {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'DM Mono', 'JetBrains Mono', 'Courier New', monospace;
   }
   
   body {
@@ -52,6 +52,59 @@
   
   .kawaii-star {
     filter: drop-shadow(0 0 10px rgba(230, 219, 116, 0.8));
+  }
+
+  /* Unified Button Styles - Purple Neon Theme */
+  .btn-neon {
+    @apply relative px-6 py-3 font-semibold rounded-lg transition-all duration-300;
+    @apply bg-gradient-to-r from-monokai-accent to-monokai-accent-bright;
+    @apply hover:from-monokai-accent-bright hover:to-monokai-accent;
+    @apply text-white shadow-lg;
+    box-shadow: 0 0 15px rgba(174, 129, 255, 0.4);
+  }
+  
+  .btn-neon:hover {
+    box-shadow: 0 0 25px rgba(174, 129, 255, 0.6);
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-300;
+    @apply bg-monokai-surface hover:bg-monokai-surface-light;
+    @apply text-monokai-text border border-monokai-border;
+    box-shadow: 0 0 10px rgba(117, 113, 94, 0.2);
+  }
+  
+  .btn-secondary:hover {
+    box-shadow: 0 0 15px rgba(117, 113, 94, 0.3);
+    transform: translateY(-1px);
+  }
+  
+  .btn-danger {
+    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-300;
+    @apply bg-gradient-to-r from-monokai-red to-red-500;
+    @apply hover:from-red-500 hover:to-monokai-red;
+    @apply text-white shadow-lg;
+    box-shadow: 0 0 15px rgba(249, 38, 114, 0.4);
+  }
+  
+  .btn-study {
+    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-300;
+    @apply bg-gradient-to-r from-monokai-blue to-monokai-purple;
+    @apply hover:from-monokai-purple hover:to-monokai-blue;
+    @apply text-white shadow-lg;
+    box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+  }
+  
+  .btn-study:hover {
+    box-shadow: 0 0 25px rgba(102, 217, 239, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* Unified Card Styles */
+  .game-panel {
+    @apply bg-monokai-surface/80 backdrop-blur-sm rounded-xl border border-monokai-border;
+    @apply p-6 shadow-lg;
   }
 }
 

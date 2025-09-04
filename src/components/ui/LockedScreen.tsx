@@ -100,7 +100,7 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
 
         {/* Security notice */}
         <motion.div
-          className="bg-monokai-bg-light border-l-4 border-monokai-orange p-4 mb-8 text-left"
+          className="bg-monokai-surface border-l-4 border-monokai-orange p-4 mb-8 text-left rounded-lg"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
@@ -109,7 +109,7 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
             <span className="text-monokai-orange text-xl mr-2">🔒</span>
             <div>
               <p className="text-sm font-semibold text-monokai-orange">Security Notice</p>
-              <p className="text-xs text-monokai-text-dim mt-1">
+              <p className="text-xs text-monokai-text-secondary mt-1">
                 The puzzle has been reset to prevent answer lookup. New cards have been shuffled.
               </p>
             </div>
@@ -120,13 +120,7 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <motion.button
             onClick={restartGame}
-            className="
-              bg-gradient-to-r from-monokai-purple to-monokai-blue
-              text-monokai-bg font-bold py-3 px-8 rounded-lg
-              hover:from-monokai-blue hover:to-monokai-purple
-              transition-all duration-300 transform
-              shadow-lg
-            "
+            className="btn-neon"
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
@@ -142,13 +136,7 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
               const studyUrl = process.env.NEXT_PUBLIC_LOSS_REDIRECT_URL || 'https://example.com/study'
               window.open(studyUrl, '_blank')
             }}
-            className="
-              bg-gradient-to-r from-monokai-yellow to-monokai-orange
-              text-monokai-bg font-bold py-3 px-8 rounded-lg
-              hover:from-monokai-orange hover:to-monokai-yellow
-              transition-all duration-300 transform
-              shadow-lg
-            "
+            className="btn-study"
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
@@ -162,7 +150,7 @@ export default function LockedScreen({ reason }: LockedScreenProps) {
 
         {/* Hint text */}
         <motion.p
-          className="text-xs text-monokai-text-dim mt-4"
+          className="text-xs text-monokai-text-secondary mt-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
