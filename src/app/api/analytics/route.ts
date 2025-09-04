@@ -83,6 +83,18 @@ export async function POST(request: NextRequest) {
         if (completionError) throw completionError
         break
 
+      case 'error':
+        // Simple error logging - could extend to dedicated error table later
+        console.error('Client Error Report:', {
+          message: payload.message,
+          timestamp: new Date(payload.timestamp).toISOString(),
+          url: payload.url,
+          userAgent: payload.userAgent
+        })
+        
+        // For now, just log errors. In future sprints, could store in dedicated error table
+        break
+
       default:
         return NextResponse.json({ error: 'Invalid analytics type' }, { status: 400 })
     }

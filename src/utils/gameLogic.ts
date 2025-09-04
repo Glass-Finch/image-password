@@ -1,6 +1,7 @@
 import { Item, GameRound, CollectionConfig } from '@/types/game'
 import { randomSelect, shuffle } from './itemUtils'
 import { GAME_CONFIG } from '@/config/game-constants'
+import { GAME_ERRORS } from './gameErrors'
 
 export function generateGameRounds(items: Item[], roundTypes?: string[]): GameRound[] {
   return generateCategoryBasedRounds(items, roundTypes)

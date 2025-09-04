@@ -3,6 +3,7 @@ import { GameState, Item, SelectedItem, GameRound } from '@/types/game'
 import { generateSessionId } from '@/utils/itemUtils'
 import { generateGameRounds } from '@/utils/gameLogic'
 import { GAME_CONFIG } from '@/config/game-constants'
+import { validateItem, validateGameState, validateRoundData } from '@/utils/gameErrors'
 
 export function useGameState(items: Item[], collectionId: string, roundTypes?: string[]) {
   const [gameState, setGameState] = useState<GameState>(() => ({
@@ -67,54 +68,59 @@ export function useGameState(items: Item[], collectionId: string, roundTypes?: s
   const selectItem = useCallback((itemId: string) => {
     if (gameState.isSubmitting || gameState.gameStatus !== 'playing') return
 
-    const isCorrect = itemId === gameState.correctItemId
-    const selectionTime = Date.now() - gameState.roundStartTime
+    try {
+      // Simple validation using helpers
+      validateItem(itemId, gameState.currentRoundChoices)
+      validateGameState(gameState.correctItemId, gameState.currentRoundChoices)
 
-    const selectedItem: SelectedItem = {
-      roundNumber: gameState.currentRound,
-      itemId,
-      isCorrect,
-      selectionTime,
-      timestamp: Date.now(),
+      const isCorrect = itemId === gameState.correctItemId
+      const selectedItem: SelectedItem = {
+        roundNumber: gameState.currentRound,
+        itemId,
+        isCorrect,
+        selectionTime: Date.now() - gameState.roundStartTime,
+        timestamp: Date.now(),
+      }
+
+      setGameState(prev => {
+        const newSelectedItems = [...prev.selectedItems, selectedItem]
+        
+        if (!isCorrect) {
+          return { ...prev, selectedItems: newSelectedItems, gameStatus: 'failed' }
+        }
+
+        if (prev.currentRound === GAME_CONFIG.ROUNDS_COUNT) {
+          return {
+            ...prev,
+            selectedItems: newSelectedItems,
+            gameStatus: 'success',
+            completedAt: Date.now(),
+          }
+        }
+
+        // Move to next round with simple validation
+        const nextRound = prev.currentRound + 1
+        const nextRoundData = gameRounds[nextRound - 1]
+        validateRoundData(nextRoundData, nextRound)
+        
+        return {
+          ...prev,
+          selectedItems: newSelectedItems,
+          currentRound: nextRound,
+          currentRoundChoices: nextRoundData.choices,
+          correctItemId: nextRoundData.correctId,
+          timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
+          roundStartTime: Date.now(),
+        }
+      })
+    } catch (error) {
+      console.error('Selection error:', error)
+      setGameState(prev => ({ ...prev, gameStatus: 'failed', networkError: true }))
+      
+      // Re-throw for error boundary
+      throw error
     }
-
-    setGameState(prev => {
-      const newSelectedItems = [...prev.selectedItems, selectedItem]
-      
-      if (!isCorrect) {
-        // Wrong answer - show punishment screen
-        return {
-          ...prev,
-          selectedItems: newSelectedItems,
-          gameStatus: 'failed',
-        }
-      }
-
-      if (prev.currentRound === GAME_CONFIG.ROUNDS_COUNT) {
-        // Game completed successfully
-        return {
-          ...prev,
-          selectedItems: newSelectedItems,
-          gameStatus: 'success',
-          completedAt: Date.now(),
-        }
-      }
-
-      // Move to next round
-      const nextRound = prev.currentRound + 1
-      const nextRoundData = gameRounds[nextRound - 1]
-      
-      return {
-        ...prev,
-        selectedItems: newSelectedItems,
-        currentRound: nextRound,
-        currentRoundChoices: nextRoundData ? nextRoundData.choices : [],
-        correctItemId: nextRoundData ? nextRoundData.correctId : '',
-        timeRemaining: GAME_CONFIG.ROUND_DURATION_MS / 1000,
-        roundStartTime: Date.now(),
-      }
-    })
-  }, [gameState.isSubmitting, gameState.gameStatus, gameState.correctItemId, gameState.roundStartTime, gameState.currentRound, gameRounds])
+  }, [gameState.isSubmitting, gameState.gameStatus, gameState.correctItemId, gameState.currentRoundChoices, gameState.roundStartTime, gameState.currentRound, gameRounds])
 
   const handleTimeout = useCallback(() => {
     setGameState(prev => ({
@@ -129,12 +135,25 @@ export function useGameState(items: Item[], collectionId: string, roundTypes?: s
   }, [])
 
   const startChallenge = useCallback(() => {
-    setGameState(prev => ({ 
-      ...prev, 
-      gameStatus: 'playing',
-      roundStartTime: Date.now()
-    }))
-  }, [])
+    try {
+      if (!gameRounds?.length) throw new Error('No game rounds available')
+      
+      const firstRound = gameRounds[0]
+      validateRoundData(firstRound, 1)
+
+      setGameState(prev => ({ 
+        ...prev, 
+        gameStatus: 'playing',
+        roundStartTime: Date.now(),
+        currentRoundChoices: firstRound.choices,
+        correctItemId: firstRound.correctId,
+      }))
+    } catch (error) {
+      console.error('Challenge start error:', error)
+      setGameState(prev => ({ ...prev, gameStatus: 'failed', networkError: true }))
+      throw error
+    }
+  }, [gameRounds])
 
   return {
     gameState,
